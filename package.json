@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@rollup/plugin-node-resolve": "^7.1.3",
+    "fp-ts": "github:gcanti/fp-ts#tree-shaking",
+    "prettier": "^1.19.1",
+    "rollup": "^1.29.0",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7"
+  },
+  "devDependencies": {
+    "typescript": "^3.9.2"
+  }
+}
