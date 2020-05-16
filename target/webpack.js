@@ -66,8 +66,9 @@
       return Object.prototype.hasOwnProperty.call(object, property);
     }),
     (__webpack_require__.p = ""),
-    __webpack_require__((__webpack_require__.s = 0));
+    __webpack_require__((__webpack_require__.s = 1));
 })([
+  ,
   function(module, __webpack_exports__, __webpack_require__) {
     "use strict";
     __webpack_require__.r(__webpack_exports__);
