@@ -80,10 +80,7 @@
     var compare = function(x, y) {
       return x < y ? -1 : x > y ? 1 : 0;
     };
-    function strictEqual(a, b) {
-      return a === b;
-    }
-    var ordNumber = { equals: strictEqual, compare: compare };
+    var ordNumber_compare = compare;
     function max(O) {
       return function(x, y) {
         return -1 === O.compare(x, y) ? y : x;
@@ -103,13 +100,8 @@
     fromCompare(function() {
       return 0;
     });
-    var ord_contramap = function(fa, f) {
-      return fromCompare(function(x, y) {
-        return fa.compare(f(x), f(y));
-      });
-    };
-    ord_contramap(ordNumber, function(date) {
-      return date.valueOf();
+    fromCompare(function(x, y) {
+      return ordNumber_compare(x.valueOf(), y.valueOf());
     });
     console.log(max);
   }
