@@ -1,4 +1,2 @@
-import { max } from "fp-ts/es6/Ord";
-export { max };
-import { cons } from "fp-ts/es6/Array";
-export { cons };
+export declare const between: (n: number) => boolean;
+export declare const range: () => number[];

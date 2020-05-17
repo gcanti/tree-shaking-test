@@ -12,3 +12,17 @@ A.isNonEmpty(a) &&
     NEA.chain(n => NEA.of(n + 1)),
     console.log
   );
+
+/*
+
+rollup:
+
+- fp-ts@2.6.1: 25K
+- fp-ts@1087: 20K
+
+webpack
+
+- fp-ts@2.6.1: 30K
+- fp-ts@1087: 21K
+
+*/
