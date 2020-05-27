@@ -1,8 +1,14 @@
-import * as TE from "fp-ts/es6/TaskEither";
+import * as A from "fp-ts/es6/Array";
+import * as NEA from "fp-ts/es6/NonEmptyArray";
+import { identity } from "fp-ts/es6/function";
 import { pipe } from "fp-ts/es6/pipeable";
 
-pipe(
-  TE.right(1),
-  TE.map(n => n + 1),
-  TE.chain(n => TE.right(n + 1))
-);
+export const a = A.makeBy(10, identity);
+
+A.isNonEmpty(a) &&
+  pipe(
+    a,
+    NEA.map(n => n + 1),
+    NEA.chain(n => NEA.of(n + 1)),
+    console.log
+  );

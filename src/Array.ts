@@ -18,13 +18,11 @@ A.isNonEmpty(a) &&
 rollup:
 
 - fp-ts@2.6.1: 25K
-- fp-ts@1087-PURE-only: 20K
-- fp-ts@1087: 5K
+- fp-ts@2.6.2: 5K
 
 webpack:
 
 - fp-ts@2.6.1: 30K
-- fp-ts@1087-PURE-only: 21K
-- fp-ts@1087: 5K
+- fp-ts@2.6.2: 5K
 
 */
