@@ -1,8 +1,8 @@
-import * as T from "fp-ts/es6/Task";
+import * as TE from "fp-ts/es6/TaskEither";
 import { pipe } from "fp-ts/es6/pipeable";
 
 pipe(
-  T.of(1),
-  T.map(n => n + 1),
-  T.chain(n => T.of(n + 1))
+  TE.right(1),
+  TE.map(n => n + 1),
+  TE.chain(n => TE.right(n + 1))
 );
