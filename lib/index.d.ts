@@ -1,1 +1,1 @@
-export declare const a: number[];
+export declare const a: readonly number[];

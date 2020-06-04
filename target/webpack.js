@@ -77,6 +77,30 @@
       __webpack_require__.d(__webpack_exports__, "a", function() {
         return lib_a;
       });
+    function pipe(a, ab, bc, cd, de, ef, fg, gh, hi, ij) {
+      switch (arguments.length) {
+        case 1:
+          return a;
+        case 2:
+          return ab(a);
+        case 3:
+          return bc(ab(a));
+        case 4:
+          return cd(bc(ab(a)));
+        case 5:
+          return de(cd(bc(ab(a))));
+        case 6:
+          return ef(de(cd(bc(ab(a)))));
+        case 7:
+          return fg(ef(de(cd(bc(ab(a))))));
+        case 8:
+          return gh(fg(ef(de(cd(bc(ab(a)))))));
+        case 9:
+          return hi(gh(fg(ef(de(cd(bc(ab(a))))))));
+        case 10:
+          return ij(hi(gh(fg(ef(de(cd(bc(ab(a)))))))));
+      }
+    }
     function makeBy(n, f) {
       for (var r = [], i = 0; i < n; i++) r.push(f(i));
       return r;
@@ -84,78 +108,48 @@
     function isNonEmpty(as) {
       return as.length > 0;
     }
-    var of = function(a) {
+    var ReadonlyArray_of = function(a) {
         return [a];
-      },
-      ReadonlyArray_map_ = function(fa, f) {
-        return fa.map(function(a) {
-          return f(a);
-        });
-      },
-      ReadonlyArray_chain_ = function(fa, f) {
-        for (
-          var outLen = 0, l = fa.length, temp = new Array(l), i = 0;
-          i < l;
-          i++
-        ) {
-          (outLen += (arr = f(fa[i])).length), (temp[i] = arr);
-        }
-        var out = Array(outLen),
-          start = 0;
-        for (i = 0; i < l; i++) {
-          for (var arr, l_1 = (arr = temp[i]).length, j = 0; j < l_1; j++)
-            out[j + start] = arr[j];
-          start += l_1;
-        }
-        return out;
       },
       ReadonlyArray_chain = function(f) {
         return function(ma) {
-          return ReadonlyArray_chain_(ma, f);
+          for (
+            var outLen = 0, l = ma.length, temp = new Array(l), i = 0;
+            i < l;
+            i++
+          ) {
+            var e = ma[i];
+            (outLen += (arr = f(e)).length), (temp[i] = arr);
+          }
+          var out = Array(outLen),
+            start = 0;
+          for (i = 0; i < l; i++) {
+            for (var arr, l_1 = (arr = temp[i]).length, j = 0; j < l_1; j++)
+              out[j + start] = arr[j];
+            start += l_1;
+          }
+          return out;
         };
       },
       ReadonlyArray_map = function(f) {
         return function(fa) {
-          return ReadonlyArray_map_(fa, f);
+          return fa.map(function(a) {
+            return f(a);
+          });
         };
-      },
-      Array_makeBy = makeBy,
-      Array_isNonEmpty = isNonEmpty;
-    var NonEmptyArray_of = of;
-    var NonEmptyArray_chain = ReadonlyArray_chain,
-      NonEmptyArray_map = ReadonlyArray_map;
-    var lib_a = Array_makeBy(10, identity);
-    Array_isNonEmpty(lib_a) &&
-      (function(a, ab, bc, cd, de, ef, fg, gh, hi, ij) {
-        switch (arguments.length) {
-          case 1:
-            return a;
-          case 2:
-            return ab(a);
-          case 3:
-            return bc(ab(a));
-          case 4:
-            return cd(bc(ab(a)));
-          case 5:
-            return de(cd(bc(ab(a))));
-          case 6:
-            return ef(de(cd(bc(ab(a)))));
-          case 7:
-            return fg(ef(de(cd(bc(ab(a))))));
-          case 8:
-            return gh(fg(ef(de(cd(bc(ab(a)))))));
-          case 9:
-            return hi(gh(fg(ef(de(cd(bc(ab(a))))))));
-          case 10:
-            ij(hi(gh(fg(ef(de(cd(bc(ab(a)))))))));
-        }
-      })(
+      };
+    var ReadonlyNonEmptyArray_of = ReadonlyArray_of;
+    var ReadonlyNonEmptyArray_chain = ReadonlyArray_chain,
+      ReadonlyNonEmptyArray_map = ReadonlyArray_map,
+      lib_a = makeBy(10, identity);
+    isNonEmpty(lib_a) &&
+      pipe(
         lib_a,
-        NonEmptyArray_map(function(n) {
+        ReadonlyNonEmptyArray_map(function(n) {
           return n + 1;
         }),
-        NonEmptyArray_chain(function(n) {
-          return NonEmptyArray_of(n + 1);
+        ReadonlyNonEmptyArray_chain(function(n) {
+          return ReadonlyNonEmptyArray_of(n + 1);
         }),
         console.log
       );
