@@ -1,1 +1,2 @@
-export declare const a: readonly number[];
+import { Either } from "./prelude";
+export declare const x: Either<string, number>;
