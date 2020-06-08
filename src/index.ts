@@ -1,10 +1,10 @@
-import * as E from "fp-ts/es6/Either";
+import * as _ from "fp-ts/es6/Either";
 import { pipe } from "fp-ts/es6/function";
 
 pipe(
-  E.right(1),
-  E.map(n => n + 1),
-  E.chain(n => E.right(n + 1))
+  _.right(1),
+  _.map(n => n + 1),
+  _.chain(n => _.right(n + 1))
 );
 
 /*
@@ -12,11 +12,15 @@ pipe(
 rollup:
 
 - fp-ts@2.6.2: 3K
+- fp-ts@2.6.3: 3K
+- 1227: 3K
 - fp-ts@3.0.0: 2K
 
 webpack:
 
 - fp-ts@2.6.2: 4K
+- fp-ts@2.6.3: 4K
+- 1227: 4K
 - fp-ts@3.0.0: 4K
 
 */
