@@ -3,7 +3,12 @@ import * as E from "fp-ts/es6/Either";
 const Either = {
   map: E.map,
   chain: E.chain,
-  right: E.right
+  right: E.right,
+  chainFirst: E.chainFirst,
+  duplicate: E.duplicate,
+  traverse: E.traverse,
+  sequence: E.sequence,
+  getValidation: E.getValidation
 };
 
 import Either = E.Either;
@@ -21,7 +26,7 @@ pipe(
   Either.chain(n => Either.right(n + 1))
 );
 
-rollup: 3K
-webpack: 4K
+rollup: 7K
+webpack: 7K
 
 */
