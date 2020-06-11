@@ -5,3 +5,10 @@ pipeable.pipe(
   either.map(n => n + 1),
   either.chain(n => either.right(n + 1))
 );
+
+/*
+
+rollup: 3K
+webpack: 29K
+
+*/

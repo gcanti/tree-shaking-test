@@ -91,10 +91,11 @@ var chain_ = function (ma, f) {
     return isLeft(ma) ? ma : f(ma.right);
 };
 
-var Either = {
-    map: map,
-    chain: chain,
-    right: right
-};
+/**
+ * Use [`pipe`](https://gcanti.github.io/fp-ts/modules/function.ts.html#flow) from `function` module instead.
+ *
+ * @since 2.0.0
+ */
+var pipe$1 = pipe;
 
-pipe(Either.right(1), Either.map(function (n) { return n + 1; }), Either.chain(function (n) { return Either.right(n + 1); }));
+pipe$1(right(1), map(function (n) { return n + 1; }), chain(function (n) { return right(n + 1); }));
