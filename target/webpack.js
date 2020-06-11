@@ -71,9 +71,6 @@
   function(module, __webpack_exports__, __webpack_require__) {
     "use strict";
     __webpack_require__.r(__webpack_exports__);
-    function right(a) {
-      return { _tag: "Right", right: a };
-    }
     function isLeft(ma) {
       switch (ma._tag) {
         case "Left":
@@ -82,8 +79,10 @@
           return !1;
       }
     }
-    var f,
-      chain = function(f) {
+    function right(a) {
+      return { _tag: "Right", right: a };
+    }
+    var chain = function(f) {
         return function(ma) {
           return chain_(ma, f);
         };
@@ -94,6 +93,15 @@
       chain_ = function(ma, f) {
         return isLeft(ma) ? ma : f(ma.right);
       };
+    var Either = {
+      map: function(f) {
+        return function(fa) {
+          return map_(fa, f);
+        };
+      },
+      chain: chain,
+      right: right
+    };
     !(function(a, ab, bc, cd, de, ef, fg, gh, hi, ij) {
       switch (arguments.length) {
         case 1:
@@ -118,15 +126,12 @@
           ij(hi(gh(fg(ef(de(cd(bc(ab(a)))))))));
       }
     })(
-      right(1),
-      ((f = function(n) {
+      Either.right(1),
+      Either.map(function(n) {
         return n + 1;
       }),
-      function(fa) {
-        return map_(fa, f);
-      }),
-      chain(function(n) {
-        return right(n + 1);
+      Either.chain(function(n) {
+        return Either.right(n + 1);
       })
     );
   }

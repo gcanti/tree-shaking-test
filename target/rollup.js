@@ -29,27 +29,9 @@ function pipe(a, ab, bc, cd, de, ef, fg, gh, hi, ij) {
     return;
 }
 
-/**
- * Represents a value of one of two possible types (a disjoint union).
- *
- * An instance of `Either` is either an instance of `Left` or `Right`.
- *
- * A common use of `Either` is as an alternative to `Option` for dealing with possible missing values. In this usage,
- * `None` is replaced with a `Left` which can contain useful information. `Right` takes the place of `Some`. Convention
- * dictates that `Left` is used for failure and `Right` is used for success.
- *
- * @since 2.0.0
- */
-/**
- * Constructs a new `Either` holding a `Right` value. This usually represents a successful value due to the right bias
- * of this structure
- *
- * @category constructors
- * @since 2.0.0
- */
-function right(a) {
-    return { _tag: 'Right', right: a };
-}
+// -------------------------------------------------------------------------------------
+// guards
+// -------------------------------------------------------------------------------------
 /**
  * Returns `true` if the either is an instance of `Left`, `false` otherwise
  *
@@ -65,17 +47,40 @@ function isLeft(ma) {
     }
 }
 /**
- * @category Monad
+ * Constructs a new `Either` holding a `Right` value. This usually represents a successful value due to the right bias
+ * of this structure
+ *
+ * @category constructors
  * @since 2.0.0
  */
-var chain = function (f) { return function (ma) {
-    return chain_(ma, f);
-}; };
+function right(a) {
+    return { _tag: 'Right', right: a };
+}
+// -------------------------------------------------------------------------------------
+// pipeables
+// -------------------------------------------------------------------------------------
 /**
+ * `map` can be used to turn functions `(a: A) => B` into functions `(fa: F<A>) => F<B>` whose argument and return types
+ * use the type constructor `F` to represent some computational context.
+ *
  * @category Functor
  * @since 2.0.0
  */
 var map = function (f) { return function (fa) { return map_(fa, f); }; };
+/**
+ * Less strict version of [`chain`](#chain).
+ *
+ * @category Monad
+ * @since 2.6.0
+ */
+var chainW = function (f) { return function (ma) { return chain_(ma, f); }; };
+/**
+ * Composes computations in sequence, using the return value of one computation to determine the next computation.
+ *
+ * @category Monad
+ * @since 2.0.0
+ */
+var chain = chainW;
 // -------------------------------------------------------------------------------------
 // instances
 // -------------------------------------------------------------------------------------
@@ -86,4 +91,10 @@ var chain_ = function (ma, f) {
     return isLeft(ma) ? ma : f(ma.right);
 };
 
-pipe(right(1), map(function (n) { return n + 1; }), chain(function (n) { return right(n + 1); }));
+var Either = {
+    map: map,
+    chain: chain,
+    right: right
+};
+
+pipe(Either.right(1), Either.map(function (n) { return n + 1; }), Either.chain(function (n) { return Either.right(n + 1); }));

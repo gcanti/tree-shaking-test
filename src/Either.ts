@@ -13,12 +13,14 @@ rollup:
 
 - fp-ts@2.6.2: 3K
 - fp-ts@2.6.3: 2K
+- fp-ts@2.6.5: 3K
 - fp-ts@3.0.0: 2K
 
 webpack:
 
 - fp-ts@2.6.2: 4K
 - fp-ts@2.6.3: 4K
+- fp-ts@2.6.5: 4K
 - fp-ts@3.0.0: 4K
 
 */
