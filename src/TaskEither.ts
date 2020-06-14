@@ -12,16 +12,12 @@ pipe(
 
 rollup:
 
-- fp-ts@2.6.1: 18K
-- fp-ts@2.6.2: 11K
-- fp-ts@2.6.3: 7K
-- fp-ts@3.0.0: 6K
+- fp-ts@2.6.5: ?K
+- fp-ts@3.0.0: ?K
 
 webpack:
 
-- fp-ts@2.6.1: 24K
-- fp-ts@2.6.2: 9K
-- fp-ts@2.6.3: 6K
-- fp-ts@3.0.0: 6K
+- fp-ts@2.6.5: ?K
+- fp-ts@3.0.0: ?K
 
 */

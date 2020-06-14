@@ -8,7 +8,7 @@ pipeable.pipe(
 
 /*
 
-rollup: 3K
-webpack: 29K
+rollup: ?K
+webpack: ?K
 
 */

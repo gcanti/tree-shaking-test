@@ -8,14 +8,12 @@ pipe(RA.replicate(10, E.right(1)), RA.sequence(E.either), E.map(RA.head));
 
 rollup:
 
-- fp-ts@2.6.2: 16K
-- fp-ts@2.6.3: 7K
-- fp-ts@3.0.0: 5K
+- fp-ts@2.6.5: 4K
+- fp-ts@3.0.0: ?K
 
 webpack:
 
-- fp-ts@2.6.2: 7K
-- fp-ts@2.6.3: 7K
-- fp-ts@3.0.0: 5K
+- fp-ts@2.6.5: 7K
+- fp-ts@3.0.0: ?K
 
 */

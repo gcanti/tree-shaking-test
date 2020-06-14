@@ -1,7 +1,14 @@
-import { pipe, Either } from "./prelude";
+import { either, pipeable } from "fp-ts";
 
-pipe(
-  Either.right(1),
-  Either.map(n => n + 1),
-  Either.chain(n => Either.right(n + 1))
+pipeable.pipe(
+  either.right(1),
+  either.map(n => n + 1),
+  either.chain(n => either.right(n + 1))
 );
+
+/*
+
+rollup: 1K
+webpack: 29K
+
+*/
