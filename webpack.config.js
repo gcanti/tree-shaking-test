@@ -5,7 +5,9 @@ const config = {
   mode: "production",
   optimization: {
     usedExports: true,
-    minimizer: [new TerserPlugin({ terserOptions: { mangle: false } })]
+    minimizer: [
+      new TerserPlugin({ terserOptions: { mangle: false, verbose: true } })
+    ]
   },
   entry: pathHelpers.join(__dirname, "./lib/index.js"),
   output: {

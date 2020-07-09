@@ -17,6 +17,6 @@ rollup:
 webpack:
 
 - io-ts@2.2.6: 23K (using `Type`)
-- io-ts@2.2.7: 34K (using `Decoder`)
+- io-ts@2.2.7: 33K (using `Decoder`)
 
 */

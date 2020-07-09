@@ -17,12 +17,12 @@ RA.isNonEmpty(a) &&
 
 rollup:
 
-- fp-ts@2.6.5: ?K
+- fp-ts@2.6.6: 2K
 - fp-ts@3.0.0: ?K
 
 webpack:
 
-- fp-ts@2.6.5: ?K
+- fp-ts@2.6.6: 5K
 - fp-ts@3.0.0: ?K
 
 */
