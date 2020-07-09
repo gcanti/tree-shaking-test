@@ -4,13 +4,13 @@ interface NestedValue {
     readonly baz: string;
 }
 interface Value {
-    readonly nested: Option<Array<NestedValue>>;
+    readonly nested: Option<ReadonlyArray<NestedValue>>;
 }
 interface Item {
-    readonly foo: Record<string, Value>;
+    readonly foo: Readonly<Record<string, Value>>;
 }
 interface Data {
-    readonly items: Array<Item>;
+    readonly items: ReadonlyArray<Item>;
 }
 export declare const x: T.Traversal<Data, string>;
 export {};

@@ -67,27 +67,9 @@ function snoc(init, end) {
 var zero = function() {
     return empty;
   },
-  map_$1 = function(fa, f) {
-    return fa.map(function(a) {
-      return f(a);
-    });
-  },
   reduce_ = function(fa, b, f) {
     return reduceWithIndex_(fa, b, function(_, b, a) {
       return f(b, a);
-    });
-  },
-  foldMap_ = function(M) {
-    var foldMapWithIndexM = foldMapWithIndex_(M);
-    return function(fa, f) {
-      return foldMapWithIndexM(fa, function(_, a) {
-        return f(a);
-      });
-    };
-  },
-  reduceRight_ = function(fa, b, f) {
-    return reduceRightWithIndex_(fa, b, function(_, a, b) {
-      return f(a, b);
     });
   },
   reduceWithIndex_ = function(fa, b, f) {
@@ -120,49 +102,27 @@ var zero = function() {
       });
     };
   },
-  sequence = function(F) {
-    return function(ta) {
-      return reduce_(ta, F.of(zero()), function(fas, fa) {
-        return F.ap(
-          F.map(fas, function(as) {
-            return function(a) {
-              return snoc(as, a);
-            };
-          }),
-          fa
-        );
+  Traversable = {
+    URI: "ReadonlyArray",
+    map: function(fa, f) {
+      return fa.map(function(a) {
+        return f(a);
       });
-    };
-  };
-var empty = [],
-  lookup$1 = function lookup(i, as) {
-    return void 0 === as
-      ? function(as) {
-          return lookup(i, as);
-        }
-      : isOutOfBound(i, as)
-      ? none
-      : some(as[i]);
-  },
-  updateAt$1 = function(i, a) {
-    return function(as) {
-      return isOutOfBound(i, as)
-        ? none
-        : some(
-            (function(i, a, as) {
-              if (as[i] === a) return as;
-              var xs = as.slice();
-              return (xs[i] = a), xs;
-            })(i, a, as)
-          );
-    };
-  },
-  Traversable$1 = {
-    URI: "Array",
-    map: map_$1,
+    },
     reduce: reduce_,
-    foldMap: foldMap_,
-    reduceRight: reduceRight_,
+    foldMap: function(M) {
+      var foldMapWithIndexM = foldMapWithIndex_(M);
+      return function(fa, f) {
+        return foldMapWithIndexM(fa, function(_, a) {
+          return f(a);
+        });
+      };
+    },
+    reduceRight: function(fa, b, f) {
+      return reduceRightWithIndex_(fa, b, function(_, a, b) {
+        return f(a, b);
+      });
+    },
     traverse: function(F) {
       var traverseWithIndexF = traverseWithIndex_(F);
       return function(ta, f) {
@@ -171,20 +131,26 @@ var empty = [],
         });
       };
     },
-    sequence: sequence
+    sequence: function(F) {
+      return function(ta) {
+        return reduce_(ta, F.of(zero()), function(fas, fa) {
+          return F.ap(
+            F.map(fas, function(as) {
+              return function(a) {
+                return snoc(as, a);
+              };
+            }),
+            fa
+          );
+        });
+      };
+    }
   };
+var empty = [];
 function keys(r) {
   return Object.keys(r).sort();
 }
 var empty$1 = {};
-function traverseWithIndex(F) {
-  var traverseWithIndexF = traverseWithIndex_$1(F);
-  return function(f) {
-    return function(ta) {
-      return traverseWithIndexF(ta, f);
-    };
-  };
-}
 var mapWithIndex_ = function(fa, f) {
     for (
       var out = {}, _i = 0, keys_1 = Object.keys(fa);
@@ -248,19 +214,9 @@ var mapWithIndex_ = function(fa, f) {
       }
       return fr;
     };
-  };
-function traverse$1(F) {
-  return (function(F) {
-    var traverseWithIndexF = traverseWithIndex(F);
-    return function(f) {
-      return traverseWithIndexF(function(_, a) {
-        return f(a);
-      });
-    };
-  })(F);
-}
-var Traversable$2 = {
-    URI: "Record",
+  },
+  Traversable$1 = {
+    URI: "ReadonlyRecord",
     map: function(fa, f) {
       return mapWithIndex_(fa, function(_, a) {
         return f(a);
@@ -285,20 +241,49 @@ var Traversable$2 = {
       });
     },
     traverse: function(F) {
-      var traverseF = traverse$1(F);
+      var traverseWithIndexF = traverseWithIndex_$1(F);
       return function(ta, f) {
-        return traverseF(f)(ta);
+        return traverseWithIndexF(ta, function(_, a) {
+          return f(a);
+        });
       };
     },
     sequence: function(F) {
       return (function(F) {
-        return traverseWithIndex(F)(function(_, a) {
-          return a;
-        });
-      })(F);
+        var traverseWithIndexF = traverseWithIndex_$1(F);
+        return function(f) {
+          return function(ta) {
+            return traverseWithIndexF(ta, f);
+          };
+        };
+      })(F)(function(_, a) {
+        return a;
+      });
     }
   },
   pipe$1 = pipe,
+  lookup$1 = function lookup(i, as) {
+    return void 0 === as
+      ? function(as) {
+          return lookup(i, as);
+        }
+      : isOutOfBound(i, as)
+      ? none
+      : some(as[i]);
+  },
+  updateAt$1 = function(i, a) {
+    return function(as) {
+      return isOutOfBound(i, as)
+        ? none
+        : some(
+            (function(i, a, as) {
+              if (as[i] === a) return as;
+              var xs = as.slice();
+              return (xs[i] = a), xs;
+            })(i, a, as)
+          );
+    };
+  },
   lensAsTraversal = function(sa) {
     return {
       modifyF: function(F) {
@@ -485,14 +470,11 @@ var i,
             return ij(hi(gh(fg(ef(de(cd(bc(ab.apply(this, arguments)))))))));
           };
       }
-    })(
-      asTraversal,
-      traversalComposeTraversal(fromTraversable(Traversable$1)())
-    ),
+    })(asTraversal, traversalComposeTraversal(fromTraversable(Traversable)())),
     prop$1("foo"),
     (function(T) {
       return compose(fromTraversable$1(T)());
-    })(Traversable$2),
+    })(Traversable$1),
     prop$1("nested"),
     some$1,
     ((i = 2),

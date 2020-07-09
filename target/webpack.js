@@ -355,18 +355,6 @@
           return map_(fa, f);
         };
       };
-    function ReadonlyArray_flatten(mma) {
-      for (var rLen = 0, len = mma.length, i = 0; i < len; i++)
-        rLen += mma[i].length;
-      var r = Array(rLen),
-        start = 0;
-      for (i = 0; i < len; i++) {
-        for (var arr = mma[i], l = arr.length, j = 0; j < l; j++)
-          r[j + start] = arr[j];
-        start += l;
-      }
-      return r;
-    }
     function isOutOfBound(i, as) {
       return i < 0 || i >= as.length;
     }
@@ -384,43 +372,11 @@
         r[i] = init[i];
       return (r[len] = end), r;
     }
-    var ReadonlyArray_of = function(a) {
-        return [a];
-      },
-      ReadonlyArray_zero = function() {
+    var ReadonlyArray_zero = function() {
         return empty;
       },
       ReadonlyArray_map_ = function(fa, f) {
         return fa.map(function(a) {
-          return f(a);
-        });
-      },
-      ReadonlyArray_ap_ = function(fab, fa) {
-        return ReadonlyArray_flatten(
-          ReadonlyArray_map_(fab, function(f) {
-            return ReadonlyArray_map_(fa, f);
-          })
-        );
-      },
-      chainWithIndex_ = function(fa, f) {
-        for (
-          var outLen = 0, l = fa.length, temp = new Array(l), i = 0;
-          i < l;
-          i++
-        ) {
-          (outLen += (arr = f(i, fa[i])).length), (temp[i] = arr);
-        }
-        var out = Array(outLen),
-          start = 0;
-        for (i = 0; i < l; i++) {
-          for (var arr, l_1 = (arr = temp[i]).length, j = 0; j < l_1; j++)
-            out[j + start] = arr[j];
-          start += l_1;
-        }
-        return out;
-      },
-      ReadonlyArray_chain_ = function(fa, f) {
-        return chainWithIndex_(fa, function(_index, a) {
           return f(a);
         });
       },
@@ -501,35 +457,21 @@
           });
         };
       },
-      ReadonlyArray_Monad = {
+      ReadonlyArray_Traversable = {
         URI: "ReadonlyArray",
         map: ReadonlyArray_map_,
-        ap: ReadonlyArray_ap_,
-        of: ReadonlyArray_of,
-        chain: ReadonlyArray_chain_
-      };
-    function unsafeUpdateAt(i, a, as) {
-      if (as[i] === a) return as;
-      var xs = as.slice();
-      return (xs[i] = a), xs;
-    }
-    var empty = [],
-      Array_lookup = lookup;
-    var Array_updateAt = function(i, a) {
-      return function(as) {
-        return isOutOfBound(i, as) ? none : some(unsafeUpdateAt(i, a, as));
-      };
-    };
-    var Array_map_ = ReadonlyArray_Monad.map,
-      Array_Traversable = {
-        URI: "Array",
-        map: Array_map_,
         reduce: ReadonlyArray_reduce_,
         foldMap: ReadonlyArray_foldMap_,
         reduceRight: ReadonlyArray_reduceRight_,
         traverse: ReadonlyArray_traverse_,
         sequence: ReadonlyArray_sequence
       };
+    function unsafeUpdateAt(i, a, as) {
+      if (as[i] === a) return as;
+      var xs = as.slice();
+      return (xs[i] = a), xs;
+    }
+    var empty = [];
     function ReadonlyRecord_keys(r) {
       return Object.keys(r).sort();
     }
@@ -614,6 +556,14 @@
           return f(a, b);
         });
       },
+      ReadonlyRecord_traverse_ = function(F) {
+        var traverseWithIndexF = ReadonlyRecord_traverseWithIndex_(F);
+        return function(ta, f) {
+          return traverseWithIndexF(ta, function(_, a) {
+            return f(a);
+          });
+        };
+      },
       ReadonlyRecord_reduceWithIndex_ = function(fa, b, f) {
         for (
           var out = b, ks = ReadonlyRecord_keys(fa), len = ks.length, i = 0;
@@ -677,7 +627,23 @@
           }
           return fr;
         };
+      },
+      ReadonlyRecord_Traversable = {
+        URI: "ReadonlyRecord",
+        map: ReadonlyRecord_map_,
+        reduce: ReadonlyRecord_reduce_,
+        foldMap: ReadonlyRecord_foldMap_,
+        reduceRight: ReadonlyRecord_reduceRight_,
+        traverse: ReadonlyRecord_traverse_,
+        sequence: ReadonlyRecord_sequence
+      },
+      pipeable_pipe = pipe;
+    var Array_lookup = lookup;
+    var Array_updateAt = function(i, a) {
+      return function(as) {
+        return isOutOfBound(i, as) ? none : some(unsafeUpdateAt(i, a, as));
       };
+    };
     function Record_insertAt(k, a) {
       return (function(k, a) {
         return function(r) {
@@ -688,35 +654,6 @@
       })(k, a);
     }
     var Record_lookup = ReadonlyRecord_lookup;
-    function Record_traverse(F) {
-      return (function(F) {
-        var traverseWithIndexF = ReadonlyRecord_traverseWithIndex(F);
-        return function(f) {
-          return traverseWithIndexF(function(_, a) {
-            return f(a);
-          });
-        };
-      })(F);
-    }
-    function Record_sequence(F) {
-      return ReadonlyRecord_sequence(F);
-    }
-    var Record_traverse_ = function(F) {
-        var traverseF = Record_traverse(F);
-        return function(ta, f) {
-          return traverseF(f)(ta);
-        };
-      },
-      Record_Traversable = {
-        URI: "Record",
-        map: ReadonlyRecord_map_,
-        reduce: ReadonlyRecord_reduce_,
-        foldMap: ReadonlyRecord_foldMap_,
-        reduceRight: ReadonlyRecord_reduceRight_,
-        traverse: Record_traverse_,
-        sequence: Record_sequence
-      },
-      pipeable_pipe = pipe;
     var isLeft = function(ma) {
         return "Left" === ma._tag;
       },
@@ -1109,12 +1046,14 @@
         Lens_prop("items"),
         flow(
           asTraversal,
-          traversalComposeTraversal(fromTraversable(Array_Traversable)())
+          traversalComposeTraversal(
+            fromTraversable(ReadonlyArray_Traversable)()
+          )
         ),
         Traversal_prop("foo"),
         (function(T) {
           return Traversal_compose(Traversal_fromTraversable(T)());
-        })(Record_Traversable),
+        })(ReadonlyRecord_Traversable),
         Traversal_prop("nested"),
         Traversal_some,
         ((i = 2),
