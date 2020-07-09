@@ -6,11 +6,11 @@ import * as L from "monocle-ts/es6/Lens";
 import * as T from "monocle-ts/es6/Traversal";
 
 interface NestedValue {
-  baz: string;
+  readonly baz: string;
 }
 
 interface Value {
-  nested: Option<Array<NestedValue>>;
+  readonly nested: Option<Array<NestedValue>>;
 }
 
 interface Item {
@@ -38,11 +38,11 @@ export const x: T.Traversal<Data, string> = pipe(
 rollup:
 
 - fp-ts@2.6.5: 29K
-- fp-ts@3.0.0: ?K
+- fp-ts@2.7.0: 13K
 
 webpack:
 
 - fp-ts@2.6.5: 44K
-- fp-ts@3.0.0: ?K
+- fp-ts@2.7.0: 32K
 
 */

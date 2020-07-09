@@ -1,1 +1,1130 @@
-!function(modules){var installedModules={};function __webpack_require__(moduleId){if(installedModules[moduleId])return installedModules[moduleId].exports;var module=installedModules[moduleId]={i:moduleId,l:!1,exports:{}};return modules[moduleId].call(module.exports,module,module.exports,__webpack_require__),module.l=!0,module.exports}__webpack_require__.m=modules,__webpack_require__.c=installedModules,__webpack_require__.d=function(exports,name,getter){__webpack_require__.o(exports,name)||Object.defineProperty(exports,name,{enumerable:!0,get:getter})},__webpack_require__.r=function(exports){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(exports,"__esModule",{value:!0})},__webpack_require__.t=function(value,mode){if(1&mode&&(value=__webpack_require__(value)),8&mode)return value;if(4&mode&&"object"==typeof value&&value&&value.__esModule)return value;var ns=Object.create(null);if(__webpack_require__.r(ns),Object.defineProperty(ns,"default",{enumerable:!0,value:value}),2&mode&&"string"!=typeof value)for(var key in value)__webpack_require__.d(ns,key,function(key){return value[key]}.bind(null,key));return ns},__webpack_require__.n=function(module){var getter=module&&module.__esModule?function(){return module.default}:function(){return module};return __webpack_require__.d(getter,"a",getter),getter},__webpack_require__.o=function(object,property){return Object.prototype.hasOwnProperty.call(object,property)},__webpack_require__.p="",__webpack_require__(__webpack_require__.s=0)}([function(module,__webpack_exports__,__webpack_require__){"use strict";__webpack_require__.r(__webpack_exports__);var Guard_namespaceObject={};__webpack_require__.r(Guard_namespaceObject),__webpack_require__.d(Guard_namespaceObject,"literal",(function(){return literal})),__webpack_require__.d(Guard_namespaceObject,"string",(function(){return string})),__webpack_require__.d(Guard_namespaceObject,"number",(function(){return number})),__webpack_require__.d(Guard_namespaceObject,"boolean",(function(){return Guard_boolean})),__webpack_require__.d(Guard_namespaceObject,"UnknownArray",(function(){return UnknownArray})),__webpack_require__.d(Guard_namespaceObject,"UnknownRecord",(function(){return UnknownRecord})),__webpack_require__.d(Guard_namespaceObject,"object",(function(){return object})),__webpack_require__.d(Guard_namespaceObject,"refine",(function(){return refine})),__webpack_require__.d(Guard_namespaceObject,"nullable",(function(){return nullable})),__webpack_require__.d(Guard_namespaceObject,"type",(function(){return type})),__webpack_require__.d(Guard_namespaceObject,"partial",(function(){return partial})),__webpack_require__.d(Guard_namespaceObject,"record",(function(){return record})),__webpack_require__.d(Guard_namespaceObject,"array",(function(){return array})),__webpack_require__.d(Guard_namespaceObject,"tuple",(function(){return Guard_tuple})),__webpack_require__.d(Guard_namespaceObject,"intersect",(function(){return intersect})),__webpack_require__.d(Guard_namespaceObject,"union",(function(){return union})),__webpack_require__.d(Guard_namespaceObject,"sum",(function(){return sum})),__webpack_require__.d(Guard_namespaceObject,"lazy",(function(){return Guard_lazy})),__webpack_require__.d(Guard_namespaceObject,"URI",(function(){return Guard_URI})),__webpack_require__.d(Guard_namespaceObject,"schemableGuard",(function(){return schemableGuard}));var KleisliDecoder_namespaceObject={};__webpack_require__.r(KleisliDecoder_namespaceObject),__webpack_require__.d(KleisliDecoder_namespaceObject,"SE",(function(){return SE})),__webpack_require__.d(KleisliDecoder_namespaceObject,"ap",(function(){return KleisliDecoder_ap})),__webpack_require__.d(KleisliDecoder_namespaceObject,"error",(function(){return error})),__webpack_require__.d(KleisliDecoder_namespaceObject,"success",(function(){return success})),__webpack_require__.d(KleisliDecoder_namespaceObject,"failure",(function(){return failure})),__webpack_require__.d(KleisliDecoder_namespaceObject,"fromRefinement",(function(){return KleisliDecoder_fromRefinement})),__webpack_require__.d(KleisliDecoder_namespaceObject,"literal",(function(){return KleisliDecoder_literal})),__webpack_require__.d(KleisliDecoder_namespaceObject,"mapLeftWithInput",(function(){return KleisliDecoder_mapLeftWithInput})),__webpack_require__.d(KleisliDecoder_namespaceObject,"refine",(function(){return KleisliDecoder_refine})),__webpack_require__.d(KleisliDecoder_namespaceObject,"parse",(function(){return KleisliDecoder_parse})),__webpack_require__.d(KleisliDecoder_namespaceObject,"nullable",(function(){return KleisliDecoder_nullable})),__webpack_require__.d(KleisliDecoder_namespaceObject,"type",(function(){return KleisliDecoder_type})),__webpack_require__.d(KleisliDecoder_namespaceObject,"partial",(function(){return KleisliDecoder_partial})),__webpack_require__.d(KleisliDecoder_namespaceObject,"array",(function(){return KleisliDecoder_array})),__webpack_require__.d(KleisliDecoder_namespaceObject,"record",(function(){return KleisliDecoder_record})),__webpack_require__.d(KleisliDecoder_namespaceObject,"tuple",(function(){return KleisliDecoder_tuple})),__webpack_require__.d(KleisliDecoder_namespaceObject,"union",(function(){return KleisliDecoder_union})),__webpack_require__.d(KleisliDecoder_namespaceObject,"intersect",(function(){return KleisliDecoder_intersect})),__webpack_require__.d(KleisliDecoder_namespaceObject,"sum",(function(){return KleisliDecoder_sum})),__webpack_require__.d(KleisliDecoder_namespaceObject,"lazy",(function(){return KleisliDecoder_lazy})),__webpack_require__.d(KleisliDecoder_namespaceObject,"compose",(function(){return KleisliDecoder_compose})),__webpack_require__.d(KleisliDecoder_namespaceObject,"map",(function(){return KleisliDecoder_map})),__webpack_require__.d(KleisliDecoder_namespaceObject,"alt",(function(){return KleisliDecoder_alt}));var isLeft=function(ma){return"Left"===ma._tag},isRight=function(ma){return"Right"===ma._tag},Either_left=function(e){return{_tag:"Left",left:e}},Either_right=function(a){return{_tag:"Right",right:a}};var map_=function(ma,f){return isLeft(ma)?ma:Either_right(f(ma.right))},chain_=function(ma,f){return isLeft(ma)?ma:f(ma.right)},bimap_=function(fea,f,g){return isLeft(fea)?Either_left(f(fea.left)):Either_right(g(fea.right))},mapLeft_=function(fea,f){return isLeft(fea)?Either_left(f(fea.left)):fea},Either_chain=function(f){return function(ma){return chain_(ma,f)}},URI="Either";var pipeable_pipe=function(a,ab,bc,cd,de,ef,fg,gh,hi,ij){switch(arguments.length){case 1:return a;case 2:return ab(a);case 3:return bc(ab(a));case 4:return cd(bc(ab(a)));case 5:return de(cd(bc(ab(a))));case 6:return ef(de(cd(bc(ab(a)))));case 7:return fg(ef(de(cd(bc(ab(a))))));case 8:return gh(fg(ef(de(cd(bc(ab(a)))))));case 9:return hi(gh(fg(ef(de(cd(bc(ab(a))))))));case 10:return ij(hi(gh(fg(ef(de(cd(bc(ab(a)))))))))}};var FreeSemigroup_of=function(a){return{_tag:"Of",value:a}},concat=function(left,right){return{_tag:"Concat",left:left,right:right}};var DecodeError_key=function(key,kind,errors){return{_tag:"Key",key:key,kind:kind,errors:errors}},index=function(index,kind,errors){return{_tag:"Index",index:index,kind:kind,errors:errors}},member=function(index,errors){return{_tag:"Member",index:index,errors:errors}};function DecodeError_getSemigroup(){return{concat:concat}}function memoize(f){var cache=new Map;return function(a){if(!cache.has(a)){var b=f(a);return cache.set(a,b),b}return cache.get(a)}}var typeOf=function(x){return null===x?"null":typeof x},literal=function(){for(var values=[],_i=0;_i<arguments.length;_i++)values[_i]=arguments[_i];return{is:function(u){return-1!==values.findIndex((function(a){return a===u}))}}},string={is:function(u){return"string"==typeof u}},number={is:function(u){return"number"==typeof u&&!isNaN(u)}},Guard_boolean={is:function(u){return"boolean"==typeof u}},UnknownArray={is:Array.isArray},UnknownRecord={is:function(u){return"[object Object]"===Object.prototype.toString.call(u)}},object={is:function(u){return null!=u&&!string.is(u)&&!number.is(u)&&!Guard_boolean.is(u)}},refine=function(refinement){return function(from){return{is:function(u){return from.is(u)&&refinement(u)}}}},nullable=function(or){return{is:function(u){return null===u||or.is(u)}}},type=function(properties){return pipeable_pipe(UnknownRecord,refine((function(r){for(var k in properties)if(!(k in r)||!properties[k].is(r[k]))return!1;return!0})))},partial=function(properties){return pipeable_pipe(UnknownRecord,refine((function(r){for(var k in properties){var v=r[k];if(void 0!==v&&!properties[k].is(v))return!1}return!0})))},record=function(codomain){return pipeable_pipe(UnknownRecord,refine((function(r){for(var k in r)if(!codomain.is(r[k]))return!1;return!0})))},array=function(items){return pipeable_pipe(UnknownArray,refine((function(us){return us.every(items.is)})))},Guard_tuple=function(){for(var components=[],_i=0;_i<arguments.length;_i++)components[_i]=arguments[_i];return{is:function(u){return Array.isArray(u)&&u.length===components.length&&components.every((function(c,i){return c.is(u[i])}))}}},intersect=function(right){return function(left){return{is:function(u){return left.is(u)&&right.is(u)}}}},union=function(){for(var members=[],_i=0;_i<arguments.length;_i++)members[_i]=arguments[_i];return{is:function(u){return members.some((function(m){return m.is(u)}))}}},sum=function(tag){return function(members){return pipeable_pipe(UnknownRecord,refine((function(r){var v=r[tag];return v in members&&members[v].is(r)})))}},Guard_lazy=function(f){var get=memoize(f);return{is:function(u){return get().is(u)}}},Guard_URI="io-ts/Guard",schemableGuard={URI:Guard_URI,literal:literal,string:string,number:number,boolean:Guard_boolean,nullable:nullable,type:type,partial:partial,record:record,array:array,tuple:Guard_tuple,intersect:intersect,sum:sum,lazy:function(_,f){return Guard_lazy(f)},UnknownArray:UnknownArray,UnknownRecord:UnknownRecord,union:union,refine:refine};function fromRefinement(M){return function(refinement,onError){return{decode:function(i){return refinement(i)?M.of(i):M.throwError(onError(i))}}}}function Kleisli_literal(M){return function(onError){return function(){for(var values=[],_i=0;_i<arguments.length;_i++)values[_i]=arguments[_i];return{decode:function(i){return literal.apply(Guard_namespaceObject,values).is(i)?M.of(i):M.throwError(onError(i,values))}}}}}function mapLeftWithInput(M){return function(f){return function(decoder){return{decode:function(i){return M.mapLeft(decoder.decode(i),(function(e){return f(i,e)}))}}}}}function parse(M){return function(decode){return function(from){return Kleisli_compose(M)({decode:decode})(from)}}}function Kleisli_nullable(M){return function(onError){return function(or){return{decode:function(i){return null===i?M.of(null):M.bimap(or.decode(i),(function(e){return onError(i,e)}),(function(a){return a}))}}}}}function Kleisli_tuple(M){var traverse=traverseArrayWithIndex(M);return function(onIndexError){return function(){for(var components=[],_i=0;_i<arguments.length;_i++)components[_i]=arguments[_i];return{decode:function(is){return traverse(components,(function(index,decoder){return M.mapLeft(decoder.decode(is[index]),(function(e){return onIndexError(index,e)}))}))}}}}}function Kleisli_union(M){return function(onMemberError){return function(){for(var members=[],_i=0;_i<arguments.length;_i++)members[_i]=arguments[_i];return{decode:function(i){for(var out=M.mapLeft(members[0].decode(i),(function(e){return onMemberError(0,e)})),_loop_1=function(index){out=M.alt(out,(function(){return M.mapLeft(members[index].decode(i),(function(e){return onMemberError(index,e)}))}))},index=1;index<members.length;index++)_loop_1(index);return out}}}}}function Kleisli_intersect(M){return function(right){return function(left){return{decode:function(i){return M.ap(M.map(left.decode(i),(function(a){return function(b){return function(a,b){if(void 0!==a&&void 0!==b){var tx=typeOf(a),ty=typeOf(b);if("object"===tx||"object"===ty)return Object.assign({},a,b)}return b}(a,b)}})),right.decode(i))}}}}}function Kleisli_lazy(M){return function(onError){return function(id,f){var get=memoize(f);return{decode:function(u){return M.mapLeft(get().decode(u),(function(e){return onError(id,e)}))}}}}}function Kleisli_compose(M){return function(ab){return function(ia){return{decode:function(i){return M.chain(ia.decode(i),ab.decode)}}}}}function Kleisli_map(F){return function(f){return function(ia){return{decode:function(i){return F.map(ia.decode(i),f)}}}}}function Kleisli_alt(A){return function(that){return function(me){return{decode:function(i){return A.alt(me.decode(i),(function(){return that().decode(i)}))}}}}}var patterns,onOf,onConcat,traverseArrayWithIndex=function(M){return function(as,f){return as.reduce((function(mbs,a,i){return M.ap(M.map(mbs,(function(bs){return function(b){return bs.push(b),bs}})),f(i,a))}),M.of([]))}},traverseRecordWithIndex=function(M){return function(r,f){var ks=Object.keys(r);if(0===ks.length)return M.of({});for(var fr=M.of({}),_loop_2=function(key){fr=M.ap(M.map(fr,(function(r){return function(b){return r[key]=b,r}})),f(key,r[key]))},_i=0,ks_1=ks;_i<ks_1.length;_i++){_loop_2(ks_1[_i])}return fr}},compactRecord=function(r){var out={};for(var k in r){var rk=r[k];isRight(rk)&&(out[k]=rk.right)}return out},SE=DecodeError_getSemigroup(),KleisliDecoder_ap=function(fab,fa){return isLeft(fab)?isLeft(fa)?Either_left(SE.concat(fab.left,fa.left)):fab:isLeft(fa)?fa:Either_right(fab.right(fa.right))},KleisliDecoder_M={URI:URI,_E:void 0,map:function(fa,f){return pipeable_pipe(fa,function(f){return function(fa){return map_(fa,f)}}(f))},ap:KleisliDecoder_ap,of:Either_right,chain:function(ma,f){return pipeable_pipe(ma,Either_chain(f))},throwError:Either_left,bimap:function(fa,f,g){return pipeable_pipe(fa,function(f,g){return function(fa){return bimap_(fa,f,g)}}(f,g))},mapLeft:function(fa,f){return pipeable_pipe(fa,function(f){return function(fa){return mapLeft_(fa,f)}}(f))},alt:function(me,that){if(isRight(me))return me;var ea=that();return isLeft(ea)?Either_left(SE.concat(me.left,ea.left)):ea}},error=function(actual,message){return FreeSemigroup_of(function(actual,error){return{_tag:"Leaf",actual:actual,error:error}}(actual,message))},success=Either_right,failure=function(actual,message){return Either_left(error(actual,message))},KleisliDecoder_fromRefinement=function(refinement,expected){return fromRefinement(KleisliDecoder_M)(refinement,(function(u){return error(u,expected)}))},KleisliDecoder_literal=Kleisli_literal(KleisliDecoder_M)((function(u,values){return error(u,values.map((function(value){return JSON.stringify(value)})).join(" | "))})),KleisliDecoder_mapLeftWithInput=mapLeftWithInput(KleisliDecoder_M),KleisliDecoder_refine=function(refinement,id){return(M=KleisliDecoder_M,function(refinement,onError){return function(from){return Kleisli_compose(M)(fromRefinement(M)(refinement,onError))(from)}})(refinement,(function(a){return error(a,id)}));var M},KleisliDecoder_parse=parse(KleisliDecoder_M),KleisliDecoder_nullable=Kleisli_nullable(KleisliDecoder_M)((function(u,e){return concat(FreeSemigroup_of(member(0,error(u,"null"))),FreeSemigroup_of(member(1,e)))})),KleisliDecoder_type=function(properties){return(traverse=traverseRecordWithIndex(M=KleisliDecoder_M),function(onPropertyError){return function(properties){return{decode:function(i){return traverse(properties,(function(key,decoder){return M.mapLeft(decoder.decode(i[key]),(function(e){return onPropertyError(key,e)}))}))}}}})((function(k,e){return FreeSemigroup_of(DecodeError_key(k,"required",e))}))(properties);var M,traverse},KleisliDecoder_partial=function(properties){return(traverse=traverseRecordWithIndex(M=KleisliDecoder_M),undefinedProperty=M.of(Either_right(void 0)),skipProperty=M.of(Either_left(void 0)),function(onPropertyError){return function(properties){return{decode:function(i){return M.map(traverse(properties,(function(key,decoder){var ikey=i[key];return void 0===ikey?key in i?undefinedProperty:skipProperty:M.bimap(decoder.decode(ikey),(function(e){return onPropertyError(key,e)}),(function(a){return Either_right(a)}))})),compactRecord)}}}})((function(k,e){return FreeSemigroup_of(DecodeError_key(k,"optional",e))}))(properties);var M,traverse,undefinedProperty,skipProperty},KleisliDecoder_array=function(items){return(traverse=traverseArrayWithIndex(M=KleisliDecoder_M),function(onItemError){return function(items){return{decode:function(is){return traverse(is,(function(index,i){return M.mapLeft(items.decode(i),(function(e){return onItemError(index,e)}))}))}}}})((function(i,e){return FreeSemigroup_of(index(i,"optional",e))}))(items);var M,traverse},KleisliDecoder_record=function(codomain){return(traverse=traverseRecordWithIndex(M=KleisliDecoder_M),function(onKeyError){return function(codomain){return{decode:function(ir){return traverse(ir,(function(key,i){return M.mapLeft(codomain.decode(i),(function(e){return onKeyError(key,e)}))}))}}}})((function(k,e){return FreeSemigroup_of(DecodeError_key(k,"optional",e))}))(codomain);var M,traverse},KleisliDecoder_tuple=function(){for(var components=[],_i=0;_i<arguments.length;_i++)components[_i]=arguments[_i];return Kleisli_tuple(KleisliDecoder_M)((function(i,e){return FreeSemigroup_of(index(i,"required",e))})).apply(void 0,components)},KleisliDecoder_union=Kleisli_union(KleisliDecoder_M)((function(i,e){return FreeSemigroup_of(member(i,e))})),KleisliDecoder_intersect=Kleisli_intersect(KleisliDecoder_M),KleisliDecoder_sum=function(tag){return function(members){return(M=KleisliDecoder_M,function(onTagError){return function(tag){return function(members){var keys=Object.keys(members);return{decode:function(ir){var v=ir[tag];return v in members?members[v].decode(ir):M.throwError(onTagError(tag,v,keys))}}}}})((function(tag,value,keys){return FreeSemigroup_of(DecodeError_key(tag,"required",error(value,0===keys.length?"never":keys.map((function(k){return JSON.stringify(k)})).join(" | "))))}))(tag)(members);var M}},KleisliDecoder_lazy=Kleisli_lazy(KleisliDecoder_M)((function(id,e){return FreeSemigroup_of(function(id,errors){return{_tag:"Lazy",id:id,errors:errors}}(id,e))})),KleisliDecoder_compose=Kleisli_compose(KleisliDecoder_M),KleisliDecoder_map=Kleisli_map(KleisliDecoder_M),KleisliDecoder_alt=Kleisli_alt(KleisliDecoder_M),fromGuard=function(guard,expected){return KleisliDecoder_fromRefinement(guard.is,expected)},Decoder_string=fromGuard(string,"string"),Decoder_number=fromGuard(number,"number"),Decoder_object=fromGuard(object,"object"),Decoder_type=function(properties){return pipeable_pipe(Decoder_object,Decoder_compose(KleisliDecoder_type(properties)))},Decoder_compose=KleisliDecoder_compose,empty=[],make=function(value,forest){return void 0===forest&&(forest=empty),{value:value,forest:forest}},toTree=(patterns={Leaf:function(input,error){return make("cannot decode "+JSON.stringify(input)+", should be "+error)},Key:function(key,kind,errors){return make(kind+" property "+JSON.stringify(key),toForest(errors))},Index:function(index,kind,errors){return make(kind+" index "+index,toForest(errors))},Member:function(index,errors){return make("member "+index,toForest(errors))},Lazy:function(id,errors){return make("lazy type "+id,toForest(errors))}},function(e){switch(e._tag){case"Leaf":return patterns.Leaf(e.actual,e.error);case"Key":return patterns.Key(e.key,e.kind,e.errors);case"Index":return patterns.Index(e.index,e.kind,e.errors);case"Member":return patterns.Member(e.index,e.errors);case"Lazy":return patterns.Lazy(e.id,e.errors)}}),toForest=(onOf=function(value){return[toTree(value)]},onConcat=function(left,right){return toForest(left).concat(toForest(right))},function(f){switch(f._tag){case"Of":return onOf(f.value);case"Concat":return onConcat(f.left,f.right)}}),Person=Decoder_type({name:Decoder_string,age:Decoder_number});console.log(Person.decode({}))}]);
+!(function(modules) {
+  var installedModules = {};
+  function __webpack_require__(moduleId) {
+    if (installedModules[moduleId]) return installedModules[moduleId].exports;
+    var module = (installedModules[moduleId] = {
+      i: moduleId,
+      l: !1,
+      exports: {}
+    });
+    return (
+      modules[moduleId].call(
+        module.exports,
+        module,
+        module.exports,
+        __webpack_require__
+      ),
+      (module.l = !0),
+      module.exports
+    );
+  }
+  (__webpack_require__.m = modules),
+    (__webpack_require__.c = installedModules),
+    (__webpack_require__.d = function(exports, name, getter) {
+      __webpack_require__.o(exports, name) ||
+        Object.defineProperty(exports, name, { enumerable: !0, get: getter });
+    }),
+    (__webpack_require__.r = function(exports) {
+      "undefined" != typeof Symbol &&
+        Symbol.toStringTag &&
+        Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" }),
+        Object.defineProperty(exports, "__esModule", { value: !0 });
+    }),
+    (__webpack_require__.t = function(value, mode) {
+      if ((1 & mode && (value = __webpack_require__(value)), 8 & mode))
+        return value;
+      if (4 & mode && "object" == typeof value && value && value.__esModule)
+        return value;
+      var ns = Object.create(null);
+      if (
+        (__webpack_require__.r(ns),
+        Object.defineProperty(ns, "default", { enumerable: !0, value: value }),
+        2 & mode && "string" != typeof value)
+      )
+        for (var key in value)
+          __webpack_require__.d(
+            ns,
+            key,
+            function(key) {
+              return value[key];
+            }.bind(null, key)
+          );
+      return ns;
+    }),
+    (__webpack_require__.n = function(module) {
+      var getter =
+        module && module.__esModule
+          ? function() {
+              return module.default;
+            }
+          : function() {
+              return module;
+            };
+      return __webpack_require__.d(getter, "a", getter), getter;
+    }),
+    (__webpack_require__.o = function(object, property) {
+      return Object.prototype.hasOwnProperty.call(object, property);
+    }),
+    (__webpack_require__.p = ""),
+    __webpack_require__((__webpack_require__.s = 0));
+})([
+  function(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+    __webpack_require__.r(__webpack_exports__),
+      __webpack_require__.d(__webpack_exports__, "x", function() {
+        return lib_x;
+      });
+    var internal_namespaceObject = {};
+    function identity(a) {
+      return a;
+    }
+    __webpack_require__.r(internal_namespaceObject),
+      __webpack_require__.d(internal_namespaceObject, "isoAsLens", function() {
+        return isoAsLens;
+      }),
+      __webpack_require__.d(
+        internal_namespaceObject,
+        "isoAsOptional",
+        function() {
+          return isoAsOptional;
+        }
+      ),
+      __webpack_require__.d(
+        internal_namespaceObject,
+        "lensAsOptional",
+        function() {
+          return lensAsOptional;
+        }
+      ),
+      __webpack_require__.d(
+        internal_namespaceObject,
+        "lensAsTraversal",
+        function() {
+          return lensAsTraversal;
+        }
+      ),
+      __webpack_require__.d(
+        internal_namespaceObject,
+        "lensComposeLens",
+        function() {
+          return lensComposeLens;
+        }
+      ),
+      __webpack_require__.d(
+        internal_namespaceObject,
+        "lensComposePrism",
+        function() {
+          return lensComposePrism;
+        }
+      ),
+      __webpack_require__.d(internal_namespaceObject, "lensId", function() {
+        return lensId;
+      }),
+      __webpack_require__.d(internal_namespaceObject, "lensProp", function() {
+        return lensProp;
+      }),
+      __webpack_require__.d(internal_namespaceObject, "lensProps", function() {
+        return lensProps;
+      }),
+      __webpack_require__.d(
+        internal_namespaceObject,
+        "lensComponent",
+        function() {
+          return lensComponent;
+        }
+      ),
+      __webpack_require__.d(
+        internal_namespaceObject,
+        "prismAsOptional",
+        function() {
+          return prismAsOptional;
+        }
+      ),
+      __webpack_require__.d(
+        internal_namespaceObject,
+        "prismAsTraversal",
+        function() {
+          return prismAsTraversal;
+        }
+      ),
+      __webpack_require__.d(
+        internal_namespaceObject,
+        "prismModifyOption",
+        function() {
+          return prismModifyOption;
+        }
+      ),
+      __webpack_require__.d(
+        internal_namespaceObject,
+        "prismModify",
+        function() {
+          return prismModify;
+        }
+      ),
+      __webpack_require__.d(internal_namespaceObject, "prismSet", function() {
+        return prismSet;
+      }),
+      __webpack_require__.d(
+        internal_namespaceObject,
+        "prismComposeLens",
+        function() {
+          return prismComposeLens;
+        }
+      ),
+      __webpack_require__.d(
+        internal_namespaceObject,
+        "prismFromNullable",
+        function() {
+          return prismFromNullable;
+        }
+      ),
+      __webpack_require__.d(
+        internal_namespaceObject,
+        "prismFromPredicate",
+        function() {
+          return prismFromPredicate;
+        }
+      ),
+      __webpack_require__.d(internal_namespaceObject, "prismSome", function() {
+        return prismSome;
+      }),
+      __webpack_require__.d(internal_namespaceObject, "prismRight", function() {
+        return prismRight;
+      }),
+      __webpack_require__.d(internal_namespaceObject, "prismLeft", function() {
+        return prismLeft;
+      }),
+      __webpack_require__.d(
+        internal_namespaceObject,
+        "optionalAsTraversal",
+        function() {
+          return optionalAsTraversal;
+        }
+      ),
+      __webpack_require__.d(
+        internal_namespaceObject,
+        "optionalModifyOption",
+        function() {
+          return optionalModifyOption;
+        }
+      ),
+      __webpack_require__.d(
+        internal_namespaceObject,
+        "optionalModify",
+        function() {
+          return optionalModify;
+        }
+      ),
+      __webpack_require__.d(
+        internal_namespaceObject,
+        "optionalComposeOptional",
+        function() {
+          return optionalComposeOptional;
+        }
+      ),
+      __webpack_require__.d(
+        internal_namespaceObject,
+        "traversalComposeTraversal",
+        function() {
+          return traversalComposeTraversal;
+        }
+      ),
+      __webpack_require__.d(
+        internal_namespaceObject,
+        "fromTraversable",
+        function() {
+          return fromTraversable;
+        }
+      ),
+      __webpack_require__.d(internal_namespaceObject, "indexArray", function() {
+        return indexArray;
+      }),
+      __webpack_require__.d(
+        internal_namespaceObject,
+        "indexRecord",
+        function() {
+          return indexRecord;
+        }
+      ),
+      __webpack_require__.d(internal_namespaceObject, "atRecord", function() {
+        return atRecord;
+      });
+    function constant(a) {
+      return function() {
+        return a;
+      };
+    }
+    function flow(ab, bc, cd, de, ef, fg, gh, hi, ij) {
+      switch (arguments.length) {
+        case 1:
+          return ab;
+        case 2:
+          return function() {
+            return bc(ab.apply(this, arguments));
+          };
+        case 3:
+          return function() {
+            return cd(bc(ab.apply(this, arguments)));
+          };
+        case 4:
+          return function() {
+            return de(cd(bc(ab.apply(this, arguments))));
+          };
+        case 5:
+          return function() {
+            return ef(de(cd(bc(ab.apply(this, arguments)))));
+          };
+        case 6:
+          return function() {
+            return fg(ef(de(cd(bc(ab.apply(this, arguments))))));
+          };
+        case 7:
+          return function() {
+            return gh(fg(ef(de(cd(bc(ab.apply(this, arguments)))))));
+          };
+        case 8:
+          return function() {
+            return hi(gh(fg(ef(de(cd(bc(ab.apply(this, arguments))))))));
+          };
+        case 9:
+          return function() {
+            return ij(hi(gh(fg(ef(de(cd(bc(ab.apply(this, arguments)))))))));
+          };
+      }
+    }
+    function pipe(a, ab, bc, cd, de, ef, fg, gh, hi, ij) {
+      switch (arguments.length) {
+        case 1:
+          return a;
+        case 2:
+          return ab(a);
+        case 3:
+          return bc(ab(a));
+        case 4:
+          return cd(bc(ab(a)));
+        case 5:
+          return de(cd(bc(ab(a))));
+        case 6:
+          return ef(de(cd(bc(ab(a)))));
+        case 7:
+          return fg(ef(de(cd(bc(ab(a))))));
+        case 8:
+          return gh(fg(ef(de(cd(bc(ab(a)))))));
+        case 9:
+          return hi(gh(fg(ef(de(cd(bc(ab(a))))))));
+        case 10:
+          return ij(hi(gh(fg(ef(de(cd(bc(ab(a)))))))));
+      }
+    }
+    var isNone = function(fa) {
+        return "None" === fa._tag;
+      },
+      none = { _tag: "None" },
+      some = function(a) {
+        return { _tag: "Some", value: a };
+      };
+    function fromNullable(a) {
+      return null == a ? none : some(a);
+    }
+    function Option_fromPredicate(predicate) {
+      return function(a) {
+        return predicate(a) ? some(a) : none;
+      };
+    }
+    var Option_fromEither = function(ma) {
+      return "Left" === ma._tag ? none : some(ma.right);
+    };
+    function fold(onNone, onSome) {
+      return function(ma) {
+        return isNone(ma) ? onNone() : onSome(ma.value);
+      };
+    }
+    var getOrElse = function(onNone) {
+      return function(ma) {
+        return isNone(ma) ? onNone() : ma.value;
+      };
+    };
+    var map_ = function(fa, f) {
+        return isNone(fa) ? none : some(f(fa.value));
+      },
+      chain_ = function(ma, f) {
+        return isNone(ma) ? none : f(ma.value);
+      },
+      Option_map = function(f) {
+        return function(fa) {
+          return map_(fa, f);
+        };
+      };
+    function ReadonlyArray_flatten(mma) {
+      for (var rLen = 0, len = mma.length, i = 0; i < len; i++)
+        rLen += mma[i].length;
+      var r = Array(rLen),
+        start = 0;
+      for (i = 0; i < len; i++) {
+        for (var arr = mma[i], l = arr.length, j = 0; j < l; j++)
+          r[j + start] = arr[j];
+        start += l;
+      }
+      return r;
+    }
+    function isOutOfBound(i, as) {
+      return i < 0 || i >= as.length;
+    }
+    function lookup(i, as) {
+      return void 0 === as
+        ? function(as) {
+            return lookup(i, as);
+          }
+        : isOutOfBound(i, as)
+        ? none
+        : some(as[i]);
+    }
+    function snoc(init, end) {
+      for (var len = init.length, r = Array(len + 1), i = 0; i < len; i++)
+        r[i] = init[i];
+      return (r[len] = end), r;
+    }
+    var ReadonlyArray_of = function(a) {
+        return [a];
+      },
+      ReadonlyArray_zero = function() {
+        return empty;
+      },
+      ReadonlyArray_map_ = function(fa, f) {
+        return fa.map(function(a) {
+          return f(a);
+        });
+      },
+      ReadonlyArray_ap_ = function(fab, fa) {
+        return ReadonlyArray_flatten(
+          ReadonlyArray_map_(fab, function(f) {
+            return ReadonlyArray_map_(fa, f);
+          })
+        );
+      },
+      chainWithIndex_ = function(fa, f) {
+        for (
+          var outLen = 0, l = fa.length, temp = new Array(l), i = 0;
+          i < l;
+          i++
+        ) {
+          (outLen += (arr = f(i, fa[i])).length), (temp[i] = arr);
+        }
+        var out = Array(outLen),
+          start = 0;
+        for (i = 0; i < l; i++) {
+          for (var arr, l_1 = (arr = temp[i]).length, j = 0; j < l_1; j++)
+            out[j + start] = arr[j];
+          start += l_1;
+        }
+        return out;
+      },
+      ReadonlyArray_chain_ = function(fa, f) {
+        return chainWithIndex_(fa, function(_index, a) {
+          return f(a);
+        });
+      },
+      ReadonlyArray_reduce_ = function(fa, b, f) {
+        return reduceWithIndex_(fa, b, function(_, b, a) {
+          return f(b, a);
+        });
+      },
+      ReadonlyArray_foldMap_ = function(M) {
+        var foldMapWithIndexM = foldMapWithIndex_(M);
+        return function(fa, f) {
+          return foldMapWithIndexM(fa, function(_, a) {
+            return f(a);
+          });
+        };
+      },
+      ReadonlyArray_reduceRight_ = function(fa, b, f) {
+        return reduceRightWithIndex_(fa, b, function(_, a, b) {
+          return f(a, b);
+        });
+      },
+      reduceWithIndex_ = function(fa, b, f) {
+        for (var l = fa.length, r = b, i = 0; i < l; i++) r = f(i, r, fa[i]);
+        return r;
+      },
+      foldMapWithIndex_ = function(M) {
+        return function(fa, f) {
+          return fa.reduce(function(b, a, i) {
+            return M.concat(b, f(i, a));
+          }, M.empty);
+        };
+      },
+      reduceRightWithIndex_ = function(fa, b, f) {
+        return fa.reduceRight(function(b, a, i) {
+          return f(i, a, b);
+        }, b);
+      },
+      ReadonlyArray_traverse_ = function(F) {
+        var traverseWithIndexF = traverseWithIndex_(F);
+        return function(ta, f) {
+          return traverseWithIndexF(ta, function(_, a) {
+            return f(a);
+          });
+        };
+      },
+      traverseWithIndex_ = function(F) {
+        return function(ta, f) {
+          return reduceWithIndex_(ta, F.of(ReadonlyArray_zero()), function(
+            i,
+            fbs,
+            a
+          ) {
+            return F.ap(
+              F.map(fbs, function(bs) {
+                return function(b) {
+                  return snoc(bs, b);
+                };
+              }),
+              f(i, a)
+            );
+          });
+        };
+      },
+      ReadonlyArray_sequence = function(F) {
+        return function(ta) {
+          return ReadonlyArray_reduce_(ta, F.of(ReadonlyArray_zero()), function(
+            fas,
+            fa
+          ) {
+            return F.ap(
+              F.map(fas, function(as) {
+                return function(a) {
+                  return snoc(as, a);
+                };
+              }),
+              fa
+            );
+          });
+        };
+      },
+      ReadonlyArray_Monad = {
+        URI: "ReadonlyArray",
+        map: ReadonlyArray_map_,
+        ap: ReadonlyArray_ap_,
+        of: ReadonlyArray_of,
+        chain: ReadonlyArray_chain_
+      };
+    function unsafeUpdateAt(i, a, as) {
+      if (as[i] === a) return as;
+      var xs = as.slice();
+      return (xs[i] = a), xs;
+    }
+    var empty = [],
+      Array_lookup = lookup;
+    var Array_updateAt = function(i, a) {
+      return function(as) {
+        return isOutOfBound(i, as) ? none : some(unsafeUpdateAt(i, a, as));
+      };
+    };
+    var Array_map_ = ReadonlyArray_Monad.map,
+      Array_Traversable = {
+        URI: "Array",
+        map: Array_map_,
+        reduce: ReadonlyArray_reduce_,
+        foldMap: ReadonlyArray_foldMap_,
+        reduceRight: ReadonlyArray_reduceRight_,
+        traverse: ReadonlyArray_traverse_,
+        sequence: ReadonlyArray_sequence
+      };
+    function ReadonlyRecord_keys(r) {
+      return Object.keys(r).sort();
+    }
+    function collect(f) {
+      return function(r) {
+        for (
+          var out = [], _i = 0, _a = ReadonlyRecord_keys(r);
+          _i < _a.length;
+          _i++
+        ) {
+          var key = _a[_i];
+          out.push(f(key, r[key]));
+        }
+        return out;
+      };
+    }
+    collect(function(k, a) {
+      return [k, a];
+    });
+    var _hasOwnProperty = Object.prototype.hasOwnProperty;
+    function ReadonlyRecord_deleteAt(k) {
+      return function(r) {
+        if (!_hasOwnProperty.call(r, k)) return r;
+        var out = Object.assign({}, r);
+        return delete out[k], out;
+      };
+    }
+    function ReadonlyRecord_lookup(k, r) {
+      return void 0 === r
+        ? function(r) {
+            return ReadonlyRecord_lookup(k, r);
+          }
+        : _hasOwnProperty.call(r, k)
+        ? some(r[k])
+        : none;
+    }
+    var ReadonlyRecord_empty = {};
+    function ReadonlyRecord_traverseWithIndex(F) {
+      var traverseWithIndexF = ReadonlyRecord_traverseWithIndex_(F);
+      return function(f) {
+        return function(ta) {
+          return traverseWithIndexF(ta, f);
+        };
+      };
+    }
+    function ReadonlyRecord_sequence(F) {
+      return ReadonlyRecord_traverseWithIndex(F)(function(_, a) {
+        return a;
+      });
+    }
+    var ReadonlyRecord_map_ = function(fa, f) {
+        return ReadonlyRecord_mapWithIndex_(fa, function(_, a) {
+          return f(a);
+        });
+      },
+      ReadonlyRecord_mapWithIndex_ = function(fa, f) {
+        for (
+          var out = {}, _i = 0, keys_1 = Object.keys(fa);
+          _i < keys_1.length;
+          _i++
+        ) {
+          var key = keys_1[_i];
+          out[key] = f(key, fa[key]);
+        }
+        return out;
+      },
+      ReadonlyRecord_reduce_ = function(fa, b, f) {
+        return ReadonlyRecord_reduceWithIndex_(fa, b, function(_, b, a) {
+          return f(b, a);
+        });
+      },
+      ReadonlyRecord_foldMap_ = function(M) {
+        var foldMapWithIndexM = ReadonlyRecord_foldMapWithIndex_(M);
+        return function(fa, f) {
+          return foldMapWithIndexM(fa, function(_, a) {
+            return f(a);
+          });
+        };
+      },
+      ReadonlyRecord_reduceRight_ = function(fa, b, f) {
+        return ReadonlyRecord_reduceRightWithIndex_(fa, b, function(_, a, b) {
+          return f(a, b);
+        });
+      },
+      ReadonlyRecord_reduceWithIndex_ = function(fa, b, f) {
+        for (
+          var out = b, ks = ReadonlyRecord_keys(fa), len = ks.length, i = 0;
+          i < len;
+          i++
+        ) {
+          var k = ks[i];
+          out = f(k, out, fa[k]);
+        }
+        return out;
+      },
+      ReadonlyRecord_foldMapWithIndex_ = function(M) {
+        return function(fa, f) {
+          for (
+            var out = M.empty,
+              ks = ReadonlyRecord_keys(fa),
+              len = ks.length,
+              i = 0;
+            i < len;
+            i++
+          ) {
+            var k = ks[i];
+            out = M.concat(out, f(k, fa[k]));
+          }
+          return out;
+        };
+      },
+      ReadonlyRecord_reduceRightWithIndex_ = function(fa, b, f) {
+        for (
+          var out = b, ks = ReadonlyRecord_keys(fa), i = ks.length - 1;
+          i >= 0;
+          i--
+        ) {
+          var k = ks[i];
+          out = f(k, fa[k], out);
+        }
+        return out;
+      },
+      ReadonlyRecord_traverseWithIndex_ = function(F) {
+        return function(ta, f) {
+          var ks = ReadonlyRecord_keys(ta);
+          if (0 === ks.length) return F.of(ReadonlyRecord_empty);
+          for (
+            var fr = F.of({}),
+              _loop_1 = function(key) {
+                fr = F.ap(
+                  F.map(fr, function(r) {
+                    return function(b) {
+                      return (r[key] = b), r;
+                    };
+                  }),
+                  f(key, ta[key])
+                );
+              },
+              _i = 0,
+              ks_1 = ks;
+            _i < ks_1.length;
+            _i++
+          ) {
+            _loop_1(ks_1[_i]);
+          }
+          return fr;
+        };
+      };
+    function Record_insertAt(k, a) {
+      return (function(k, a) {
+        return function(r) {
+          if (r[k] === a) return r;
+          var out = Object.assign({}, r);
+          return (out[k] = a), out;
+        };
+      })(k, a);
+    }
+    var Record_lookup = ReadonlyRecord_lookup;
+    function Record_traverse(F) {
+      return (function(F) {
+        var traverseWithIndexF = ReadonlyRecord_traverseWithIndex(F);
+        return function(f) {
+          return traverseWithIndexF(function(_, a) {
+            return f(a);
+          });
+        };
+      })(F);
+    }
+    function Record_sequence(F) {
+      return ReadonlyRecord_sequence(F);
+    }
+    var Record_traverse_ = function(F) {
+        var traverseF = Record_traverse(F);
+        return function(ta, f) {
+          return traverseF(f)(ta);
+        };
+      },
+      Record_Traversable = {
+        URI: "Record",
+        map: ReadonlyRecord_map_,
+        reduce: ReadonlyRecord_reduce_,
+        foldMap: ReadonlyRecord_foldMap_,
+        reduceRight: ReadonlyRecord_reduceRight_,
+        traverse: Record_traverse_,
+        sequence: Record_sequence
+      },
+      pipeable_pipe = pipe;
+    var isLeft = function(ma) {
+        return "Left" === ma._tag;
+      },
+      left = function(e) {
+        return { _tag: "Left", left: e };
+      },
+      right = function(a) {
+        return { _tag: "Right", right: a };
+      };
+    var isoAsLens = function(sa) {
+        return { get: sa.get, set: flow(sa.reverseGet, constant) };
+      },
+      isoAsOptional = function(sa) {
+        return {
+          getOption: flow(sa.get, some),
+          set: flow(sa.reverseGet, constant)
+        };
+      },
+      lensAsOptional = function(sa) {
+        return { getOption: flow(sa.get, some), set: sa.set };
+      },
+      lensAsTraversal = function(sa) {
+        return {
+          modifyF: function(F) {
+            return function(f) {
+              return function(s) {
+                return F.map(f(sa.get(s)), function(a) {
+                  return sa.set(a)(s);
+                });
+              };
+            };
+          }
+        };
+      },
+      lensComposeLens = function(ab) {
+        return function(sa) {
+          return {
+            get: function(s) {
+              return ab.get(sa.get(s));
+            },
+            set: function(b) {
+              return function(s) {
+                return sa.set(ab.set(b)(sa.get(s)))(s);
+              };
+            }
+          };
+        };
+      },
+      lensComposePrism = function(ab) {
+        return function(sa) {
+          return optionalComposeOptional(prismAsOptional(ab))(
+            lensAsOptional(sa)
+          );
+        };
+      },
+      lensId = function() {
+        return { get: identity, set: constant };
+      },
+      lensProp = function(prop) {
+        return function(lens) {
+          return {
+            get: function(s) {
+              return lens.get(s)[prop];
+            },
+            set: function(ap) {
+              return function(s) {
+                var _a,
+                  oa = lens.get(s);
+                return ap === oa[prop]
+                  ? s
+                  : lens.set(
+                      Object.assign({}, oa, (((_a = {})[prop] = ap), _a))
+                    )(s);
+              };
+            }
+          };
+        };
+      },
+      lensProps = function() {
+        for (var props = [], _i = 0; _i < arguments.length; _i++)
+          props[_i] = arguments[_i];
+        return function(lens) {
+          return {
+            get: function(s) {
+              for (
+                var a = lens.get(s), r = {}, _i = 0, props_1 = props;
+                _i < props_1.length;
+                _i++
+              ) {
+                var k = props_1[_i];
+                r[k] = a[k];
+              }
+              return r;
+            },
+            set: function(a) {
+              return function(s) {
+                for (
+                  var oa = lens.get(s), _i = 0, props_2 = props;
+                  _i < props_2.length;
+                  _i++
+                ) {
+                  var k = props_2[_i];
+                  if (a[k] !== oa[k])
+                    return lens.set(Object.assign({}, oa, a))(s);
+                }
+                return s;
+              };
+            }
+          };
+        };
+      },
+      lensComponent = function(prop) {
+        return function(lens) {
+          return {
+            get: function(s) {
+              return lens.get(s)[prop];
+            },
+            set: function(ap) {
+              return function(s) {
+                var oa = lens.get(s);
+                if (ap === oa[prop]) return s;
+                var copy = oa.slice();
+                return (copy[prop] = ap), lens.set(copy)(s);
+              };
+            }
+          };
+        };
+      },
+      prismAsOptional = function(sa) {
+        return {
+          getOption: sa.getOption,
+          set: function(a) {
+            return prismSet(a)(sa);
+          }
+        };
+      },
+      prismAsTraversal = function(sa) {
+        return {
+          modifyF: function(F) {
+            return function(f) {
+              return function(s) {
+                return pipeable_pipe(
+                  sa.getOption(s),
+                  fold(
+                    function() {
+                      return F.of(s);
+                    },
+                    function(a) {
+                      return F.map(f(a), function(a) {
+                        return prismSet(a)(sa)(s);
+                      });
+                    }
+                  )
+                );
+              };
+            };
+          }
+        };
+      },
+      prismModifyOption = function(f) {
+        return function(sa) {
+          return function(s) {
+            return pipeable_pipe(
+              sa.getOption(s),
+              Option_map(function(o) {
+                var n = f(o);
+                return n === o ? s : sa.reverseGet(n);
+              })
+            );
+          };
+        };
+      },
+      prismModify = function(f) {
+        return function(sa) {
+          var g = prismModifyOption(f)(sa);
+          return function(s) {
+            return pipeable_pipe(
+              g(s),
+              getOrElse(function() {
+                return s;
+              })
+            );
+          };
+        };
+      },
+      prismSet = function(a) {
+        return prismModify(function() {
+          return a;
+        });
+      },
+      prismComposeLens = function(ab) {
+        return function(sa) {
+          return optionalComposeOptional(lensAsOptional(ab))(
+            prismAsOptional(sa)
+          );
+        };
+      },
+      prismFromNullable = function() {
+        return { getOption: fromNullable, reverseGet: identity };
+      };
+    function prismFromPredicate(predicate) {
+      return {
+        getOption: Option_fromPredicate(predicate),
+        reverseGet: identity
+      };
+    }
+    var prismSome = function() {
+        return { getOption: identity, reverseGet: some };
+      },
+      prismRight = function() {
+        return { getOption: Option_fromEither, reverseGet: right };
+      },
+      prismLeft = function() {
+        return {
+          getOption: function(s) {
+            return isLeft(s) ? some(s.left) : none;
+          },
+          reverseGet: left
+        };
+      },
+      optionalAsTraversal = function(sa) {
+        return {
+          modifyF: function(F) {
+            return function(f) {
+              return function(s) {
+                return pipeable_pipe(
+                  sa.getOption(s),
+                  fold(
+                    function() {
+                      return F.of(s);
+                    },
+                    function(a) {
+                      return F.map(f(a), function(a) {
+                        return sa.set(a)(s);
+                      });
+                    }
+                  )
+                );
+              };
+            };
+          }
+        };
+      },
+      optionalModifyOption = function(f) {
+        return function(optional) {
+          return function(s) {
+            return pipeable_pipe(
+              optional.getOption(s),
+              Option_map(function(a) {
+                var n = f(a);
+                return n === a ? s : optional.set(n)(s);
+              })
+            );
+          };
+        };
+      },
+      optionalModify = function(f) {
+        return function(optional) {
+          var g = optionalModifyOption(f)(optional);
+          return function(s) {
+            return pipeable_pipe(
+              g(s),
+              getOrElse(function() {
+                return s;
+              })
+            );
+          };
+        };
+      },
+      optionalComposeOptional = function(ab) {
+        return function(sa) {
+          return {
+            getOption: flow(
+              sa.getOption,
+              ((f = ab.getOption),
+              function(ma) {
+                return chain_(ma, f);
+              })
+            ),
+            set: function(b) {
+              return optionalModify(ab.set(b))(sa);
+            }
+          };
+          var f;
+        };
+      };
+    function traversalComposeTraversal(ab) {
+      return function(sa) {
+        return {
+          modifyF: function(F) {
+            return function(f) {
+              return sa.modifyF(F)(ab.modifyF(F)(f));
+            };
+          }
+        };
+      };
+    }
+    function fromTraversable(T) {
+      return function() {
+        return {
+          modifyF: function(F) {
+            var traverseF = T.traverse(F);
+            return function(f) {
+              return function(s) {
+                return traverseF(s, f);
+              };
+            };
+          }
+        };
+      };
+    }
+    var indexArray = function() {
+      return {
+        index: function(i) {
+          return {
+            getOption: function(as) {
+              return Array_lookup(i, as);
+            },
+            set: function(a) {
+              return function(as) {
+                return pipeable_pipe(
+                  Array_updateAt(i, a)(as),
+                  getOrElse(function() {
+                    return as;
+                  })
+                );
+              };
+            }
+          };
+        }
+      };
+    };
+    function indexRecord() {
+      return {
+        index: function(k) {
+          return {
+            getOption: function(r) {
+              return Record_lookup(k, r);
+            },
+            set: function(a) {
+              return function(r) {
+                return r[k] === a || isNone(Record_lookup(k, r))
+                  ? r
+                  : Record_insertAt(k, a)(r);
+              };
+            }
+          };
+        }
+      };
+    }
+    function atRecord() {
+      return {
+        at: function(key) {
+          return {
+            get: function(r) {
+              return Record_lookup(key, r);
+            },
+            set: fold(
+              function() {
+                return ReadonlyRecord_deleteAt(key);
+              },
+              function(a) {
+                return Record_insertAt(key, a);
+              }
+            )
+          };
+        }
+      };
+    }
+    var id = lensId,
+      asTraversal = lensAsTraversal,
+      composePrism = lensComposePrism;
+    var Lens_prop = lensProp;
+    composePrism(prismSome()),
+      composePrism(prismRight()),
+      composePrism(prismLeft());
+    var Traversal_fromTraversable = fromTraversable,
+      Traversal_compose = traversalComposeTraversal;
+    var Traversal_prop = function(prop) {
+        return Traversal_compose(
+          pipeable_pipe(lensId(), lensProp(prop), lensAsTraversal)
+        );
+      },
+      Traversal_some = Traversal_compose(prismAsTraversal(prismSome()));
+    Traversal_compose(prismAsTraversal(prismRight())),
+      Traversal_compose(prismAsTraversal(prismLeft()));
+    var i,
+      lib_x = pipe(
+        id(),
+        Lens_prop("items"),
+        flow(
+          asTraversal,
+          traversalComposeTraversal(fromTraversable(Array_Traversable)())
+        ),
+        Traversal_prop("foo"),
+        (function(T) {
+          return Traversal_compose(Traversal_fromTraversable(T)());
+        })(Record_Traversable),
+        Traversal_prop("nested"),
+        Traversal_some,
+        ((i = 2),
+        function(sa) {
+          return pipeable_pipe(
+            sa,
+            Traversal_compose(optionalAsTraversal(indexArray().index(i)))
+          );
+        }),
+        Traversal_prop("baz")
+      );
+  }
+]);

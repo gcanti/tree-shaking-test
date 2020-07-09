@@ -1,22 +1,48 @@
-import * as D from "io-ts/es6/Decoder";
+import * as A from "fp-ts/es6/Array";
+import { pipe } from "fp-ts/es6/function";
+import { Option } from "fp-ts/es6/Option";
+import * as R from "fp-ts/es6/Record";
+import * as L from "monocle-ts/es6/Lens";
+import * as T from "monocle-ts/es6/Traversal";
 
-const Person = D.type({
-  name: D.string,
-  age: D.number
-});
+interface NestedValue {
+  readonly baz: string;
+}
 
-console.log(Person.decode({}));
+interface Value {
+  readonly nested: Option<Array<NestedValue>>;
+}
+
+interface Item {
+  readonly foo: Record<string, Value>;
+}
+
+interface Data {
+  readonly items: Array<Item>;
+}
+
+export const x: T.Traversal<Data, string> = pipe(
+  L.id<Data>(),
+  L.prop("items"),
+  L.traverse(A.Traversable),
+  T.prop("foo"),
+  T.traverse(R.Traversable),
+  T.prop("nested"),
+  T.some,
+  T.index(2),
+  T.prop("baz")
+);
 
 /*
 
 rollup:
 
-- io-ts@2.2.6: 18K (using `Type`)
-- io-ts@2.2.7: 5K (using `Decoder`)
+- fp-ts@2.6.5: 29K
+- fp-ts@2.7.0: 29K
 
 webpack:
 
-- io-ts@2.2.6: 23K (using `Type`)
-- io-ts@2.2.7: 34K (using `Decoder`)
+- fp-ts@2.6.5: 44K
+- fp-ts@2.7.0: 29K
 
 */
