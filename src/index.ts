@@ -1,48 +1,25 @@
-import * as A from "fp-ts/es6/ReadonlyArray";
-import { pipe } from "fp-ts/es6/function";
-import { Option } from "fp-ts/es6/Option";
-import * as R from "fp-ts/es6/ReadonlyRecord";
-import * as L from "monocle-ts/es6/Lens";
-import * as T from "monocle-ts/es6/Traversal";
+import * as _ from "fp-ts/TaskEither";
+import { pipe } from "fp-ts/pipeable";
 
-interface NestedValue {
-  readonly baz: string;
-}
-
-interface Value {
-  readonly nested: Option<ReadonlyArray<NestedValue>>;
-}
-
-interface Item {
-  readonly foo: Readonly<Record<string, Value>>;
-}
-
-interface Data {
-  readonly items: ReadonlyArray<Item>;
-}
-
-export const x: T.Traversal<Data, string> = pipe(
-  L.id<Data>(),
-  L.prop("items"),
-  L.traverse(A.Traversable),
-  T.prop("foo"),
-  T.traverse(R.Traversable),
-  T.prop("nested"),
-  T.some,
-  T.index(2),
-  T.prop("baz")
+pipe(
+  _.right(1),
+  _.map(n => n + 1),
+  _.chain(n => _.right(n + 1)),
+  _.swap
 );
 
 /*
 
 rollup:
 
-- fp-ts@2.6.5: 29K
-- fp-ts@2.7.0: 13K
+- fp-ts@2.6.1: 14K
+- fp-ts@2.6.6: 3K
+- fp-ts@2.7.0: 3K
 
 webpack:
 
-- fp-ts@2.6.5: 44K
-- fp-ts@2.7.0: 32K
+- fp-ts@2.6.1: 24K
+- fp-ts@2.6.6: 6K
+- fp-ts@2.7.0: 6K
 
 */
