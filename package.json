@@ -4,9 +4,10 @@
   },
   "dependencies": {
     "@rollup/plugin-node-resolve": "^7.1.3",
-    "fp-ts": "github:gcanti/fp-ts#short-imports-as-published",
+    "fp-ts": "https://github.com/gcanti/fp-ts/raw/2.8-dist/fp-ts-2.8.0.tgz",
+    "fp-ts-node": "https://github.com/gcanti/fp-ts-node/raw/master/fp-ts-node-0.0.1.tgz",
+    "fs-extra": "^9.0.1",
     "io-ts": "^2.2.7",
-    "lib-test": "github:gcanti/lib-test#master",
     "monocle-ts": "^2.3.1",
     "prettier": "^1.19.1",
     "rollup": "^2.10.2",
@@ -14,6 +15,9 @@
     "webpack-cli": "^3.3.7"
   },
   "devDependencies": {
+    "@types/fs-extra": "^9.0.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-polyfills": "^0.2.1",
     "rollup-plugin-terser": "^6.1.0",
     "typescript": "^3.9.6",
     "webpack-bundle-analyzer": "^3.8.0"

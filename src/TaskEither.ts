@@ -1,5 +1,5 @@
 import * as _ from "fp-ts/es6/TaskEither";
-import { pipe } from "fp-ts/es6/pipeable";
+import { pipe } from "fp-ts/es6/function";
 
 pipe(
   _.right(1),
