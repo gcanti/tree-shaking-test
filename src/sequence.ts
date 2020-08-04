@@ -1,10 +1,10 @@
-import * as RA from "fp-ts/es6/ReadonlyArray";
-import * as TE from "fp-ts/es6/TaskEither";
-import { pipe } from "fp-ts/es6/function";
+import * as RA from "fp-ts/ReadonlyArray";
+import * as TE from "fp-ts/TaskEither";
+import { pipe } from "fp-ts/function";
 
 pipe(
   RA.replicate(10, TE.right(1)),
-  RA.sequence(TE.applicativeTaskEitherPar),
+  RA.sequence(TE.ApplicativePar),
   TE.map(RA.head)
 );
 

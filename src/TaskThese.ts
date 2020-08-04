@@ -1,6 +1,6 @@
-import * as _ from "fp-ts/es6/TaskThese";
-import { pipe } from "fp-ts/es6/function";
-import { semigroupString } from "fp-ts/es6/Semigroup";
+import * as _ from "fp-ts/TaskThese";
+import { pipe } from "fp-ts/function";
+import { semigroupString } from "fp-ts/Semigroup";
 
 const M = _.getMonad(semigroupString);
 

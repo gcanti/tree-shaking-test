@@ -71,44 +71,6 @@
   function(module, __webpack_exports__, __webpack_require__) {
     "use strict";
     __webpack_require__.r(__webpack_exports__);
-    function flow(ab, bc, cd, de, ef, fg, gh, hi, ij) {
-      switch (arguments.length) {
-        case 1:
-          return ab;
-        case 2:
-          return function() {
-            return bc(ab.apply(this, arguments));
-          };
-        case 3:
-          return function() {
-            return cd(bc(ab.apply(this, arguments)));
-          };
-        case 4:
-          return function() {
-            return de(cd(bc(ab.apply(this, arguments))));
-          };
-        case 5:
-          return function() {
-            return ef(de(cd(bc(ab.apply(this, arguments)))));
-          };
-        case 6:
-          return function() {
-            return fg(ef(de(cd(bc(ab.apply(this, arguments))))));
-          };
-        case 7:
-          return function() {
-            return gh(fg(ef(de(cd(bc(ab.apply(this, arguments)))))));
-          };
-        case 8:
-          return function() {
-            return hi(gh(fg(ef(de(cd(bc(ab.apply(this, arguments))))))));
-          };
-        case 9:
-          return function() {
-            return ij(hi(gh(fg(ef(de(cd(bc(ab.apply(this, arguments)))))))));
-          };
-      }
-    }
     function pipe(a, ab, bc, cd, de, ef, fg, gh, hi, ij) {
       switch (arguments.length) {
         case 1:
@@ -133,80 +95,41 @@
           return ij(hi(gh(fg(ef(de(cd(bc(ab(a)))))))));
       }
     }
-    var isLeft = function(ma) {
-        return "Left" === ma._tag;
-      },
-      Either_left = function(e) {
-        return { _tag: "Left", left: e };
-      },
-      Either_right = function(a) {
-        return { _tag: "Right", right: a };
-      };
-    function fold(onLeft, onRight) {
-      return function(ma) {
-        return isLeft(ma) ? onLeft(ma.left) : onRight(ma.right);
-      };
-    }
-    function swap(ma) {
-      return isLeft(ma) ? Either_right(ma.left) : Either_left(ma.right);
-    }
     var map_ = function(ma, f) {
-      return isLeft(ma) ? ma : Either_right(f(ma.right));
-    };
-    var Task_map_ = function(ma, f) {
         return function() {
           return ma().then(f);
         };
       },
-      Task_chain_ = function(ma, f) {
+      chain_ = function(ma, f) {
         return function() {
           return ma().then(function(a) {
             return f(a)();
           });
         };
       },
-      Task_map = function(f) {
+      map = function(f) {
         return function(fa) {
-          return Task_map_(fa, f);
+          return map_(fa, f);
         };
       },
-      Task_of = function(a) {
+      of = function(a) {
         return function() {
           return Promise.resolve(a);
         };
       },
-      Task_chain = function(f) {
+      chain = function(f) {
         return function(ma) {
-          return Task_chain_(ma, f);
+          return chain_(ma, f);
         };
       };
-    var TaskEither_left = flow(Either_left, Task_of),
-      TaskEither_right = flow(Either_right, Task_of);
-    var TaskEither_swap = Task_map(swap);
-    var TaskEither_map = function(f) {
-        return Task_map(
-          (function(f) {
-            return function(fa) {
-              return map_(fa, f);
-            };
-          })(f)
-        );
-      },
-      TaskEither_chainW = function(f) {
-        return function(ma) {
-          return pipe(ma, Task_chain(fold(TaskEither_left, f)));
-        };
-      },
-      TaskEither_chain = TaskEither_chainW;
     pipe(
-      TaskEither_right(1),
-      TaskEither_map(function(n) {
+      of(1),
+      map(function(n) {
         return n + 1;
       }),
-      TaskEither_chain(function(n) {
-        return TaskEither_right(n + 1);
-      }),
-      TaskEither_swap
+      chain(function(n) {
+        return of(n + 1);
+      })
     );
   }
 ]);

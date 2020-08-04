@@ -1,5 +1,5 @@
-import * as _ from "fp-ts/es6/State";
-import { pipe } from "fp-ts/es6/function";
+import * as _ from "fp-ts/State";
+import { pipe } from "fp-ts/function";
 
 pipe(
   _.of(1),

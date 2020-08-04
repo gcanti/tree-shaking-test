@@ -1,7 +1,7 @@
 import * as A from "fp-ts/es6/ReadonlyArray";
-import { pipe } from "fp-ts/es6/function";
-import { Option } from "fp-ts/es6/Option";
-import * as R from "fp-ts/es6/ReadonlyRecord";
+import { pipe } from "fp-ts/function";
+import { Option } from "fp-ts/Option";
+import * as R from "fp-ts/ReadonlyRecord";
 import * as L from "monocle-ts/es6/Lens";
 import * as T from "monocle-ts/es6/Traversal";
 

@@ -1,4 +1,4 @@
-import * as E from "fp-ts/es6/Either";
+import * as E from "fp-ts/Either";
 
 const Either = {
   map: E.map,
@@ -15,7 +15,7 @@ import Either = E.Either;
 
 export { Either };
 
-export * from "fp-ts/es6/function";
+export * from "fp-ts/function";
 
 /*
 import { pipe, Either } from "./prelude";

@@ -1,5 +1,5 @@
-import * as _ from "fp-ts/es6/Either";
-import { pipe } from "fp-ts/es6/function";
+import * as _ from "fp-ts/Either";
+import { pipe } from "fp-ts/function";
 
 pipe(
   _.right(1),

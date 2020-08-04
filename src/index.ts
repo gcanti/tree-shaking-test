@@ -1,27 +1,26 @@
-import * as _ from "fp-ts/TaskEither";
+import * as _ from "fp-ts/Task";
 import { pipe } from "fp-ts/function";
 
 pipe(
-  _.right(1),
+  _.of(1),
   _.map(n => n + 1),
-  _.chain(n => _.right(n + 1)),
-  _.swap
+  _.chain(n => _.of(n + 1))
 );
 
 /*
 
 rollup:
 
-- fp-ts@2.6.1: 14K
-- fp-ts@2.6.6: 3K
-- fp-ts@2.7.0: 3K
-- fp-ts@2.8.0: 3K
+- fp-ts@2.6.1: 10K
+- fp-ts@2.6.6: 1K
+- fp-ts@2.7.0: 1K
+- fp-ts@2.8.0: 1K
 
 webpack:
 
-- fp-ts@2.6.1: 24K
-- fp-ts@2.6.6: 6K
-- fp-ts@2.7.0: 6K
-- fp-ts@2.8.0: 6K
+- fp-ts@2.6.1: 14K
+- fp-ts@2.6.6: 4K
+- fp-ts@2.7.0: 4K
+- fp-ts@2.8.0: 4K
 
 */
