@@ -1,26 +1,26 @@
-import * as _ from "fp-ts/Task";
-import { pipe } from "fp-ts/function";
+import * as D from "io-ts/Decoder";
 
-pipe(
-  _.of(1),
-  _.map(n => n + 1),
-  _.chain(n => _.of(n + 1))
-);
+const Person = D.type({
+  name: D.string,
+  age: D.number
+});
+
+console.log(Person.decode({}));
 
 /*
 
 rollup:
 
-- fp-ts@2.6.1: 10K
-- fp-ts@2.6.6: 1K
-- fp-ts@2.7.0: 1K
-- fp-ts@2.8.0: 1K
+- io-ts@2.2.6: 18K (using `Type`)
+- io-ts@2.2.7: 5K (using `Decoder`)
+- io-ts@2.2.9: 5K (using `Decoder`)
+- io-ts@2.2.10: 5K (using `Decoder`)
 
 webpack:
 
-- fp-ts@2.6.1: 14K
-- fp-ts@2.6.6: 4K
-- fp-ts@2.7.0: 4K
-- fp-ts@2.8.0: 4K
+- io-ts@2.2.6: 23K (using `Type`)
+- io-ts@2.2.7: 33K (using `Decoder`)
+- io-ts@2.2.9: 19K (using `Decoder`)
+- io-ts@2.2.10: 19K (using `Decoder`)
 
 */
