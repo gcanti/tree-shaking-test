@@ -16,6 +16,8 @@ rollup:
 - fp-ts@2.6.6: 3K
 - fp-ts@2.7.0: 3K
 - fp-ts@2.8.0: 3K
+- fp-ts@2.9.3: 4K
+- fp-ts@3.0.0-rc1: 3K
 
 webpack:
 
@@ -23,5 +25,7 @@ webpack:
 - fp-ts@2.6.6: 6K
 - fp-ts@2.7.0: 6K
 - fp-ts@2.8.0: 6K
+- fp-ts@2.9.3: 7K
+- fp-ts@3.0.0-rc1: 6K
 
 */
