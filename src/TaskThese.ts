@@ -1,13 +1,13 @@
 import * as _ from "fp-ts/TaskThese";
 import { pipe } from "fp-ts/function";
-import { semigroupString } from "fp-ts/Semigroup";
+import { Semigroup } from "fp-ts/string";
 
-const M = _.getMonad(semigroupString);
+const M = _.getMonad(Semigroup);
 
 pipe(
   _.right(1),
   _.map(n => n + 1),
-  x => M.chain(x, n => _.right(n + 1)),
+  M.chain(n => _.right(n + 1)),
   _.swap
 );
 

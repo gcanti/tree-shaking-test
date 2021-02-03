@@ -1,7 +1,6 @@
 import * as RA from "fp-ts/ReadonlyArray";
 import * as RNEA from "fp-ts/ReadonlyNonEmptyArray";
-import { identity } from "fp-ts/function";
-import { pipe } from "fp-ts/function";
+import { identity, pipe } from "fp-ts/function";
 
 export const a = RA.makeBy(10, identity);
 

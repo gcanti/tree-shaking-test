@@ -1,43 +1,9 @@
 "use strict";
-function flow(ab, bc, cd, de, ef, fg, gh, hi, ij) {
-  switch (arguments.length) {
-    case 1:
-      return ab;
-    case 2:
-      return function() {
-        return bc(ab.apply(this, arguments));
-      };
-    case 3:
-      return function() {
-        return cd(bc(ab.apply(this, arguments)));
-      };
-    case 4:
-      return function() {
-        return de(cd(bc(ab.apply(this, arguments))));
-      };
-    case 5:
-      return function() {
-        return ef(de(cd(bc(ab.apply(this, arguments)))));
-      };
-    case 6:
-      return function() {
-        return fg(ef(de(cd(bc(ab.apply(this, arguments))))));
-      };
-    case 7:
-      return function() {
-        return gh(fg(ef(de(cd(bc(ab.apply(this, arguments)))))));
-      };
-    case 8:
-      return function() {
-        return hi(gh(fg(ef(de(cd(bc(ab.apply(this, arguments))))))));
-      };
-    case 9:
-      return function() {
-        return ij(hi(gh(fg(ef(de(cd(bc(ab.apply(this, arguments)))))))));
-      };
-  }
-}
-function pipe(
+const isLeft = ma => "Left" === ma._tag,
+  right = a => ({ _tag: "Right", right: a }),
+  chain = f => ma => (isLeft(ma) ? ma : f(ma.right));
+var f;
+!(function(
   a,
   ab,
   bc,
@@ -103,76 +69,19 @@ function pipe(
         qr(pq(op(no(mn(lm(kl(jk(ij(hi(gh(fg(ef(de(cd(bc(ab(a)))))))))))))))))
       );
     case 20:
-      return st(
+      st(
         rs(
           qr(pq(op(no(mn(lm(kl(jk(ij(hi(gh(fg(ef(de(cd(bc(ab(a)))))))))))))))))
         )
       );
   }
-}
-var isLeft = function(ma) {
-    return "Left" === ma._tag;
-  },
-  left = function(e) {
-    return { _tag: "Left", left: e };
-  },
-  right = function(a) {
-    return { _tag: "Right", right: a };
-  };
-function swap(ma) {
-  return isLeft(ma) ? right(ma.left) : left(ma.right);
-}
-var map$1 = function(f) {
-    return function(fa) {
-      return function() {
-        return fa().then(f);
-      };
-    };
-  },
-  of = function(a) {
-    return function() {
-      return Promise.resolve(a);
-    };
-  },
-  left$1 = flow(left, of),
-  right$1 = flow(right, of),
-  swap$1 = map$1(swap),
-  chain$1 = function(f) {
-    return function(ma) {
-      return pipe(
-        ma,
-        (function(f) {
-          return function(ma) {
-            return function() {
-              return ma().then(function(a) {
-                return f(a)();
-              });
-            };
-          };
-        })(
-          ((onLeft = left$1),
-          (onRight = f),
-          function(ma) {
-            return isLeft(ma) ? onLeft(ma.left) : onRight(ma.right);
-          })
-        )
-      );
-      var onLeft, onRight;
-    };
-  };
-pipe(
-  right$1(1),
-  map$1(
-    (function(f) {
-      return function(fa) {
-        return isLeft(fa) ? fa : right(f(fa.right));
-      };
-    })(function(n) {
-      return n + 1;
-    })
-  ),
-  chain$1(function(n) {
-    return right$1(n + 1);
+})(
+  right(1),
+  ((f = function(n) {
+    return n + 1;
   }),
-  swap$1
+  fa => (isLeft(fa) ? fa : right(f(fa.right)))),
+  chain(function(n) {
+    return right(n + 1);
+  })
 );

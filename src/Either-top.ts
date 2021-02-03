@@ -1,6 +1,6 @@
-import { either, pipeable } from "fp-ts";
+import { either, function as F } from "fp-ts";
 
-pipeable.pipe(
+F.pipe(
   either.right(1),
   either.map(n => n + 1),
   either.chain(n => either.right(n + 1))
