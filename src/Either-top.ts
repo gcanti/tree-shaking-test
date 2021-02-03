@@ -8,7 +8,12 @@ F.pipe(
 
 /*
 
-rollup: ?K
-webpack: ?K
+rollup:
+
+- fp-ts@3.0.0-alpha.11: 2K
+
+webpack:
+
+- fp-ts@3.0.0-alpha.11: 2K
 
 */
