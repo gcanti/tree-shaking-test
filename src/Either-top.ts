@@ -10,10 +10,10 @@ F.pipe(
 
 rollup:
 
-- fp-ts@3.0.0-alpha.11: 2K
+- fp-ts@2.9.5: 2K
 
 webpack:
 
-- fp-ts@3.0.0-alpha.11: 2K
+- fp-ts@2.9.5: 2K
 
 */
