@@ -3,7 +3,9 @@
     "build": "tsc"
   },
   "dependencies": {
-    "fp-ts": "^2.9.5"
+    "fp-ts": "^2.9.5",
+    "io-ts": "^2.2.15",
+    "monocle-ts": "^2.3.6"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^11.1.1",
