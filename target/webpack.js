@@ -1,32 +1,40 @@
 (() => {
   "use strict";
-  var Either_isLeft = function (ma) {
-      return "Left" === ma._tag;
-    },
-    isRight = function (ma) {
-      return "Right" === ma._tag;
-    },
-    left = function (e) {
+  Object.prototype.hasOwnProperty;
+  var Either_left = function (e) {
       return { _tag: "Left", left: e };
     },
     Either_right = function (a) {
       return { _tag: "Right", right: a };
+    },
+    Either_isLeft = function (ma) {
+      return "Left" === ma._tag;
+    },
+    Either_isRight = function (ma) {
+      return "Right" === ma._tag;
     };
   var extendStatics,
     __extends =
       ((extendStatics = function (d, b) {
-        return (extendStatics =
-          Object.setPrototypeOf ||
-          ({ __proto__: [] } instanceof Array &&
+        return (
+          (extendStatics =
+            Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array &&
+              function (d, b) {
+                d.__proto__ = b;
+              }) ||
             function (d, b) {
-              d.__proto__ = b;
-            }) ||
-          function (d, b) {
-            for (var p in b)
-              Object.prototype.hasOwnProperty.call(b, p) && (d[p] = b[p]);
-          })(d, b);
+              for (var p in b)
+                Object.prototype.hasOwnProperty.call(b, p) && (d[p] = b[p]);
+            }),
+          extendStatics(d, b)
+        );
       }),
       function (d, b) {
+        if ("function" != typeof b && null !== b)
+          throw new TypeError(
+            "Class extends value " + String(b) + " is not a constructor or null"
+          );
         function __() {
           this.constructor = d;
         }
@@ -37,16 +45,19 @@
               : ((__.prototype = b.prototype), new __()));
       }),
     __assign = function () {
-      return (__assign =
-        Object.assign ||
-        function (t) {
-          for (var s, i = 1, n = arguments.length; i < n; i++)
-            for (var p in (s = arguments[i]))
-              Object.prototype.hasOwnProperty.call(s, p) && (t[p] = s[p]);
-          return t;
-        }).apply(this, arguments);
+      return (
+        (__assign =
+          Object.assign ||
+          function (t) {
+            for (var s, i = 1, n = arguments.length; i < n; i++)
+              for (var p in (s = arguments[i]))
+                Object.prototype.hasOwnProperty.call(s, p) && (t[p] = s[p]);
+            return t;
+          }),
+        __assign.apply(this, arguments)
+      );
     },
-    failures = left,
+    failures = Either_left,
     failure = function (value, context, message) {
       return failures([{ value, context, message }]);
     },
@@ -64,7 +75,7 @@
           var _this = this;
           return (
             void 0 === name &&
-              (name = "pipe(" + this.name + ", " + ab.name + ")"),
+              (name = "pipe(".concat(this.name, ", ").concat(ab.name, ")")),
             new Type(
               name,
               ab.is,
@@ -107,7 +118,7 @@
   function getNameFromProps(props) {
     return Object.keys(props)
       .map(function (k) {
-        return k + ": " + props[k].name;
+        return "".concat(k, ": ").concat(props[k].name);
       })
       .join(", ");
   }
@@ -117,7 +128,7 @@
     return !0;
   }
   function getInterfaceTypeName(props) {
-    return "{ " + getNameFromProps(props) + " }";
+    return "{ ".concat(getNameFromProps(props), " }");
   }
   new ((function (_super) {
     function NullType() {
@@ -282,8 +293,7 @@
               this,
               "UnknownRecord",
               function (u) {
-                var s = Object.prototype.toString.call(u);
-                return "[object Object]" === s || "[object Window]" === s;
+                return null !== u && "object" == typeof u && !Array.isArray(u);
               },
               function (u, c) {
                 return _this.is(u) ? success(u) : failure(u, c);
@@ -493,14 +503,6 @@
     }
     return __extends(FunctionType, _super), FunctionType;
   })(Type))(),
-    (function (_super) {
-      function TaggedUnionType(name, is, validate, encode, codecs, tag) {
-        var _this =
-          _super.call(this, name, is, validate, encode, codecs) || this;
-        return (_this.tag = tag), _this;
-      }
-      __extends(TaggedUnionType, _super);
-    })(UnionType),
     new ((function (_super) {
       function NeverType() {
         var _this =
@@ -536,36 +538,16 @@
         return (_this._tag = "AnyType"), _this;
       }
       return __extends(AnyType, _super), AnyType;
-    })(Type))(),
-    new ((function (_super) {
-      function ObjectType() {
-        var _this =
-          _super.call(
-            this,
-            "object",
-            function (u) {
-              return null !== u && "object" == typeof u;
-            },
-            function (u, c) {
-              return _this.is(u) ? success(u) : failure(u, c);
-            },
-            es6_identity
-          ) || this;
-        return (_this._tag = "ObjectType"), _this;
-      }
-      return __extends(ObjectType, _super), ObjectType;
     })(Type))();
   function refinement(codec, predicate, name) {
     return (
       void 0 === name &&
-        (name =
-          "(" +
-          codec.name +
-          " | " +
+        (name = "(".concat(codec.name, " | ").concat(
           (function (f) {
-            return f.displayName || f.name || "<function" + f.length + ">";
-          })(predicate) +
-          ")"),
+            return f.displayName || f.name || "<function".concat(f.length, ">");
+          })(predicate),
+          ")"
+        )),
       new RefinementType(
         name,
         function (u) {
@@ -585,6 +567,32 @@
   }
   refinement(number, Number.isInteger, "Integer"),
     (function (_super) {
+      function TaggedUnionType(name, is, validate, encode, codecs, tag) {
+        var _this =
+          _super.call(this, name, is, validate, encode, codecs) || this;
+        return (_this.tag = tag), _this;
+      }
+      __extends(TaggedUnionType, _super);
+    })(UnionType),
+    new ((function (_super) {
+      function ObjectType() {
+        var _this =
+          _super.call(
+            this,
+            "object",
+            function (u) {
+              return null !== u && "object" == typeof u;
+            },
+            function (u, c) {
+              return _this.is(u) ? success(u) : failure(u, c);
+            },
+            es6_identity
+          ) || this;
+        return (_this._tag = "ObjectType"), _this;
+      }
+      return __extends(ObjectType, _super), ObjectType;
+    })(Type))(),
+    (function (_super) {
       function StrictType(name, is, validate, encode, props) {
         var _this = _super.call(this, name, is, validate, encode) || this;
         return (_this.props = props), (_this._tag = "StrictType"), _this;
@@ -595,5 +603,5 @@
     userId: 1,
     name: "name",
   });
-  isRight(result) && console.log(result.right);
+  Either_isRight(result) && console.log(result.right);
 })();

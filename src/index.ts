@@ -3,7 +3,7 @@ import * as t from "io-ts";
 
 const User = t.type({
   userId: t.number,
-  name: t.string
+  name: t.string,
 });
 
 const result = User.decode({ userId: 1, name: "name" });
@@ -15,7 +15,7 @@ if (isRight(result)) {
 
 rollup:
 
-- io-ts@2.2.15: 17K
+- io-ts@2.2.15: 18K
 
 webpack:
 

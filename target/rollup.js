@@ -3,20 +3,30 @@ var extendStatics,
   isLeft = function (ma) {
     return "Left" === ma._tag;
   },
+  isRight = function (ma) {
+    return "Right" === ma._tag;
+  },
   __extends =
     ((extendStatics = function (d, b) {
-      return (extendStatics =
-        Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array &&
+      return (
+        (extendStatics =
+          Object.setPrototypeOf ||
+          ({ __proto__: [] } instanceof Array &&
+            function (d, b) {
+              d.__proto__ = b;
+            }) ||
           function (d, b) {
-            d.__proto__ = b;
-          }) ||
-        function (d, b) {
-          for (var p in b)
-            Object.prototype.hasOwnProperty.call(b, p) && (d[p] = b[p]);
-        })(d, b);
+            for (var p in b)
+              Object.prototype.hasOwnProperty.call(b, p) && (d[p] = b[p]);
+          }),
+        extendStatics(d, b)
+      );
     }),
     function (d, b) {
+      if ("function" != typeof b && null !== b)
+        throw new TypeError(
+          "Class extends value " + String(b) + " is not a constructor or null"
+        );
       function __() {
         this.constructor = d;
       }
@@ -27,14 +37,17 @@ var extendStatics,
             : ((__.prototype = b.prototype), new __()));
     }),
   __assign = function () {
-    return (__assign =
-      Object.assign ||
-      function (t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++)
-          for (var p in (s = arguments[i]))
-            Object.prototype.hasOwnProperty.call(s, p) && (t[p] = s[p]);
-        return t;
-      }).apply(this, arguments);
+    return (
+      (__assign =
+        Object.assign ||
+        function (t) {
+          for (var s, i = 1, n = arguments.length; i < n; i++)
+            for (var p in (s = arguments[i]))
+              Object.prototype.hasOwnProperty.call(s, p) && (t[p] = s[p]);
+          return t;
+        }),
+      __assign.apply(this, arguments)
+    );
   },
   failures = function (e) {
     return { _tag: "Left", left: e };
@@ -58,7 +71,7 @@ var extendStatics,
         var _this = this;
         return (
           void 0 === name &&
-            (name = "pipe(" + this.name + ", " + ab.name + ")"),
+            (name = "pipe(".concat(this.name, ", ").concat(ab.name, ")")),
           new Type(
             name,
             ab.is,
@@ -98,15 +111,14 @@ function pushAll(xs, ys) {
 }
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 function getInterfaceTypeName(props) {
-  return (
-    "{ " +
+  return "{ ".concat(
     (function (props) {
       return Object.keys(props)
         .map(function (k) {
-          return k + ": " + props[k].name;
+          return "".concat(k, ": ").concat(props[k].name);
         })
         .join(", ");
-    })(props) +
+    })(props),
     " }"
   );
 }
@@ -271,8 +283,7 @@ var UnknownRecord = new ((function (_super) {
         this,
         "UnknownRecord",
         function (u) {
-          var s = Object.prototype.toString.call(u);
-          return "[object Object]" === s || "[object Window]" === s;
+          return null !== u && "object" == typeof u && !Array.isArray(u);
         },
         function (u, c) {
           return _this.is(u) ? success(u) : failure(u, c);
@@ -378,14 +389,14 @@ function refinement(codec, predicate, name) {
   var f;
   return (
     void 0 === name &&
-      (name =
-        "(" +
-        codec.name +
-        " | " +
-        (((f = predicate).displayName ||
-          f.name ||
-          "<function" + f.length + ">") +
-          ")")),
+      (name = "("
+        .concat(codec.name, " | ")
+        .concat(
+          (f = predicate).displayName ||
+            f.name ||
+            "<function".concat(f.length, ">"),
+          ")"
+        )),
     new RefinementType(
       name,
       function (u) {
@@ -456,13 +467,6 @@ function refinement(codec, predicate, name) {
     }
     return __extends(FunctionType, _super), FunctionType;
   })(Type))(),
-  (function (_super) {
-    function TaggedUnionType(name, is, validate, encode, codecs, tag) {
-      var _this = _super.call(this, name, is, validate, encode, codecs) || this;
-      return (_this.tag = tag), _this;
-    }
-    __extends(TaggedUnionType, _super);
-  })(UnionType),
   new ((function (_super) {
     function NeverType() {
       var _this =
@@ -499,6 +503,14 @@ function refinement(codec, predicate, name) {
     }
     return __extends(AnyType, _super), AnyType;
   })(Type))(),
+  refinement(number, Number.isInteger, "Integer"),
+  (function (_super) {
+    function TaggedUnionType(name, is, validate, encode, codecs, tag) {
+      var _this = _super.call(this, name, is, validate, encode, codecs) || this;
+      return (_this.tag = tag), _this;
+    }
+    __extends(TaggedUnionType, _super);
+  })(UnionType),
   new ((function (_super) {
     function ObjectType() {
       var _this =
@@ -517,7 +529,6 @@ function refinement(codec, predicate, name) {
     }
     return __extends(ObjectType, _super), ObjectType;
   })(Type))(),
-  refinement(number, Number.isInteger, "Integer"),
   (function (_super) {
     function StrictType(name, is, validate, encode, props) {
       var _this = _super.call(this, name, is, validate, encode) || this;
@@ -525,59 +536,63 @@ function refinement(codec, predicate, name) {
     }
     __extends(StrictType, _super);
   })(Type);
-var result = (function (props, name) {
-  void 0 === name && (name = getInterfaceTypeName(props));
-  var keys = Object.keys(props),
-    types = keys.map(function (key) {
-      return props[key];
-    }),
-    len = keys.length;
-  return new InterfaceType(
-    name,
-    function (u) {
-      if (UnknownRecord.is(u)) {
-        for (var i = 0; i < len; i++) {
-          var k = keys[i],
-            uk = u[k];
-          if ((void 0 === uk && !hasOwnProperty.call(u, k)) || !types[i].is(uk))
-            return !1;
-        }
-        return !0;
-      }
-      return !1;
-    },
-    function (u, c) {
-      var e = UnknownRecord.validate(u, c);
-      if (isLeft(e)) return e;
-      for (var o = e.right, a = o, errors = [], i = 0; i < len; i++) {
-        var k = keys[i],
-          ak = a[k],
-          type_1 = types[i],
-          result = type_1.validate(ak, appendContext(c, k, type_1, ak));
-        if (isLeft(result)) pushAll(errors, result.left);
-        else {
-          var vak = result.right;
-          (vak !== ak || (void 0 === vak && !hasOwnProperty.call(a, k))) &&
-            (a === o && (a = __assign({}, o)), (a[k] = vak));
-        }
-      }
-      return errors.length > 0 ? failures(errors) : success(a);
-    },
-    (function (codecs) {
-      for (var i = 0; i < codecs.length; i++)
-        if (codecs[i].encode !== identity) return !1;
-      return !0;
-    })(types)
-      ? identity
-      : function (a) {
-          for (var s = __assign({}, a), i = 0; i < len; i++) {
+var User = (function (props, name) {
+    void 0 === name && (name = getInterfaceTypeName(props));
+    var keys = Object.keys(props),
+      types = keys.map(function (key) {
+        return props[key];
+      }),
+      len = keys.length;
+    return new InterfaceType(
+      name,
+      function (u) {
+        if (UnknownRecord.is(u)) {
+          for (var i = 0; i < len; i++) {
             var k = keys[i],
-              encode = types[i].encode;
-            encode !== identity && (s[k] = encode(a[k]));
+              uk = u[k];
+            if (
+              (void 0 === uk && !hasOwnProperty.call(u, k)) ||
+              !types[i].is(uk)
+            )
+              return !1;
           }
-          return s;
-        },
-    props
-  );
-})({ userId: number, name: string }).decode({ userId: 1, name: "name" });
-"Right" === result._tag && console.log(result.right);
+          return !0;
+        }
+        return !1;
+      },
+      function (u, c) {
+        var e = UnknownRecord.validate(u, c);
+        if (isLeft(e)) return e;
+        for (var o = e.right, a = o, errors = [], i = 0; i < len; i++) {
+          var k = keys[i],
+            ak = a[k],
+            type_1 = types[i],
+            result = type_1.validate(ak, appendContext(c, k, type_1, ak));
+          if (isLeft(result)) pushAll(errors, result.left);
+          else {
+            var vak = result.right;
+            (vak !== ak || (void 0 === vak && !hasOwnProperty.call(a, k))) &&
+              (a === o && (a = __assign({}, o)), (a[k] = vak));
+          }
+        }
+        return errors.length > 0 ? failures(errors) : success(a);
+      },
+      (function (codecs) {
+        for (var i = 0; i < codecs.length; i++)
+          if (codecs[i].encode !== identity) return !1;
+        return !0;
+      })(types)
+        ? identity
+        : function (a) {
+            for (var s = __assign({}, a), i = 0; i < len; i++) {
+              var k = keys[i],
+                encode = types[i].encode;
+              encode !== identity && (s[k] = encode(a[k]));
+            }
+            return s;
+          },
+      props
+    );
+  })({ userId: number, name: string }),
+  result = User.decode({ userId: 1, name: "name" });
+isRight(result) && console.log(result.right);
