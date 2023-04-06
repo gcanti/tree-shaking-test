@@ -3,6 +3,7 @@
     "build": "tsc"
   },
   "dependencies": {
+    "@effect/schema": "^0.10.0",
     "fp-ts": "^2.13.1",
     "io-ts": "^2.2.20",
     "monocle-ts": "^2.3.13",
