@@ -5,8 +5,8 @@
     "rollup": "rollup -c rollup.config.mjs && npx prettier --write ./target/rollup.js"
   },
   "dependencies": {
-    "@effect/schema": "^0.36.5",
-    "effect": "^2.0.0-next.34",
+    "@effect/schema": "^0.39.0",
+    "effect": "2.0.0-next.37",
     "fp-ts": "^2.16.1",
     "io-ts": "^2.2.20",
     "monocle-ts": "^2.3.13",
