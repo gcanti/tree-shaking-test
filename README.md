@@ -1,5 +1,9 @@
 # all
 
 ```bash
-npx rollup --bundleConfigAsCjs -c ./rollup.config.js && npx prettier --write ./target/rollup.js && npx webpack && npx prettier --write ./target/webpack.js
+npm run build && npm run rollup && npx webpack && npx prettier --write ./target/webpack.js
 ```
+
+| effect          | rollup | webpack |
+| --------------- | ------ | ------- |
+| `2.0.0-next.34` | 13 KB  | 13 KB   |
