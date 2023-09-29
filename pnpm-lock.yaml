@@ -5,24 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@effect/schema':
-    specifier: ^0.39.0
-    version: 0.39.0(effect@2.0.0-next.37)
   effect:
-    specifier: 2.0.0-next.37
-    version: 2.0.0-next.37
-  fp-ts:
-    specifier: ^2.16.1
-    version: 2.16.1
-  io-ts:
-    specifier: ^2.2.20
-    version: 2.2.20(fp-ts@2.16.1)
-  monocle-ts:
-    specifier: ^2.3.13
-    version: 2.3.13(fp-ts@2.16.1)
-  zod:
-    specifier: ^3.22.2
-    version: 3.22.2
+    specifier: 2.0.0-next.39
+    version: 2.0.0-next.39
 
 devDependencies:
   '@rollup/plugin-node-resolve':
@@ -53,15 +38,6 @@ packages:
     resolution: {integrity: sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==}
     engines: {node: '>=10.0.0'}
     dev: true
-
-  /@effect/schema@0.39.0(effect@2.0.0-next.37):
-    resolution: {integrity: sha512-Bnu8LW6aM7B2QIPVi9YglB/BAbibboFQ7lhaE68FNCyYQcAqCLpq5gufbaCLfxsQ15h1kaD5w+minXS+JJqaxg==}
-    peerDependencies:
-      effect: 2.0.0-next.37
-    dependencies:
-      effect: 2.0.0-next.37
-      fast-check: 3.13.0
-    dev: false
 
   /@jridgewell/gen-mapping@0.3.3:
     resolution: {integrity: sha512-HLhSWOLRi875zjjMG/r+Nv0oCW8umGb0BgEhyX3dDX3egwZtB8PqLnjz3yedt8R5StBrzcg4aBpnh8UA9D1BoQ==}
@@ -425,8 +401,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /effect@2.0.0-next.37:
-    resolution: {integrity: sha512-poONzql/x5pn9ZtsmabqiPPZPuiGJoMUoZccGMaCZWYY1DSD8klYNviQEker1BDU0szr+J7bmyFFjgdYT3BVfQ==}
+  /effect@2.0.0-next.39:
+    resolution: {integrity: sha512-4i6OI4pI55MeDALupg8wOX3Y6nvdwqJcJRGjwYNK7xqAGK3QXy6jbxAi4jf1FBVkIChtJLn2pQ42CbcrjNjewA==}
     dev: false
 
   /electron-to-chromium@1.4.527:
@@ -490,13 +466,6 @@ packages:
     engines: {node: '>=0.8.x'}
     dev: true
 
-  /fast-check@3.13.0:
-    resolution: {integrity: sha512-m6+3gZ/yTiCWTuV/1e/UuPPjyyyHdQ5gu0pMd84C6705VTDjAgAE6nqFT5jhgegFllCJ95yOzBpqvJSs2DZAxQ==}
-    engines: {node: '>=8.0.0'}
-    dependencies:
-      pure-rand: 6.0.3
-    dev: false
-
   /fast-deep-equal@3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
     dev: true
@@ -517,10 +486,6 @@ packages:
       locate-path: 5.0.0
       path-exists: 4.0.0
     dev: true
-
-  /fp-ts@2.16.1:
-    resolution: {integrity: sha512-by7U5W8dkIzcvDofUcO42yl9JbnHTEDBrzu3pt5fKT+Z4Oy85I21K80EYJYdjQGC2qum4Vo55Ag57iiIK4FYuA==}
-    dev: false
 
   /fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
@@ -567,14 +532,6 @@ packages:
     resolution: {integrity: sha512-6xwYfHbajpoF0xLW+iwLkhwgvLoZDfjYfoFNu8ftMoXINzwuymNLd9u/KmwtdT2GbR+/Cz66otEGEVVUHX9QLQ==}
     engines: {node: '>=10.13.0'}
     dev: true
-
-  /io-ts@2.2.20(fp-ts@2.16.1):
-    resolution: {integrity: sha512-Rq2BsYmtwS5vVttie4rqrOCIfHCS9TgpRLFpKQCM1wZBBRY9nWVGmEvm2FnDbSE2un1UE39DvFpTR5UL47YDcA==}
-    peerDependencies:
-      fp-ts: ^2.5.0
-    dependencies:
-      fp-ts: 2.16.1
-    dev: false
 
   /is-builtin-module@3.2.1:
     resolution: {integrity: sha512-BSLE3HnV2syZ0FK0iMA/yUGplUeMmNz4AW5fnTunbCIqZi4vG3WjJT9FHMy5D69xmAYBHXQhJdALdpwVxV501A==}
@@ -659,14 +616,6 @@ packages:
       mime-db: 1.52.0
     dev: true
 
-  /monocle-ts@2.3.13(fp-ts@2.16.1):
-    resolution: {integrity: sha512-D5Ygd3oulEoAm3KuGO0eeJIrhFf1jlQIoEVV2DYsZUMz42j4tGxgct97Aq68+F8w4w4geEnwFa8HayTS/7lpKQ==}
-    peerDependencies:
-      fp-ts: ^2.5.0
-    dependencies:
-      fp-ts: 2.16.1
-    dev: false
-
   /neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
@@ -734,10 +683,6 @@ packages:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
     engines: {node: '>=6'}
     dev: true
-
-  /pure-rand@6.0.3:
-    resolution: {integrity: sha512-KddyFewCsO0j3+np81IQ+SweXLDnDQTs5s67BOnrYmYe/yNmUhttQyGsYzy8yUnoljGAQ9sl38YB4vH8ur7Y+w==}
-    dev: false
 
   /randombytes@2.1.0:
     resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
@@ -1016,7 +961,3 @@ packages:
   /wildcard@2.0.1:
     resolution: {integrity: sha512-CC1bOL87PIWSBhDcTrdeLo6eGT7mCFtrg0uIJtqJUFyK+eJnzl8A1niH56uu7KMa5XFrtiV+AQuHO3n7DsHnLQ==}
     dev: true
-
-  /zod@3.22.2:
-    resolution: {integrity: sha512-wvWkphh5WQsJbVk1tbx1l1Ly4yg+XecD+Mq280uBGt9wa5BKSWf4Mhp6GmrkPixhMxmabYY7RbzlwVP32pbGCg==}
-    dev: false
