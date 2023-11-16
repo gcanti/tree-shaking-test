@@ -1,16 +1,18 @@
-import { Either, ReadonlyArray } from 'effect'
+import * as Schema from "@effect/schema/Schema"
 
-const divide = (a: number, b: number) => (b === 0 ? Either.left('cannot divide by zero') : Either.right(a / b))
+const schema = Schema.struct({
+  void: Schema.void,
+  number: Schema.number,
+  object: Schema.object
+})
 
-const input = [2, 3, 5]
+const valid = Schema.is(schema);
 
-const program = ReadonlyArray.head(input).pipe(
-  Either.fromOption(() => 'empty array'),
-  Either.flatMap((b) => divide(10, b)),
-  Either.match({
-    onLeft: (e) => `Error: ${e}`,
-    onRight: (a) => `Result: ${a}`
-  })
-)
-
-console.log(program)
+console.log(valid({
+  undefined: undefined,
+  void: undefined,
+  bigint: BigInt(1),
+  boolean: true,
+  number: 1,
+  object: {}
+}))
