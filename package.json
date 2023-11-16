@@ -5,7 +5,8 @@
     "build": "tsc",
     "esbuild": "esbuild ./src/index.ts --bundle --outfile=./target/esbuild.js --format=esm",
     "rollup": "rollup -c rollup.config.mjs && pnpm prettier --write ./target/rollup.js",
-    "all": "pnpm build && pnpm rollup && pnpm esbuild && pnpm webpack && pnpm prettier --write ./target/webpack.js",
+    "all": "pnpm all-build && pnpm all-run && pnpm all-sizes",
+    "all-build": "pnpm build && pnpm rollup && pnpm esbuild && pnpm webpack && pnpm prettier --write ./target/webpack.js",
     "all-run": "find ./target -name '*.js' -exec node {} \\;",
     "all-sizes": "find ./target -name '*.js' -exec pnpm terser --compress --mangle --output /dev/null -- {} \\; -printf '%f: %s bytes\\n' | awk '{print $1\": \"($2/1024)\"kb\"}'"
   },
