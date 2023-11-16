@@ -1,4 +1,5 @@
 "use strict";
+const isFunction$1 = (input) => typeof input === "function";
 const dual = function (arity, body) {
   if (typeof arity === "function") {
     return function () {
@@ -10,16 +11,8 @@ const dual = function (arity, body) {
   }
   switch (arity) {
     case 0:
-      return body;
     case 1:
-      return function (a) {
-        if (arguments.length >= 1) {
-          return body(a);
-        }
-        return function () {
-          return body(a);
-        };
-      };
+      throw new RangeError(`Invalid arity ${arity}`);
     case 2:
       return function (a, b) {
         if (arguments.length >= 2) {
@@ -68,8 +61,10 @@ const dual = function (arity, body) {
       };
   }
 };
-const isNullable = (input) => input === null || input === undefined;
-const globalStoreId = Symbol.for("effect/GlobalValue/globalStoreId");
+const moduleVersion = "2.0.0-next.55";
+const globalStoreId = Symbol.for(
+  `effect/GlobalValue/globalStoreId/${moduleVersion}`
+);
 if (!(globalStoreId in globalThis)) {
   globalThis[globalStoreId] = new Map();
 }
@@ -80,6 +75,14 @@ const globalValue = (id, compute) => {
   }
   return globalStore.get(id);
 };
+const isFunction = isFunction$1;
+const isRecordOrArray = (input) => typeof input === "object" && input !== null;
+const isObject = (input) => isRecordOrArray(input) || isFunction(input);
+const hasProperty = dual(
+  2,
+  (self, property) => isObject(self) && property in self
+);
+const isNullable = (input) => input === null || input === undefined;
 const defaultIncHi = 335903614;
 const defaultIncLo = 4150755663;
 const MUL_HI = 1481765933 >>> 0;
@@ -87,6 +90,7 @@ const MUL_LO = 1284865837 >>> 0;
 const BIT_53 = 9007199254740992;
 const BIT_27 = 134217728;
 class PCGRandom {
+  _state;
   constructor(seedHi, seedLo, incHi, incLo) {
     if (isNullable(seedLo) && isNullable(seedHi)) {
       seedLo = (Math.random() * 4294967295) >>> 0;
@@ -199,24 +203,18 @@ const pcgr = globalValue(Symbol.for("effect/Hash/pcgr"), () => new PCGRandom());
 const symbol$1 = Symbol.for("effect/Hash");
 const hash = (self) => {
   switch (typeof self) {
-    case "number": {
+    case "number":
       return number(self);
-    }
-    case "bigint": {
+    case "bigint":
       return string(self.toString(10));
-    }
-    case "boolean": {
+    case "boolean":
       return string(String(self));
-    }
-    case "symbol": {
+    case "symbol":
       return string(String(self));
-    }
-    case "string": {
+    case "string":
       return string(self);
-    }
-    case "undefined": {
+    case "undefined":
       return string("undefined");
-    }
     case "function":
     case "object": {
       if (self === null) {
@@ -228,9 +226,10 @@ const hash = (self) => {
         return random(self);
       }
     }
-    default: {
-      throw new Error("Bug in Equal.hash");
-    }
+    default:
+      throw new Error(
+        `BUG: unhandled typeof ${typeof self} - please report an issue at https://github.com/Effect-TS/effect/issues`
+      );
   }
 };
 const random = (self) => {
@@ -241,7 +240,7 @@ const random = (self) => {
 };
 const combine = (b) => (self) => (self * 53) ^ b;
 const optimize = (n) => (n & 3221225471) | ((n >>> 1) & 1073741824);
-const isHash = (u) => typeof u === "object" && u !== null && symbol$1 in u;
+const isHash = (u) => hasProperty(u, symbol$1);
 const number = (n) => {
   if (n !== n || n === Infinity) {
     return 0;
@@ -289,14 +288,12 @@ function compareBoth(self, that) {
   }
   return false;
 }
-const isEqual = (u) => typeof u === "object" && u !== null && symbol in u;
+const isEqual = (u) => hasProperty(u, symbol);
 const NodeInspectSymbol = Symbol.for("nodejs.util.inspect.custom");
 const toJSON = (x) => {
   if (
-    typeof x === "object" &&
-    x !== null &&
-    "toJSON" in x &&
-    typeof x["toJSON"] === "function" &&
+    hasProperty(x, "toJSON") &&
+    isFunction(x["toJSON"]) &&
     x["toJSON"].length === 0
   ) {
     return x.toJSON();
@@ -347,7 +344,12 @@ const EffectTypeId = Symbol.for("effect/Effect");
 const StreamTypeId = Symbol.for("effect/Stream");
 const SinkTypeId = Symbol.for("effect/Sink");
 const ChannelTypeId = Symbol.for("effect/Channel");
-const effectVariance = { _R: (_) => _, _E: (_) => _, _A: (_) => _ };
+const effectVariance = {
+  _R: (_) => _,
+  _E: (_) => _,
+  _A: (_) => _,
+  _V: moduleVersion,
+};
 const sinkVariance = {
   _R: (_) => _,
   _E: (_) => _,
@@ -364,7 +366,7 @@ const channelVariance = {
   _OutElem: (_) => _,
   _OutDone: (_) => _,
 };
-const EffectProto = {
+const EffectPrototype = {
   [EffectTypeId]: effectVariance,
   [StreamTypeId]: effectVariance,
   [SinkTypeId]: sinkVariance,
@@ -381,7 +383,7 @@ const EffectProto = {
 };
 const TypeId$1 = Symbol.for("effect/Option");
 const CommonProto$1 = {
-  ...EffectProto,
+  ...EffectPrototype,
   [TypeId$1]: { _A: (_) => _ },
   [NodeInspectSymbol]() {
     return this.toJSON();
@@ -416,8 +418,7 @@ const NoneProto = Object.assign(Object.create(CommonProto$1), {
     return { _id: "Option", _tag: this._tag };
   },
 });
-const isOption = (input) =>
-  typeof input === "object" && input != null && TypeId$1 in input;
+const isOption = (input) => hasProperty(input, TypeId$1);
 const isNone = (fa) => fa._tag === "None";
 const isSome = (fa) => fa._tag === "Some";
 const none$1 = Object.create(NoneProto);
@@ -428,7 +429,7 @@ const some$1 = (value) => {
 };
 const TypeId = Symbol.for("effect/Either");
 const CommonProto = {
-  ...EffectProto,
+  ...EffectPrototype,
   [TypeId]: { _A: (_) => _ },
   [NodeInspectSymbol]() {
     return this.toJSON();
@@ -463,8 +464,7 @@ const LeftProto = Object.assign(Object.create(CommonProto), {
     return { _id: "Either", _tag: this._tag, left: toJSON(this.left) };
   },
 });
-const isEither = (input) =>
-  typeof input === "object" && input != null && TypeId in input;
+const isEither = (input) => hasProperty(input, TypeId);
 const isLeft$1 = (ma) => ma._tag === "Left";
 const isRight = (ma) => ma._tag === "Right";
 const left$1 = (left) => {
@@ -480,6 +480,8 @@ const right$1 = (right) => {
 const fromOption$1 = dual(2, (self, onNone) =>
   isNone(self) ? left$1(onNone()) : right$1(self.value)
 );
+const none = () => none$1;
+const some = some$1;
 const right = right$1;
 const left = left$1;
 const fromOption = fromOption$1;
@@ -490,8 +492,6 @@ const match = dual(2, (self, { onLeft: onLeft, onRight: onRight }) =>
 const flatMap = dual(2, (self, f) =>
   isLeft(self) ? left(self.left) : f(self.right)
 );
-const none = () => none$1;
-const some = some$1;
 const isOutOfBound = (i, as) => i < 0 || i >= as.length;
 const get = dual(2, (self, index) => {
   const i = Math.floor(index);

@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const effect_Function_esm_dual = function (arity, body) {
+  const Function_dual = function (arity, body) {
     if ("function" == typeof arity)
       return function () {
         return arity(arguments)
@@ -9,15 +9,8 @@
       };
     switch (arity) {
       case 0:
-        return body;
       case 1:
-        return function (a) {
-          return arguments.length >= 1
-            ? body(a)
-            : function () {
-                return body(a);
-              };
-        };
+        throw new RangeError(`Invalid arity ${arity}`);
       case 2:
         return function (a, b) {
           return arguments.length >= 2
@@ -87,17 +80,29 @@
       }
     }
   }
-  const globalStoreId = Symbol.for("effect/GlobalValue/globalStoreId");
+  const globalStoreId = Symbol.for(
+    "effect/GlobalValue/globalStoreId/2.0.0-next.55"
+  );
   globalStoreId in globalThis || (globalThis[globalStoreId] = new Map());
   const globalStore = globalThis[globalStoreId],
     globalValue = (id, compute) => (
       globalStore.has(id) || globalStore.set(id, compute()), globalStore.get(id)
+    ),
+    Predicate_isFunction = (input) => "function" == typeof input,
+    isRecordOrArray = (input) => "object" == typeof input && null !== input,
+    hasProperty = Function_dual(
+      2,
+      (self, property) =>
+        ((input) => isRecordOrArray(input) || Predicate_isFunction(input))(
+          self
+        ) && property in self
     ),
     isNullable = (input) => null == input,
     GenKindTypeId = Symbol.for("effect/Gen/GenKind");
   Symbol.iterator;
   Symbol.iterator;
   class PCGRandom {
+    _state;
     constructor(seedHi, seedLo, incHi, incLo) {
       return (
         isNullable(seedLo) && isNullable(seedHi)
@@ -219,7 +224,9 @@
             ? self[symbol]()
             : random(self);
         default:
-          throw new Error("Bug in Equal.hash");
+          throw new Error(
+            `BUG: unhandled typeof ${typeof self} - please report an issue at https://github.com/Effect-TS/effect/issues`
+          );
       }
     },
     random = (self) => (
@@ -232,7 +239,7 @@
     ),
     combine = (b) => (self) => (53 * self) ^ b,
     optimize = (n) => (3221225471 & n) | ((n >>> 1) & 1073741824),
-    isHash = (u) => "object" == typeof u && null !== u && symbol in u,
+    isHash = (u) => hasProperty(u, symbol),
     number = (n) => {
       if (n != n || n === 1 / 0) return 0;
       let h = 0 | n;
@@ -253,7 +260,7 @@
           h ^= pipe(string(keys[i]), combine(hash(o[keys[i]])));
         return optimize(h);
       })(o, Object.keys(o)),
-    effect_Equal_esm_symbol = Symbol.for("effect/Equal");
+    Equal_symbol = Symbol.for("effect/Equal");
   function equals() {
     return 1 === arguments.length
       ? (self) => compareBoth(self, arguments[0])
@@ -272,32 +279,29 @@
         !isEqual(that)
       ) &&
       hash(self) === hash(that) &&
-      self[effect_Equal_esm_symbol](that)
+      self[Equal_symbol](that)
     );
   }
-  const isEqual = (u) =>
-      "object" == typeof u && null !== u && effect_Equal_esm_symbol in u,
+  const isEqual = (u) => hasProperty(u, Equal_symbol),
     NodeInspectSymbol = Symbol.for("nodejs.util.inspect.custom"),
     toJSON = (x) =>
-      "object" == typeof x &&
-      null !== x &&
-      "toJSON" in x &&
-      "function" == typeof x.toJSON &&
+      hasProperty(x, "toJSON") &&
+      Predicate_isFunction(x.toJSON) &&
       0 === x.toJSON.length
         ? x.toJSON()
         : Array.isArray(x)
         ? x.map(toJSON)
         : x,
-    effect_Inspectable_esm_toString = (x) => JSON.stringify(x, null, 2),
-    Data_esm_StructProto =
+    Inspectable_toString = (x) => JSON.stringify(x, null, 2),
+    StructProto =
       (Array.prototype,
       symbol,
-      effect_Equal_esm_symbol,
+      Equal_symbol,
       {
         [symbol]() {
           return structure(this);
         },
-        [effect_Equal_esm_symbol](that) {
+        [Equal_symbol](that) {
           const selfKeys = Object.keys(this),
             thatKeys = Object.keys(that);
           if (selfKeys.length !== thatKeys.length) return !1;
@@ -306,14 +310,19 @@
           return !0;
         },
       }),
-    effect_Data_esm_Structural = (function () {
+    Structural = (function () {
       function Structural(args) {
         args && Object.assign(this, args);
       }
-      return (Structural.prototype = Data_esm_StructProto), Structural;
+      return (Structural.prototype = StructProto), Structural;
     })(),
-    effectVariance = { _R: (_) => _, _E: (_) => _, _A: (_) => _ },
-    EffectProto = {
+    effectVariance = {
+      _R: (_) => _,
+      _E: (_) => _,
+      _A: (_) => _,
+      _V: "2.0.0-next.55",
+    },
+    EffectPrototype = {
       [Symbol.for("effect/Effect")]: effectVariance,
       [Symbol.for("effect/Stream")]: effectVariance,
       [Symbol.for("effect/Sink")]: {
@@ -332,7 +341,7 @@
         _OutElem: (_) => _,
         _OutDone: (_) => _,
       },
-      [effect_Equal_esm_symbol](that) {
+      [Equal_symbol](that) {
         return this === that;
       },
       [symbol]() {
@@ -381,28 +390,23 @@
         })(this, arguments);
       },
     },
-    EffectProtoCommit = { ...EffectProto, _op: "Commit" },
-    TypeId =
-      (effect_Data_esm_Structural.prototype, Symbol.for("effect/Option")),
+    CommitPrototype = { ...EffectPrototype, _op: "Commit" },
+    TypeId = (Structural.prototype, Symbol.for("effect/Option")),
     CommonProto = {
-      ...EffectProto,
+      ...EffectPrototype,
       [TypeId]: { _A: (_) => _ },
       [NodeInspectSymbol]() {
         return this.toJSON();
       },
       toString() {
-        return effect_Inspectable_esm_toString(this.toJSON());
+        return Inspectable_toString(this.toJSON());
       },
     },
     SomeProto = Object.assign(Object.create(CommonProto), {
       _tag: "Some",
       _op: "Some",
-      [effect_Equal_esm_symbol](that) {
-        return (
-          isOption(that) &&
-          Option_esm_isSome(that) &&
-          equals(that.value, this.value)
-        );
+      [Equal_symbol](that) {
+        return isOption(that) && isSome(that) && equals(that.value, this.value);
       },
       [symbol]() {
         return combine(hash(this._tag))(hash(this.value));
@@ -414,8 +418,7 @@
     NoneProto = Object.assign(Object.create(CommonProto), {
       _tag: "None",
       _op: "None",
-      [effect_Equal_esm_symbol]: (that) =>
-        isOption(that) && Option_esm_isNone(that),
+      [Equal_symbol]: (that) => isOption(that) && isNone(that),
       [symbol]() {
         return combine(hash(this._tag));
       },
@@ -423,26 +426,29 @@
         return { _id: "Option", _tag: this._tag };
       },
     }),
-    isOption = (input) =>
-      "object" == typeof input && null != input && TypeId in input,
-    Option_esm_isNone = (fa) => "None" === fa._tag,
-    Option_esm_isSome = (fa) => "Some" === fa._tag,
-    Option_esm_none = Object.create(NoneProto),
-    Either_esm_TypeId = Symbol.for("effect/Either"),
-    Either_esm_CommonProto = {
-      ...EffectProto,
-      [Either_esm_TypeId]: { _A: (_) => _ },
+    isOption = (input) => hasProperty(input, TypeId),
+    isNone = (fa) => "None" === fa._tag,
+    isSome = (fa) => "Some" === fa._tag,
+    none = Object.create(NoneProto),
+    option_some = (value) => {
+      const a = Object.create(SomeProto);
+      return (a.value = value), a;
+    },
+    either_TypeId = Symbol.for("effect/Either"),
+    either_CommonProto = {
+      ...EffectPrototype,
+      [either_TypeId]: { _A: (_) => _ },
       [NodeInspectSymbol]() {
         return this.toJSON();
       },
       toString() {
-        return effect_Inspectable_esm_toString(this.toJSON());
+        return Inspectable_toString(this.toJSON());
       },
     },
-    RightProto = Object.assign(Object.create(Either_esm_CommonProto), {
+    RightProto = Object.assign(Object.create(either_CommonProto), {
       _tag: "Right",
       _op: "Right",
-      [effect_Equal_esm_symbol](that) {
+      [Equal_symbol](that) {
         return (
           isEither(that) && isRight(that) && equals(that.right, this.right)
         );
@@ -454,15 +460,11 @@
         return { _id: "Either", _tag: this._tag, right: toJSON(this.right) };
       },
     }),
-    LeftProto = Object.assign(Object.create(Either_esm_CommonProto), {
+    LeftProto = Object.assign(Object.create(either_CommonProto), {
       _tag: "Left",
       _op: "Left",
-      [effect_Equal_esm_symbol](that) {
-        return (
-          isEither(that) &&
-          Either_esm_isLeft(that) &&
-          equals(that.left, this.left)
-        );
+      [Equal_symbol](that) {
+        return isEither(that) && isLeft(that) && equals(that.left, this.left);
       },
       [symbol]() {
         return combine(hash(this._tag))(hash(this.left));
@@ -471,53 +473,44 @@
         return { _id: "Either", _tag: this._tag, left: toJSON(this.left) };
       },
     }),
-    isEither = (input) =>
-      "object" == typeof input && null != input && Either_esm_TypeId in input,
-    Either_esm_isLeft = (ma) => "Left" === ma._tag,
+    isEither = (input) => hasProperty(input, either_TypeId),
+    isLeft = (ma) => "Left" === ma._tag,
     isRight = (ma) => "Right" === ma._tag,
-    Either_esm_left = (left) => {
+    left = (left) => {
       const a = Object.create(LeftProto);
       return (a.left = left), a;
     },
-    Either_esm_right = (right) => {
+    right = (right) => {
       const a = Object.create(RightProto);
       return (a.right = right), a;
     },
-    fromOption = effect_Function_esm_dual(2, (self, onNone) =>
-      Option_esm_isNone(self)
-        ? Either_esm_left(onNone())
-        : Either_esm_right(self.value)
+    fromOption = Function_dual(2, (self, onNone) =>
+      isNone(self) ? left(onNone()) : right(self.value)
     ),
-    effect_Either_esm_right = Either_esm_right,
-    effect_Either_esm_left = Either_esm_left,
-    effect_Either_esm_fromOption = fromOption,
-    effect_Either_esm_isLeft = Either_esm_isLeft,
-    match = effect_Function_esm_dual(2, (self, { onLeft, onRight }) =>
-      effect_Either_esm_isLeft(self) ? onLeft(self.left) : onRight(self.right)
+    Either_right = right,
+    Either_left = left,
+    Either_fromOption = fromOption,
+    Either_isLeft = isLeft,
+    match = Function_dual(2, (self, { onLeft, onRight }) =>
+      Either_isLeft(self) ? onLeft(self.left) : onRight(self.right)
     ),
-    flatMap = effect_Function_esm_dual(2, (self, f) =>
-      effect_Either_esm_isLeft(self)
-        ? effect_Either_esm_left(self.left)
-        : f(self.right)
+    flatMap = Function_dual(2, (self, f) =>
+      Either_isLeft(self) ? Either_left(self.left) : f(self.right)
     ),
-    effect_Option_esm_none = () => Option_esm_none,
-    effect_Option_esm_some = (value) => {
-      const a = Object.create(SomeProto);
-      return (a.value = value), a;
-    };
+    Option_none = () => none,
+    Option_some = option_some;
   const isOutOfBound = (i, as) => i < 0 || i >= as.length,
-    program = effect_Function_esm_dual(2, (self, index) => {
+    program = Function_dual(2, (self, index) => {
       const i = Math.floor(index);
-      return isOutOfBound(i, self)
-        ? effect_Option_esm_none()
-        : effect_Option_esm_some(self[i]);
+      return isOutOfBound(i, self) ? Option_none() : Option_some(self[i]);
     })(0)([2, 3, 5]).pipe(
-      effect_Either_esm_fromOption(() => "empty array"),
+      Either_fromOption(() => "empty array"),
       flatMap((b) =>
         ((a, b) =>
-          0 === b
-            ? effect_Either_esm_left("cannot divide by zero")
-            : effect_Either_esm_right(a / b))(10, b)
+          0 === b ? Either_left("cannot divide by zero") : Either_right(a / b))(
+          10,
+          b
+        )
       ),
       match({ onLeft: (e) => `Error: ${e}`, onRight: (a) => `Result: ${a}` })
     );
