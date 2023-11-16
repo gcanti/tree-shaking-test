@@ -1,20 +1,27 @@
 {
   "name": "tree-shaking-test",
+  "packageManager": "pnpm@8.10.2",
   "scripts": {
     "build": "tsc",
-    "rollup": "rollup -c rollup.config.mjs && npx prettier --write ./target/rollup.js",
-    "all": "pnpm build && pnpm rollup && npx webpack && npx prettier --write ./target/webpack.js"
+    "esbuild": "esbuild ./src/index.ts --bundle --outfile=./target/esbuild.js --format=esm",
+    "rollup": "rollup -c rollup.config.mjs && pnpm prettier --write ./target/rollup.js",
+    "all": "pnpm build && pnpm rollup && pnpm esbuild && pnpm webpack && pnpm prettier --write ./target/webpack.js",
+    "all-run": "find ./target -name '*.js' -exec node {} \\;",
+    "all-sizes": "find ./target -name '*.js' -exec pnpm terser --compress --mangle --output /dev/null -- {} \\; -printf '%f: %s bytes\\n' | awk '{print $1\": \"($2/1024)\"kb\"}'"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.2.1",
     "@rollup/plugin-terser": "^0.4.3",
+    "esbuild": "^0.19.5",
     "prettier": "^2.7.1",
     "rollup": "^3.29.2",
+    "terser": "^5.24.0",
     "typescript": "^5.2.2",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "@effect/schema": "^0.48.0",
     "effect": "2.0.0-next.55"
   }
 }
