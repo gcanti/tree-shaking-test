@@ -12698,17 +12698,13 @@ var makeClass = (selfSchema, selfFields, base) => {
   return fn;
 };
 
-// src/index.ts
+// lib/index.js
 var divide = (a, b) => b === 0 ? Either_exports.left("cannot divide by zero") : Either_exports.right(a / b);
 var input = [2, 3, 5];
-var program = ReadonlyArray_exports.head(input).pipe(
-  Either_exports.fromOption(() => "empty array"),
-  Either_exports.flatMap((b) => divide(10, b)),
-  Either_exports.match({
-    onLeft: (e) => `Error: ${e}`,
-    onRight: (a) => `Result: ${a}`
-  })
-);
+var program = ReadonlyArray_exports.head(input).pipe(Either_exports.fromOption(() => "empty array"), Either_exports.flatMap((b) => divide(10, b)), Either_exports.match({
+  onLeft: (e) => `Error: ${e}`,
+  onRight: (a) => `Result: ${a}`
+}));
 console.log(program);
 var schema = Schema_exports.struct({
   void: Schema_exports.void,

@@ -3,7 +3,7 @@
   "packageManager": "pnpm@8.10.2",
   "scripts": {
     "build": "tsc",
-    "esbuild": "esbuild ./src/index.ts --bundle --outfile=./target/esbuild.js --format=esm",
+    "esbuild": "esbuild ./lib/index.js --bundle --outfile=./target/esbuild.js --format=esm",
     "rollup": "rollup -c rollup.config.mjs && pnpm prettier --write ./target/rollup.js",
     "all": "pnpm all-build && pnpm all-run && pnpm all-sizes",
     "all-build": "pnpm build && pnpm rollup && pnpm esbuild && pnpm webpack && pnpm prettier --write ./target/webpack.js",
