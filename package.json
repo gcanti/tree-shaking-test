@@ -1,6 +1,6 @@
 {
   "name": "tree-shaking-test",
-  "packageManager": "pnpm@8.10.2",
+  "packageManager": "pnpm@9.0.4",
   "scripts": {
     "build": "tsc",
     "esbuild": "esbuild ./lib/index.js --bundle --outfile=./target/esbuild.js --format=esm",
@@ -22,6 +22,7 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "effect": "2.0.0-next.55"
+    "effect": "3.1.0",
+    "@effect/schema": "0.66.12"
   }
 }

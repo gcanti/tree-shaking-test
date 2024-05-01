@@ -4,7 +4,7 @@ var __export = (target, all2) => {
     __defProp(target, name, { get: all2[name], enumerable: true });
 };
 
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/Function.js
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/Function.js
 var isFunction = (input2) => typeof input2 === "function";
 var dual = function(arity, body) {
   if (typeof arity === "function") {
@@ -101,11 +101,194 @@ function pipe(a, ab, bc, cd, de, ef, fg, gh, hi) {
   }
 }
 
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/internal/version.js
-var moduleVersion = "2.0.0-next.55";
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/Array.js
+var Array_exports = {};
+__export(Array_exports, {
+  allocate: () => allocate,
+  append: () => append,
+  appendAll: () => appendAll,
+  cartesian: () => cartesian,
+  cartesianWith: () => cartesianWith,
+  chop: () => chop,
+  chunksOf: () => chunksOf,
+  contains: () => contains,
+  containsWith: () => containsWith,
+  copy: () => copy,
+  dedupe: () => dedupe,
+  dedupeAdjacent: () => dedupeAdjacent,
+  dedupeAdjacentWith: () => dedupeAdjacentWith,
+  dedupeWith: () => dedupeWith,
+  difference: () => difference,
+  differenceWith: () => differenceWith,
+  drop: () => drop,
+  dropRight: () => dropRight,
+  dropWhile: () => dropWhile,
+  empty: () => empty2,
+  every: () => every,
+  extend: () => extend,
+  filter: () => filter,
+  filterMap: () => filterMap,
+  filterMapWhile: () => filterMapWhile,
+  findFirst: () => findFirst2,
+  findFirstIndex: () => findFirstIndex,
+  findLast: () => findLast,
+  findLastIndex: () => findLastIndex,
+  flatMap: () => flatMap2,
+  flatMapNullable: () => flatMapNullable,
+  flatten: () => flatten,
+  forEach: () => forEach,
+  fromIterable: () => fromIterable,
+  fromNullable: () => fromNullable2,
+  fromOption: () => fromOption3,
+  fromRecord: () => fromRecord,
+  get: () => get,
+  getEquivalence: () => getEquivalence2,
+  getLefts: () => getLefts,
+  getOrder: () => getOrder,
+  getRights: () => getRights,
+  getSomes: () => getSomes,
+  group: () => group,
+  groupBy: () => groupBy,
+  groupWith: () => groupWith,
+  head: () => head,
+  headNonEmpty: () => headNonEmpty,
+  init: () => init,
+  initNonEmpty: () => initNonEmpty,
+  insertAt: () => insertAt,
+  intersection: () => intersection,
+  intersectionWith: () => intersectionWith,
+  intersperse: () => intersperse,
+  isArray: () => isArray,
+  isEmptyArray: () => isEmptyArray,
+  isEmptyReadonlyArray: () => isEmptyReadonlyArray,
+  isNonEmptyArray: () => isNonEmptyArray2,
+  isNonEmptyReadonlyArray: () => isNonEmptyReadonlyArray,
+  join: () => join,
+  last: () => last,
+  lastNonEmpty: () => lastNonEmpty,
+  length: () => length,
+  liftEither: () => liftEither,
+  liftNullable: () => liftNullable,
+  liftOption: () => liftOption,
+  liftPredicate: () => liftPredicate,
+  make: () => make4,
+  makeBy: () => makeBy,
+  map: () => map2,
+  mapAccum: () => mapAccum,
+  match: () => match2,
+  matchLeft: () => matchLeft,
+  matchRight: () => matchRight,
+  max: () => max2,
+  min: () => min2,
+  modify: () => modify,
+  modifyNonEmptyHead: () => modifyNonEmptyHead,
+  modifyNonEmptyLast: () => modifyNonEmptyLast,
+  modifyOption: () => modifyOption,
+  of: () => of,
+  partition: () => partition,
+  partitionMap: () => partitionMap,
+  prepend: () => prepend,
+  prependAll: () => prependAll,
+  range: () => range,
+  reduce: () => reduce,
+  reduceRight: () => reduceRight,
+  remove: () => remove,
+  replace: () => replace,
+  replaceOption: () => replaceOption,
+  replicate: () => replicate,
+  reverse: () => reverse,
+  rotate: () => rotate,
+  scan: () => scan,
+  scanRight: () => scanRight,
+  separate: () => separate,
+  setNonEmptyHead: () => setNonEmptyHead,
+  setNonEmptyLast: () => setNonEmptyLast,
+  some: () => some3,
+  sort: () => sort,
+  sortBy: () => sortBy,
+  sortWith: () => sortWith,
+  span: () => span,
+  split: () => split,
+  splitAt: () => splitAt,
+  splitNonEmptyAt: () => splitNonEmptyAt,
+  splitWhere: () => splitWhere,
+  tail: () => tail,
+  tailNonEmpty: () => tailNonEmpty,
+  take: () => take,
+  takeRight: () => takeRight,
+  takeWhile: () => takeWhile,
+  unappend: () => unappend,
+  unfold: () => unfold,
+  union: () => union,
+  unionWith: () => unionWith,
+  unprepend: () => unprepend,
+  unsafeGet: () => unsafeGet,
+  unzip: () => unzip,
+  zip: () => zip,
+  zipWith: () => zipWith2
+});
 
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/GlobalValue.js
-var globalStoreId = /* @__PURE__ */ Symbol.for(`effect/GlobalValue/globalStoreId/${moduleVersion}`);
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/Either.js
+var Either_exports = {};
+__export(Either_exports, {
+  Do: () => Do,
+  TypeId: () => TypeId3,
+  all: () => all,
+  andThen: () => andThen,
+  ap: () => ap,
+  bind: () => bind,
+  bindTo: () => bindTo,
+  filterOrLeft: () => filterOrLeft,
+  flatMap: () => flatMap,
+  flip: () => flip,
+  fromNullable: () => fromNullable,
+  fromOption: () => fromOption2,
+  gen: () => gen,
+  getEquivalence: () => getEquivalence,
+  getLeft: () => getLeft2,
+  getOrElse: () => getOrElse,
+  getOrNull: () => getOrNull,
+  getOrThrow: () => getOrThrow,
+  getOrThrowWith: () => getOrThrowWith,
+  getOrUndefined: () => getOrUndefined,
+  getRight: () => getRight2,
+  isEither: () => isEither2,
+  isLeft: () => isLeft2,
+  isRight: () => isRight2,
+  left: () => left2,
+  let: () => let_,
+  map: () => map,
+  mapBoth: () => mapBoth,
+  mapLeft: () => mapLeft,
+  match: () => match,
+  merge: () => merge,
+  orElse: () => orElse,
+  right: () => right2,
+  try: () => try_,
+  zipWith: () => zipWith
+});
+
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/Equivalence.js
+var make = (isEquivalent) => (self, that) => self === that || isEquivalent(self, that);
+var array = (item) => make((self, that) => {
+  if (self.length !== that.length) {
+    return false;
+  }
+  for (let i = 0; i < self.length; i++) {
+    const isEq = item(self[i], that[i]);
+    if (!isEq) {
+      return false;
+    }
+  }
+  return true;
+});
+
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/internal/version.js
+var moduleVersion = "3.1.0";
+var getCurrentVersion = () => moduleVersion;
+
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/GlobalValue.js
+var globalStoreId = /* @__PURE__ */ Symbol.for(`effect/GlobalValue/globalStoreId/${/* @__PURE__ */ getCurrentVersion()}`);
 if (!(globalStoreId in globalThis)) {
   ;
   globalThis[globalStoreId] = /* @__PURE__ */ new Map();
@@ -118,15 +301,20 @@ var globalValue = (id, compute) => {
   return globalStore.get(id);
 };
 
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/Predicate.js
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/Predicate.js
+var isBoolean = (input2) => typeof input2 === "boolean";
 var isFunction2 = isFunction;
 var isRecordOrArray = (input2) => typeof input2 === "object" && input2 !== null;
 var isObject = (input2) => isRecordOrArray(input2) || isFunction2(input2);
 var hasProperty = /* @__PURE__ */ dual(2, (self, property) => isObject(self) && property in self);
 var isNullable = (input2) => input2 === null || input2 === void 0;
 
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/Utils.js
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/internal/errors.js
+var getBugErrorMessage = (message) => `BUG: ${message} - please report an issue at https://github.com/Effect-TS/effect/issues`;
+
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/Utils.js
 var GenKindTypeId = /* @__PURE__ */ Symbol.for("effect/Gen/GenKind");
+var isGenKind = (u) => isObject(u) && GenKindTypeId in u;
 var GenKindImpl = class {
   value;
   constructor(value) {
@@ -207,16 +395,13 @@ var SingleShotGen = class _SingleShotGen {
     return new _SingleShotGen(this.self);
   }
 };
-var adapter = () => (
-  // @ts-expect-error
-  function() {
-    let x = arguments[0];
-    for (let i = 1; i < arguments.length; i++) {
-      x = arguments[i](x);
-    }
-    return new GenKindImpl(x);
+var adapter = () => function() {
+  let x = arguments[0];
+  for (let i = 1; i < arguments.length; i++) {
+    x = arguments[i](x);
   }
-);
+  return new GenKindImpl(x);
+};
 var defaultIncHi = 335903614;
 var defaultIncLo = 4150755663;
 var MUL_HI = 1481765933 >>> 0;
@@ -344,8 +529,30 @@ function add64(out, aHi, aLo, bHi, bLo) {
   out[0] = hi;
   out[1] = lo;
 }
+var YieldWrapTypeId = /* @__PURE__ */ Symbol.for("effect/Utils/YieldWrap");
+var YieldWrap = class {
+  /**
+   * @since 3.0.6
+   */
+  #value;
+  constructor(value) {
+    this.#value = value;
+  }
+  /**
+   * @since 3.0.6
+   */
+  [YieldWrapTypeId]() {
+    return this.#value;
+  }
+};
+function yieldWrapGet(self) {
+  if (typeof self === "object" && self !== null && YieldWrapTypeId in self) {
+    return self[YieldWrapTypeId]();
+  }
+  throw new Error(getBugErrorMessage("yieldWrapGet"));
+}
 
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/Hash.js
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/Hash.js
 var randomHashCache = /* @__PURE__ */ globalValue(/* @__PURE__ */ Symbol.for("effect/Hash/randomHashCache"), () => /* @__PURE__ */ new WeakMap());
 var pcgr = /* @__PURE__ */ globalValue(/* @__PURE__ */ Symbol.for("effect/Hash/pcgr"), () => new PCGRandom());
 var symbol = /* @__PURE__ */ Symbol.for("effect/Hash");
@@ -407,23 +614,39 @@ var string = (str) => {
   }
   return optimize(h);
 };
-var structureKeys = (o, keys) => {
+var structureKeys = (o, keys2) => {
   let h = 12289;
-  for (let i = 0; i < keys.length; i++) {
-    h ^= pipe(string(keys[i]), combine(hash(o[keys[i]])));
+  for (let i = 0; i < keys2.length; i++) {
+    h ^= pipe(string(keys2[i]), combine(hash(o[keys2[i]])));
   }
   return optimize(h);
 };
 var structure = (o) => structureKeys(o, Object.keys(o));
-var array = (arr) => {
-  let h = 6151;
-  for (let i = 0; i < arr.length; i++) {
-    h = pipe(h, combine(hash(arr[i])));
+var cached = function() {
+  if (arguments.length === 1) {
+    const self2 = arguments[0];
+    return function(hash3) {
+      Object.defineProperty(self2, symbol, {
+        value() {
+          return hash3;
+        },
+        enumerable: false
+      });
+      return hash3;
+    };
   }
-  return optimize(h);
+  const self = arguments[0];
+  const hash2 = arguments[1];
+  Object.defineProperty(self, symbol, {
+    value() {
+      return hash2;
+    },
+    enumerable: false
+  });
+  return hash2;
 };
 
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/Equal.js
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/Equal.js
 var symbol2 = /* @__PURE__ */ Symbol.for("effect/Equal");
 function equals() {
   if (arguments.length === 1) {
@@ -447,24 +670,9 @@ function compareBoth(self, that) {
   return false;
 }
 var isEqual = (u) => hasProperty(u, symbol2);
-var equivalence = () => (self, that) => equals(self, that);
+var equivalence = () => equals;
 
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/Equivalence.js
-var make = (isEquivalent) => (self, that) => self === that || isEquivalent(self, that);
-var array2 = (item) => make((self, that) => {
-  if (self.length !== that.length) {
-    return false;
-  }
-  for (let i = 0; i < self.length; i++) {
-    const isEq = item(self[i], that[i]);
-    if (!isEq) {
-      return false;
-    }
-  }
-  return true;
-});
-
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/Inspectable.js
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/Inspectable.js
 var NodeInspectSymbol = /* @__PURE__ */ Symbol.for("nodejs.util.inspect.custom");
 var toJSON = (x) => {
   if (hasProperty(x, "toJSON") && isFunction2(x["toJSON"]) && x["toJSON"].length === 0) {
@@ -474,9 +682,34 @@ var toJSON = (x) => {
   }
   return x;
 };
-var toString = (x) => JSON.stringify(x, null, 2);
+var format = (x) => JSON.stringify(x, null, 2);
+var BaseProto = {
+  toJSON() {
+    return toJSON(this);
+  },
+  [NodeInspectSymbol]() {
+    return this.toJSON();
+  },
+  toString() {
+    return format(this.toJSON());
+  }
+};
+var Class = class {
+  /**
+   * @since 2.0.0
+   */
+  [NodeInspectSymbol]() {
+    return this.toJSON();
+  }
+  /**
+   * @since 2.0.0
+   */
+  toString() {
+    return format(this.toJSON());
+  }
+};
 
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/Pipeable.js
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/Pipeable.js
 var pipeArguments = (self, args) => {
   switch (args.length) {
     case 1:
@@ -507,22 +740,72 @@ var pipeArguments = (self, args) => {
   }
 };
 
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/internal/data.js
-var ArrayProto = /* @__PURE__ */ Object.assign(/* @__PURE__ */ Object.create(Array.prototype), {
-  [symbol]() {
-    return array(this);
-  },
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/internal/opCodes/effect.js
+var OP_COMMIT = "Commit";
+
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/internal/effectable.js
+var EffectTypeId = /* @__PURE__ */ Symbol.for("effect/Effect");
+var StreamTypeId = /* @__PURE__ */ Symbol.for("effect/Stream");
+var SinkTypeId = /* @__PURE__ */ Symbol.for("effect/Sink");
+var ChannelTypeId = /* @__PURE__ */ Symbol.for("effect/Channel");
+var effectVariance = {
+  /* c8 ignore next */
+  _R: (_) => _,
+  /* c8 ignore next */
+  _E: (_) => _,
+  /* c8 ignore next */
+  _A: (_) => _,
+  _V: /* @__PURE__ */ getCurrentVersion()
+};
+var sinkVariance = {
+  /* c8 ignore next */
+  _A: (_) => _,
+  /* c8 ignore next */
+  _In: (_) => _,
+  /* c8 ignore next */
+  _L: (_) => _,
+  /* c8 ignore next */
+  _E: (_) => _,
+  /* c8 ignore next */
+  _R: (_) => _
+};
+var channelVariance = {
+  /* c8 ignore next */
+  _Env: (_) => _,
+  /* c8 ignore next */
+  _InErr: (_) => _,
+  /* c8 ignore next */
+  _InElem: (_) => _,
+  /* c8 ignore next */
+  _InDone: (_) => _,
+  /* c8 ignore next */
+  _OutErr: (_) => _,
+  /* c8 ignore next */
+  _OutElem: (_) => _,
+  /* c8 ignore next */
+  _OutDone: (_) => _
+};
+var EffectPrototype = {
+  [EffectTypeId]: effectVariance,
+  [StreamTypeId]: effectVariance,
+  [SinkTypeId]: sinkVariance,
+  [ChannelTypeId]: channelVariance,
   [symbol2](that) {
-    if (Array.isArray(that) && this.length === that.length) {
-      return this.every((v, i) => equals(v, that[i]));
-    } else {
-      return false;
-    }
-  }
-});
-var StructProto = {
+    return this === that;
+  },
   [symbol]() {
-    return structure(this);
+    return cached(this, random(this));
+  },
+  [Symbol.iterator]() {
+    return new SingleShotGen(new YieldWrap(this));
+  },
+  pipe() {
+    return pipeArguments(this, arguments);
+  }
+};
+var StructuralPrototype = {
+  [symbol]() {
+    return cached(this, structure(this));
   },
   [symbol2](that) {
     const selfKeys = Object.keys(this);
@@ -538,71 +821,16 @@ var StructProto = {
     return true;
   }
 };
-var Structural = /* @__PURE__ */ function() {
-  function Structural2(args) {
-    if (args) {
-      Object.assign(this, args);
-    }
-  }
-  Structural2.prototype = StructProto;
-  return Structural2;
-}();
-
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/internal/opCodes/effect.js
-var OP_COMMIT = "Commit";
-
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/internal/effectable.js
-var EffectTypeId = /* @__PURE__ */ Symbol.for("effect/Effect");
-var StreamTypeId = /* @__PURE__ */ Symbol.for("effect/Stream");
-var SinkTypeId = /* @__PURE__ */ Symbol.for("effect/Sink");
-var ChannelTypeId = /* @__PURE__ */ Symbol.for("effect/Channel");
-var effectVariance = {
-  _R: (_) => _,
-  _E: (_) => _,
-  _A: (_) => _,
-  _V: moduleVersion
-};
-var sinkVariance = {
-  _R: (_) => _,
-  _E: (_) => _,
-  _In: (_) => _,
-  _L: (_) => _,
-  _Z: (_) => _
-};
-var channelVariance = {
-  _Env: (_) => _,
-  _InErr: (_) => _,
-  _InElem: (_) => _,
-  _InDone: (_) => _,
-  _OutErr: (_) => _,
-  _OutElem: (_) => _,
-  _OutDone: (_) => _
-};
-var EffectPrototype = {
-  [EffectTypeId]: effectVariance,
-  [StreamTypeId]: effectVariance,
-  [SinkTypeId]: sinkVariance,
-  [ChannelTypeId]: channelVariance,
-  [symbol2](that) {
-    return this === that;
-  },
-  [symbol]() {
-    return random(this);
-  },
-  pipe() {
-    return pipeArguments(this, arguments);
-  }
-};
 var CommitPrototype = {
   ...EffectPrototype,
   _op: OP_COMMIT
 };
 var StructuralCommitPrototype = {
   ...CommitPrototype,
-  ...Structural.prototype
+  ...StructuralPrototype
 };
 
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/internal/option.js
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/internal/option.js
 var TypeId = /* @__PURE__ */ Symbol.for("effect/Option");
 var CommonProto = {
   ...EffectPrototype,
@@ -613,7 +841,7 @@ var CommonProto = {
     return this.toJSON();
   },
   toString() {
-    return toString(this.toJSON());
+    return format(this.toJSON());
   }
 };
 var SomeProto = /* @__PURE__ */ Object.assign(/* @__PURE__ */ Object.create(CommonProto), {
@@ -623,7 +851,7 @@ var SomeProto = /* @__PURE__ */ Object.assign(/* @__PURE__ */ Object.create(Comm
     return isOption(that) && isSome(that) && equals(that.value, this.value);
   },
   [symbol]() {
-    return combine(hash(this._tag))(hash(this.value));
+    return cached(this, combine(hash(this._tag))(hash(this.value)));
   },
   toJSON() {
     return {
@@ -633,6 +861,7 @@ var SomeProto = /* @__PURE__ */ Object.assign(/* @__PURE__ */ Object.create(Comm
     };
   }
 });
+var NoneHash = /* @__PURE__ */ hash("None");
 var NoneProto = /* @__PURE__ */ Object.assign(/* @__PURE__ */ Object.create(CommonProto), {
   _tag: "None",
   _op: "None",
@@ -640,7 +869,7 @@ var NoneProto = /* @__PURE__ */ Object.assign(/* @__PURE__ */ Object.create(Comm
     return isOption(that) && isNone(that);
   },
   [symbol]() {
-    return combine(hash(this._tag));
+    return NoneHash;
   },
   toJSON() {
     return {
@@ -659,18 +888,18 @@ var some = (value) => {
   return a;
 };
 
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/internal/either.js
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/internal/either.js
 var TypeId2 = /* @__PURE__ */ Symbol.for("effect/Either");
 var CommonProto2 = {
   ...EffectPrototype,
   [TypeId2]: {
-    _A: (_) => _
+    _R: (_) => _
   },
   [NodeInspectSymbol]() {
     return this.toJSON();
   },
   toString() {
-    return toString(this.toJSON());
+    return format(this.toJSON());
   }
 };
 var RightProto = /* @__PURE__ */ Object.assign(/* @__PURE__ */ Object.create(CommonProto2), {
@@ -724,81 +953,7 @@ var getLeft = (self) => isRight(self) ? none : some(self.left);
 var getRight = (self) => isLeft(self) ? none : some(self.right);
 var fromOption = /* @__PURE__ */ dual(2, (self, onNone) => isNone(self) ? left(onNone()) : right(self.value));
 
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/Order.js
-var make2 = (compare) => (self, that) => self === that ? 0 : compare(self, that);
-var number2 = /* @__PURE__ */ make2((self, that) => self < that ? -1 : 1);
-var combineMany = /* @__PURE__ */ dual(2, (self, collection) => make2((a1, a2) => {
-  let out = self(a1, a2);
-  if (out !== 0) {
-    return out;
-  }
-  for (const O of collection) {
-    out = O(a1, a2);
-    if (out !== 0) {
-      return out;
-    }
-  }
-  return out;
-}));
-var empty = () => make2(() => 0);
-var combineAll = (collection) => combineMany(empty(), collection);
-var mapInput = /* @__PURE__ */ dual(2, (self, f) => make2((b1, b2) => self(f(b1), f(b2))));
-var array3 = (O) => make2((self, that) => {
-  const aLen = self.length;
-  const bLen = that.length;
-  const len = Math.min(aLen, bLen);
-  for (let i = 0; i < len; i++) {
-    const o = O(self[i], that[i]);
-    if (o !== 0) {
-      return o;
-    }
-  }
-  return number2(aLen, bLen);
-});
-var min = (O) => dual(2, (self, that) => self === that || O(self, that) < 1 ? self : that);
-var max = (O) => dual(2, (self, that) => self === that || O(self, that) > -1 ? self : that);
-
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/Option.js
-var none2 = () => none;
-var some2 = some;
-var isNone2 = isNone;
-var isSome2 = isSome;
-var getOrElse = /* @__PURE__ */ dual(2, (self, onNone) => isNone2(self) ? onNone() : self.value);
-var toArray = (self) => isNone2(self) ? [] : [self.value];
-
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/Either.js
-var Either_exports = {};
-__export(Either_exports, {
-  TypeId: () => TypeId3,
-  all: () => all,
-  ap: () => ap,
-  flatMap: () => flatMap,
-  flip: () => flip,
-  fromNullable: () => fromNullable,
-  fromOption: () => fromOption2,
-  gen: () => gen,
-  getEquivalence: () => getEquivalence,
-  getLeft: () => getLeft2,
-  getOrElse: () => getOrElse2,
-  getOrNull: () => getOrNull,
-  getOrThrow: () => getOrThrow,
-  getOrThrowWith: () => getOrThrowWith,
-  getOrUndefined: () => getOrUndefined,
-  getRight: () => getRight2,
-  isEither: () => isEither2,
-  isLeft: () => isLeft2,
-  isRight: () => isRight2,
-  left: () => left2,
-  map: () => map,
-  mapBoth: () => mapBoth,
-  mapLeft: () => mapLeft,
-  match: () => match,
-  merge: () => merge,
-  orElse: () => orElse,
-  right: () => right2,
-  try: () => try_,
-  zipWith: () => zipWith
-});
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/Either.js
 var TypeId3 = TypeId2;
 var right2 = right;
 var left2 = left;
@@ -824,7 +979,10 @@ var isLeft2 = isLeft;
 var isRight2 = isRight;
 var getRight2 = getRight;
 var getLeft2 = getLeft;
-var getEquivalence = (EE, EA) => make((x, y) => x === y || (isLeft2(x) ? isLeft2(y) && EE(x.left, y.left) : isRight2(y) && EA(x.right, y.right)));
+var getEquivalence = ({
+  left: left3,
+  right: right3
+}) => make((x, y) => x === y || (isLeft2(x) ? isLeft2(y) && left3(x.left, y.left) : isRight2(y) && right3(x.right, y.right)));
 var mapBoth = /* @__PURE__ */ dual(2, (self, {
   onLeft,
   onRight
@@ -835,13 +993,14 @@ var match = /* @__PURE__ */ dual(2, (self, {
   onLeft,
   onRight
 }) => isLeft2(self) ? onLeft(self.left) : onRight(self.right));
+var filterOrLeft = /* @__PURE__ */ dual(3, (self, predicate, orLeftWith) => flatMap(self, (r) => predicate(r) ? right2(r) : left2(orLeftWith(r))));
 var merge = /* @__PURE__ */ match({
   onLeft: identity,
   onRight: identity
 });
-var getOrElse2 = /* @__PURE__ */ dual(2, (self, onLeft) => isLeft2(self) ? onLeft(self.left) : self.right);
-var getOrNull = /* @__PURE__ */ getOrElse2(constNull);
-var getOrUndefined = /* @__PURE__ */ getOrElse2(constUndefined);
+var getOrElse = /* @__PURE__ */ dual(2, (self, onLeft) => isLeft2(self) ? onLeft(self.left) : self.right);
+var getOrNull = /* @__PURE__ */ getOrElse(constNull);
+var getOrUndefined = /* @__PURE__ */ getOrElse(constUndefined);
 var getOrThrowWith = /* @__PURE__ */ dual(2, (self, onLeft) => {
   if (isRight2(self)) {
     return self.right;
@@ -851,7 +1010,11 @@ var getOrThrowWith = /* @__PURE__ */ dual(2, (self, onLeft) => {
 var getOrThrow = /* @__PURE__ */ getOrThrowWith(() => new Error("getOrThrow called on a Left"));
 var orElse = /* @__PURE__ */ dual(2, (self, that) => isLeft2(self) ? that(self.left) : right2(self.right));
 var flatMap = /* @__PURE__ */ dual(2, (self, f) => isLeft2(self) ? left2(self.left) : f(self.right));
-var zipWith = /* @__PURE__ */ dual(3, (self, that, f) => flatMap(self, (a) => map(that, (b) => f(a, b))));
+var andThen = /* @__PURE__ */ dual(2, (self, f) => flatMap(self, (a) => {
+  const b = isFunction2(f) ? f(a) : f;
+  return isEither2(b) ? b : right2(b);
+}));
+var zipWith = /* @__PURE__ */ dual(3, (self, that, f) => flatMap(self, (r) => map(that, (r2) => f(r, r2))));
 var ap = /* @__PURE__ */ dual(2, (self, that) => zipWith(self, that, (f, a) => f(a)));
 var all = (input2) => {
   if (Symbol.iterator in input2) {
@@ -882,14 +1045,24 @@ var gen = (f) => {
   if (state.done) {
     return right2(state.value);
   } else {
-    let current = state.value.value;
+    let current = state.value;
+    if (isGenKind(current)) {
+      current = current.value;
+    } else {
+      current = yieldWrapGet(current);
+    }
     if (isLeft2(current)) {
       return current;
     }
     while (!state.done) {
       state = iterator.next(current.right);
       if (!state.done) {
-        current = state.value.value;
+        current = state.value;
+        if (isGenKind(current)) {
+          current = current.value;
+        } else {
+          current = yieldWrapGet(current);
+        }
         if (isLeft2(current)) {
           return current;
         }
@@ -898,166 +1071,118 @@ var gen = (f) => {
     return right2(state.value);
   }
 };
+var Do = /* @__PURE__ */ right2({});
+var bind = /* @__PURE__ */ dual(3, (self, tag, f) => flatMap(self, (k) => map(f(k), (a) => ({
+  ...k,
+  [tag]: a
+}))));
+var bindTo = /* @__PURE__ */ dual(2, (self, tag) => map(self, (a) => ({
+  [tag]: a
+})));
+var let_ = /* @__PURE__ */ dual(3, (self, tag, f) => map(self, (k) => ({
+  ...k,
+  [tag]: f(k)
+})));
 
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/ReadonlyArray.js
-var ReadonlyArray_exports = {};
-__export(ReadonlyArray_exports, {
-  append: () => append,
-  appendAll: () => appendAll,
-  appendAllNonEmpty: () => appendAllNonEmpty,
-  cartesian: () => cartesian,
-  cartesianWith: () => cartesianWith,
-  chop: () => chop,
-  chopNonEmpty: () => chopNonEmpty,
-  chunksOf: () => chunksOf,
-  chunksOfNonEmpty: () => chunksOfNonEmpty,
-  compact: () => compact,
-  contains: () => contains,
-  containsWith: () => containsWith,
-  copy: () => copy,
-  dedupe: () => dedupe,
-  dedupeAdjacent: () => dedupeAdjacent,
-  dedupeAdjacentWith: () => dedupeAdjacentWith,
-  dedupeNonEmpty: () => dedupeNonEmpty,
-  dedupeNonEmptyWith: () => dedupeNonEmptyWith,
-  dedupeWith: () => dedupeWith,
-  difference: () => difference,
-  differenceWith: () => differenceWith,
-  drop: () => drop,
-  dropRight: () => dropRight,
-  dropWhile: () => dropWhile,
-  empty: () => empty2,
-  every: () => every,
-  extend: () => extend,
-  filter: () => filter,
-  filterMap: () => filterMap,
-  filterMapWhile: () => filterMapWhile,
-  findFirst: () => findFirst,
-  findFirstIndex: () => findFirstIndex,
-  findLast: () => findLast,
-  findLastIndex: () => findLastIndex,
-  flatMap: () => flatMap2,
-  flatMapNonEmpty: () => flatMapNonEmpty,
-  flatMapNullable: () => flatMapNullable,
-  flatten: () => flatten,
-  flattenNonEmpty: () => flattenNonEmpty,
-  forEach: () => forEach,
-  fromIterable: () => fromIterable,
-  fromNullable: () => fromNullable2,
-  fromOption: () => fromOption3,
-  fromRecord: () => fromRecord,
-  get: () => get,
-  getEquivalence: () => getEquivalence2,
-  getOrder: () => getOrder,
-  group: () => group,
-  groupBy: () => groupBy,
-  groupWith: () => groupWith,
-  head: () => head,
-  headNonEmpty: () => headNonEmpty,
-  init: () => init,
-  initNonEmpty: () => initNonEmpty,
-  insertAt: () => insertAt,
-  intersection: () => intersection,
-  intersectionWith: () => intersectionWith,
-  intersperse: () => intersperse,
-  intersperseNonEmpty: () => intersperseNonEmpty,
-  isEmptyArray: () => isEmptyArray,
-  isEmptyReadonlyArray: () => isEmptyReadonlyArray,
-  isNonEmptyArray: () => isNonEmptyArray2,
-  isNonEmptyReadonlyArray: () => isNonEmptyReadonlyArray,
-  join: () => join,
-  last: () => last,
-  lastNonEmpty: () => lastNonEmpty,
-  length: () => length,
-  liftEither: () => liftEither,
-  liftNullable: () => liftNullable,
-  liftOption: () => liftOption,
-  liftPredicate: () => liftPredicate,
-  make: () => make3,
-  makeBy: () => makeBy,
-  map: () => map2,
-  mapAccum: () => mapAccum,
-  match: () => match2,
-  matchLeft: () => matchLeft,
-  matchRight: () => matchRight,
-  max: () => max2,
-  min: () => min2,
-  modify: () => modify,
-  modifyNonEmptyHead: () => modifyNonEmptyHead,
-  modifyNonEmptyLast: () => modifyNonEmptyLast,
-  modifyOption: () => modifyOption,
-  of: () => of,
-  partition: () => partition,
-  partitionMap: () => partitionMap,
-  prepend: () => prepend,
-  prependAll: () => prependAll,
-  prependAllNonEmpty: () => prependAllNonEmpty,
-  range: () => range,
-  reduce: () => reduce,
-  reduceRight: () => reduceRight,
-  remove: () => remove,
-  replace: () => replace,
-  replaceOption: () => replaceOption,
-  replicate: () => replicate,
-  reverse: () => reverse,
-  reverseNonEmpty: () => reverseNonEmpty,
-  rotate: () => rotate,
-  rotateNonEmpty: () => rotateNonEmpty,
-  scan: () => scan,
-  scanRight: () => scanRight,
-  separate: () => separate,
-  setNonEmptyHead: () => setNonEmptyHead,
-  setNonEmptyLast: () => setNonEmptyLast,
-  some: () => some3,
-  sort: () => sort,
-  sortBy: () => sortBy,
-  sortByNonEmpty: () => sortByNonEmpty,
-  sortNonEmpty: () => sortNonEmpty,
-  sortWith: () => sortWith,
-  span: () => span,
-  splitAt: () => splitAt,
-  splitNonEmptyAt: () => splitNonEmptyAt,
-  tail: () => tail,
-  tailNonEmpty: () => tailNonEmpty,
-  take: () => take,
-  takeRight: () => takeRight,
-  takeWhile: () => takeWhile,
-  unappend: () => unappend,
-  unfold: () => unfold,
-  union: () => union,
-  unionNonEmpty: () => unionNonEmpty,
-  unionNonEmptyWith: () => unionNonEmptyWith,
-  unionWith: () => unionWith,
-  unprepend: () => unprepend,
-  unsafeGet: () => unsafeGet,
-  unzip: () => unzip,
-  unzipNonEmpty: () => unzipNonEmpty,
-  zip: () => zip,
-  zipNonEmpty: () => zipNonEmpty,
-  zipNonEmptyWith: () => zipNonEmptyWith,
-  zipWith: () => zipWith2
-});
-
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/internal/readonlyArray.js
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/internal/array.js
 var isNonEmptyArray = (self) => self.length > 0;
 
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/ReadonlyRecord.js
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/Order.js
+var make2 = (compare) => (self, that) => self === that ? 0 : compare(self, that);
+var number2 = /* @__PURE__ */ make2((self, that) => self < that ? -1 : 1);
+var combineMany = /* @__PURE__ */ dual(2, (self, collection) => make2((a1, a2) => {
+  let out = self(a1, a2);
+  if (out !== 0) {
+    return out;
+  }
+  for (const O of collection) {
+    out = O(a1, a2);
+    if (out !== 0) {
+      return out;
+    }
+  }
+  return out;
+}));
+var empty = () => make2(() => 0);
+var combineAll = (collection) => combineMany(empty(), collection);
+var mapInput = /* @__PURE__ */ dual(2, (self, f) => make2((b1, b2) => self(f(b1), f(b2))));
+var array2 = (O) => make2((self, that) => {
+  const aLen = self.length;
+  const bLen = that.length;
+  const len = Math.min(aLen, bLen);
+  for (let i = 0; i < len; i++) {
+    const o = O(self[i], that[i]);
+    if (o !== 0) {
+      return o;
+    }
+  }
+  return number2(aLen, bLen);
+});
+var min = (O) => dual(2, (self, that) => self === that || O(self, that) < 1 ? self : that);
+var max = (O) => dual(2, (self, that) => self === that || O(self, that) > -1 ? self : that);
+
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/Option.js
+var none2 = () => none;
+var some2 = some;
+var isNone2 = isNone;
+var isSome2 = isSome;
+var getOrElse2 = /* @__PURE__ */ dual(2, (self, onNone) => isNone2(self) ? onNone() : self.value);
+var toArray = (self) => isNone2(self) ? [] : [self.value];
+
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/Tuple.js
+var make3 = (...elements) => elements;
+
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/Iterable.js
+var findFirst = /* @__PURE__ */ dual(2, (self, f) => {
+  let i = 0;
+  for (const a of self) {
+    const o = f(a, i);
+    if (isBoolean(o)) {
+      if (o) {
+        return some2(a);
+      }
+    } else {
+      if (isSome2(o)) {
+        return o;
+      }
+    }
+    i++;
+  }
+  return none2();
+});
+var constEmpty = {
+  [Symbol.iterator]() {
+    return constEmptyIterator;
+  }
+};
+var constEmptyIterator = {
+  next() {
+    return {
+      done: true,
+      value: void 0
+    };
+  }
+};
+
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/Record.js
 var collect = /* @__PURE__ */ dual(2, (self, f) => {
   const out = [];
-  for (const key of Object.keys(self)) {
+  for (const key of keys(self)) {
     out.push(f(key, self[key]));
   }
   return out;
 });
 var toEntries = /* @__PURE__ */ collect((key, value) => [key, value]);
+var keys = (self) => Object.keys(self);
 
-// node_modules/.pnpm/effect@2.0.0-next.55/node_modules/effect/dist/esm/ReadonlyArray.js
-var make3 = (...elements) => elements;
+// node_modules/.pnpm/effect@3.1.0/node_modules/effect/dist/esm/Array.js
+var make4 = (...elements) => elements;
+var allocate = (n) => new Array(n);
 var makeBy = (n, f) => {
   const max3 = Math.max(1, Math.floor(n));
-  const out = [f(0)];
-  for (let i = 1; i < max3; i++) {
-    out.push(f(i));
+  const out = new Array(max3);
+  for (let i = 0; i < max3; i++) {
+    out[i] = f(i);
   }
   return out;
 };
@@ -1080,10 +1205,8 @@ var matchRight = /* @__PURE__ */ dual(2, (self, {
 }) => isNonEmptyReadonlyArray(self) ? onNonEmpty(initNonEmpty(self), lastNonEmpty(self)) : onEmpty());
 var prepend = /* @__PURE__ */ dual(2, (self, head2) => [head2, ...self]);
 var prependAll = /* @__PURE__ */ dual(2, (self, that) => fromIterable(that).concat(fromIterable(self)));
-var prependAllNonEmpty = /* @__PURE__ */ dual(2, (self, that) => prependAll(self, that));
 var append = /* @__PURE__ */ dual(2, (self, last2) => [...self, last2]);
 var appendAll = /* @__PURE__ */ dual(2, (self, that) => fromIterable(self).concat(fromIterable(that)));
-var appendAllNonEmpty = /* @__PURE__ */ dual(2, (self, that) => appendAll(self, that));
 var scan = /* @__PURE__ */ dual(3, (self, b, f) => {
   const out = [b];
   let i = 0;
@@ -1102,6 +1225,7 @@ var scanRight = /* @__PURE__ */ dual(3, (self, b, f) => {
   }
   return out;
 });
+var isArray = Array.isArray;
 var isEmptyArray = (self) => self.length === 0;
 var isEmptyReadonlyArray = isEmptyArray;
 var isNonEmptyArray2 = isNonEmptyArray;
@@ -1146,19 +1270,21 @@ var takeRight = /* @__PURE__ */ dual(2, (self, n) => {
   return i === 0 ? [] : input2.slice(-i);
 });
 var takeWhile = /* @__PURE__ */ dual(2, (self, predicate) => {
+  let i = 0;
   const out = [];
   for (const a of self) {
-    if (!predicate(a)) {
+    if (!predicate(a, i)) {
       break;
     }
     out.push(a);
+    i++;
   }
   return out;
 });
 var spanIndex = (self, predicate) => {
   let i = 0;
   for (const a of self) {
-    if (!predicate(a)) {
+    if (!predicate(a, i)) {
       break;
     }
     i++;
@@ -1178,7 +1304,7 @@ var dropWhile = /* @__PURE__ */ dual(2, (self, predicate) => fromIterable(self).
 var findFirstIndex = /* @__PURE__ */ dual(2, (self, predicate) => {
   let i = 0;
   for (const a of self) {
-    if (predicate(a)) {
+    if (predicate(a, i)) {
       return some2(i);
     }
     i++;
@@ -1188,26 +1314,26 @@ var findFirstIndex = /* @__PURE__ */ dual(2, (self, predicate) => {
 var findLastIndex = /* @__PURE__ */ dual(2, (self, predicate) => {
   const input2 = fromIterable(self);
   for (let i = input2.length - 1; i >= 0; i--) {
-    if (predicate(input2[i])) {
+    if (predicate(input2[i], i)) {
       return some2(i);
     }
   }
   return none2();
 });
-var findFirst = /* @__PURE__ */ dual(2, (self, predicate) => {
-  const input2 = fromIterable(self);
-  for (let i = 0; i < input2.length; i++) {
-    if (predicate(input2[i])) {
-      return some2(input2[i]);
-    }
-  }
-  return none2();
-});
-var findLast = /* @__PURE__ */ dual(2, (self, predicate) => {
+var findFirst2 = findFirst;
+var findLast = /* @__PURE__ */ dual(2, (self, f) => {
   const input2 = fromIterable(self);
   for (let i = input2.length - 1; i >= 0; i--) {
-    if (predicate(input2[i])) {
-      return some2(input2[i]);
+    const a = input2[i];
+    const o = f(a, i);
+    if (isBoolean(o)) {
+      if (o) {
+        return some2(a);
+      }
+    } else {
+      if (isSome2(o)) {
+        return o;
+      }
     }
   }
   return none2();
@@ -1222,7 +1348,7 @@ var insertAt = /* @__PURE__ */ dual(3, (self, i, b) => {
 });
 var replace = /* @__PURE__ */ dual(3, (self, i, b) => modify(self, i, () => b));
 var replaceOption = /* @__PURE__ */ dual(3, (self, i, b) => modifyOption(self, i, () => b));
-var modify = /* @__PURE__ */ dual(3, (self, i, f) => getOrElse(modifyOption(self, i, f), () => Array.from(self)));
+var modify = /* @__PURE__ */ dual(3, (self, i, f) => getOrElse2(modifyOption(self, i, f), () => Array.from(self)));
 var modifyOption = /* @__PURE__ */ dual(3, (self, i, f) => {
   const out = Array.from(self);
   if (isOutOfBound(i, out)) {
@@ -1241,61 +1367,63 @@ var remove = /* @__PURE__ */ dual(2, (self, i) => {
   return out;
 });
 var reverse = (self) => Array.from(self).reverse();
-var reverseNonEmpty = (self) => [lastNonEmpty(self), ...self.slice(0, -1).reverse()];
 var sort = /* @__PURE__ */ dual(2, (self, O) => {
   const out = Array.from(self);
   out.sort(O);
   return out;
 });
 var sortWith = /* @__PURE__ */ dual(3, (self, f, order) => sort(self, mapInput(order, f)));
-var sortNonEmpty = /* @__PURE__ */ dual(2, (self, O) => sort(O)(self));
-var sortBy = (...orders) => (self) => {
-  const input2 = fromIterable(self);
-  return isNonEmptyReadonlyArray(input2) ? sortByNonEmpty(...orders)(input2) : [];
+var sortBy = (...orders) => {
+  const sortByAll = sort(combineAll(orders));
+  return (self) => {
+    const input2 = fromIterable(self);
+    if (isNonEmptyReadonlyArray(input2)) {
+      return sortByAll(input2);
+    }
+    return [];
+  };
 };
-var sortByNonEmpty = (...orders) => sortNonEmpty(combineAll(orders));
-var zip = /* @__PURE__ */ dual(2, (self, that) => zipWith2(self, that, (a, b) => [a, b]));
+var zip = /* @__PURE__ */ dual(2, (self, that) => zipWith2(self, that, make3));
 var zipWith2 = /* @__PURE__ */ dual(3, (self, that, f) => {
   const as = fromIterable(self);
   const bs = fromIterable(that);
-  return isNonEmptyReadonlyArray(as) && isNonEmptyReadonlyArray(bs) ? zipNonEmptyWith(bs, f)(as) : [];
-});
-var zipNonEmpty = /* @__PURE__ */ dual(2, (self, that) => zipNonEmptyWith(self, that, (a, b) => [a, b]));
-var zipNonEmptyWith = /* @__PURE__ */ dual(3, (self, that, f) => {
-  const cs = [f(headNonEmpty(self), headNonEmpty(that))];
-  const len = Math.min(self.length, that.length);
-  for (let i = 1; i < len; i++) {
-    cs[i] = f(self[i], that[i]);
+  if (isNonEmptyReadonlyArray(as) && isNonEmptyReadonlyArray(bs)) {
+    const out = [f(headNonEmpty(as), headNonEmpty(bs))];
+    const len = Math.min(as.length, bs.length);
+    for (let i = 1; i < len; i++) {
+      out[i] = f(as[i], bs[i]);
+    }
+    return out;
   }
-  return cs;
+  return [];
 });
 var unzip = (self) => {
   const input2 = fromIterable(self);
-  return isNonEmptyReadonlyArray(input2) ? unzipNonEmpty(input2) : [[], []];
-};
-var unzipNonEmpty = (self) => {
-  const fa = [self[0][0]];
-  const fb = [self[0][1]];
-  for (let i = 1; i < self.length; i++) {
-    fa[i] = self[i][0];
-    fb[i] = self[i][1];
+  if (isNonEmptyReadonlyArray(input2)) {
+    const fa = [input2[0][0]];
+    const fb = [input2[0][1]];
+    for (let i = 1; i < input2.length; i++) {
+      fa[i] = input2[i][0];
+      fb[i] = input2[i][1];
+    }
+    return [fa, fb];
   }
-  return [fa, fb];
+  return [[], []];
 };
 var intersperse = /* @__PURE__ */ dual(2, (self, middle) => {
   const input2 = fromIterable(self);
-  return isNonEmptyReadonlyArray(input2) ? intersperseNonEmpty(input2, middle) : [];
-});
-var intersperseNonEmpty = /* @__PURE__ */ dual(2, (self, middle) => {
-  const out = [headNonEmpty(self)];
-  const tail2 = tailNonEmpty(self);
-  for (let i = 0; i < tail2.length; i++) {
-    if (i < tail2.length) {
-      out.push(middle);
+  if (isNonEmptyReadonlyArray(input2)) {
+    const out = [headNonEmpty(input2)];
+    const tail2 = tailNonEmpty(input2);
+    for (let i = 0; i < tail2.length; i++) {
+      if (i < tail2.length) {
+        out.push(middle);
+      }
+      out.push(tail2[i]);
     }
-    out.push(tail2[i]);
+    return out;
   }
-  return out;
+  return [];
 });
 var modifyNonEmptyHead = /* @__PURE__ */ dual(2, (self, f) => [f(headNonEmpty(self)), ...tailNonEmpty(self)]);
 var setNonEmptyHead = /* @__PURE__ */ dual(2, (self, b) => modifyNonEmptyHead(self, () => b));
@@ -1303,20 +1431,20 @@ var modifyNonEmptyLast = /* @__PURE__ */ dual(2, (self, f) => append(initNonEmpt
 var setNonEmptyLast = /* @__PURE__ */ dual(2, (self, b) => modifyNonEmptyLast(self, () => b));
 var rotate = /* @__PURE__ */ dual(2, (self, n) => {
   const input2 = fromIterable(self);
-  return isNonEmptyReadonlyArray(input2) ? rotateNonEmpty(input2, n) : [];
-});
-var rotateNonEmpty = /* @__PURE__ */ dual(2, (self, n) => {
-  const len = self.length;
-  const m = Math.round(n) % len;
-  if (isOutOfBound(Math.abs(m), self) || m === 0) {
-    return copy(self);
+  if (isNonEmptyReadonlyArray(input2)) {
+    const len = input2.length;
+    const m = Math.round(n) % len;
+    if (isOutOfBound(Math.abs(m), input2) || m === 0) {
+      return copy(input2);
+    }
+    if (m < 0) {
+      const [f, s] = splitNonEmptyAt(input2, -m);
+      return appendAll(s, f);
+    } else {
+      return rotate(self, m - len);
+    }
   }
-  if (m < 0) {
-    const [f, s] = splitNonEmptyAt(self, -m);
-    return appendAllNonEmpty(s, f);
-  } else {
-    return rotateNonEmpty(self, m - len);
-  }
+  return [];
 });
 var containsWith = (isEquivalent) => dual(2, (self, a) => {
   for (const i of self) {
@@ -1328,47 +1456,50 @@ var containsWith = (isEquivalent) => dual(2, (self, a) => {
 });
 var _equivalence = /* @__PURE__ */ equivalence();
 var contains = /* @__PURE__ */ containsWith(_equivalence);
-var dedupeNonEmptyWith = /* @__PURE__ */ dual(2, (self, isEquivalent) => {
-  const out = [headNonEmpty(self)];
-  const rest = tailNonEmpty(self);
-  for (const a of rest) {
-    if (out.every((o) => !isEquivalent(a, o))) {
-      out.push(a);
-    }
-  }
-  return out;
-});
-var dedupeNonEmpty = /* @__PURE__ */ dedupeNonEmptyWith(/* @__PURE__ */ equivalence());
 var chop = /* @__PURE__ */ dual(2, (self, f) => {
   const input2 = fromIterable(self);
-  return isNonEmptyReadonlyArray(input2) ? chopNonEmpty(input2, f) : [];
-});
-var chopNonEmpty = /* @__PURE__ */ dual(2, (self, f) => {
-  const [b, rest] = f(self);
-  const out = [b];
-  let next = rest;
-  while (isNonEmptyArray(next)) {
-    const [b2, rest2] = f(next);
-    out.push(b2);
-    next = rest2;
+  if (isNonEmptyReadonlyArray(input2)) {
+    const [b, rest] = f(input2);
+    const out = [b];
+    let next = rest;
+    while (isNonEmptyArray(next)) {
+      const [b2, rest2] = f(next);
+      out.push(b2);
+      next = rest2;
+    }
+    return out;
   }
-  return out;
+  return [];
 });
 var splitAt = /* @__PURE__ */ dual(2, (self, n) => {
   const input2 = Array.from(self);
-  return n >= 1 && isNonEmptyReadonlyArray(input2) ? splitNonEmptyAt(input2, n) : isEmptyReadonlyArray(input2) ? [input2, []] : [[], input2];
+  const _n = Math.floor(n);
+  if (isNonEmptyReadonlyArray(input2)) {
+    if (_n >= 1) {
+      return splitNonEmptyAt(input2, _n);
+    }
+    return [[], input2];
+  }
+  return [input2, []];
 });
-var copy = (self) => self.slice();
 var splitNonEmptyAt = /* @__PURE__ */ dual(2, (self, n) => {
-  const m = Math.max(1, n);
-  return m >= self.length ? [copy(self), []] : [prepend(self.slice(1, m), headNonEmpty(self)), self.slice(m)];
+  const _n = Math.max(1, Math.floor(n));
+  return _n >= self.length ? [copy(self), []] : [prepend(self.slice(1, _n), headNonEmpty(self)), self.slice(_n)];
 });
+var split = /* @__PURE__ */ dual(2, (self, n) => {
+  const input2 = fromIterable(self);
+  return chunksOf(input2, Math.ceil(input2.length / Math.floor(n)));
+});
+var splitWhere = /* @__PURE__ */ dual(2, (self, predicate) => span(self, (a, i) => !predicate(a, i)));
+var copy = (self) => self.slice();
 var chunksOf = /* @__PURE__ */ dual(2, (self, n) => {
   const input2 = fromIterable(self);
-  return isNonEmptyReadonlyArray(input2) ? chunksOfNonEmpty(input2, n) : [];
+  if (isNonEmptyReadonlyArray(input2)) {
+    return chop(input2, splitNonEmptyAt(n));
+  }
+  return [];
 });
-var chunksOfNonEmpty = /* @__PURE__ */ dual(2, (self, n) => chopNonEmpty(self, splitNonEmptyAt(n)));
-var groupWith = /* @__PURE__ */ dual(2, (self, isEquivalent) => chopNonEmpty(self, (as) => {
+var groupWith = /* @__PURE__ */ dual(2, (self, isEquivalent) => chop(self, (as) => {
   const h = headNonEmpty(as);
   const out = [h];
   let i = 1;
@@ -1395,17 +1526,19 @@ var groupBy = /* @__PURE__ */ dual(2, (self, f) => {
   }
   return out;
 });
-var unionWith = (isEquivalent) => dual(2, (self, that) => {
+var unionWith = /* @__PURE__ */ dual(3, (self, that, isEquivalent) => {
   const a = fromIterable(self);
   const b = fromIterable(that);
-  return isNonEmptyReadonlyArray(a) && isNonEmptyReadonlyArray(b) ? unionNonEmptyWith(isEquivalent)(a, b) : isNonEmptyReadonlyArray(a) ? a : b;
+  if (isNonEmptyReadonlyArray(a)) {
+    if (isNonEmptyReadonlyArray(b)) {
+      const dedupe2 = dedupeWith(isEquivalent);
+      return dedupe2(appendAll(a, b));
+    }
+    return a;
+  }
+  return b;
 });
-var union = /* @__PURE__ */ unionWith(_equivalence);
-var unionNonEmptyWith = (isEquivalent) => {
-  const dedupe2 = dedupeNonEmptyWith(isEquivalent);
-  return dual(2, (self, that) => dedupe2(appendAllNonEmpty(self, that)));
-};
-var unionNonEmpty = /* @__PURE__ */ unionNonEmptyWith(_equivalence);
+var union = /* @__PURE__ */ dual(2, (self, that) => unionWith(self, that, _equivalence));
 var intersectionWith = (isEquivalent) => {
   const has = containsWith(isEquivalent);
   return dual(2, (self, that) => fromIterable(self).filter((a) => has(that, a)));
@@ -1425,13 +1558,14 @@ var flatMap2 = /* @__PURE__ */ dual(2, (self, f) => {
   }
   const out = [];
   for (let i = 0; i < self.length; i++) {
-    out.push(...f(self[i], i));
+    const inner = f(self[i], i);
+    for (let j = 0; j < inner.length; j++) {
+      out.push(inner[j]);
+    }
   }
   return out;
 });
-var flatMapNonEmpty = flatMap2;
 var flatten = /* @__PURE__ */ flatMap2(identity);
-var flattenNonEmpty = /* @__PURE__ */ flatMapNonEmpty(identity);
 var filterMap = /* @__PURE__ */ dual(2, (self, f) => {
   const as = fromIterable(self);
   const out = [];
@@ -1444,14 +1578,16 @@ var filterMap = /* @__PURE__ */ dual(2, (self, f) => {
   return out;
 });
 var filterMapWhile = /* @__PURE__ */ dual(2, (self, f) => {
+  let i = 0;
   const out = [];
   for (const a of self) {
-    const b = f(a);
+    const b = f(a, i);
     if (isSome2(b)) {
       out.push(b.value);
     } else {
       break;
     }
+    i++;
   }
   return out;
 });
@@ -1469,7 +1605,25 @@ var partitionMap = /* @__PURE__ */ dual(2, (self, f) => {
   }
   return [left3, right3];
 });
-var compact = /* @__PURE__ */ filterMap(identity);
+var getSomes = /* @__PURE__ */ filterMap(identity);
+var getLefts = (self) => {
+  const out = [];
+  for (const a of self) {
+    if (isLeft2(a)) {
+      out.push(a.left);
+    }
+  }
+  return out;
+};
+var getRights = (self) => {
+  const out = [];
+  for (const a of self) {
+    if (isRight2(a)) {
+      out.push(a.right);
+    }
+  }
+  return out;
+};
 var filter = /* @__PURE__ */ dual(2, (self, predicate) => {
   const as = fromIterable(self);
   const out = [];
@@ -1521,14 +1675,24 @@ var unfold = (b, f) => {
   }
   return out;
 };
-var getOrder = array3;
-var getEquivalence2 = array2;
+var getOrder = array2;
+var getEquivalence2 = array;
 var forEach = /* @__PURE__ */ dual(2, (self, f) => fromIterable(self).forEach((a, i) => f(a, i)));
 var dedupeWith = /* @__PURE__ */ dual(2, (self, isEquivalent) => {
   const input2 = fromIterable(self);
-  return isNonEmptyReadonlyArray(input2) ? dedupeNonEmptyWith(isEquivalent)(input2) : [];
+  if (isNonEmptyReadonlyArray(input2)) {
+    const out = [headNonEmpty(input2)];
+    const rest = tailNonEmpty(input2);
+    for (const r of rest) {
+      if (out.every((a) => !isEquivalent(r, a))) {
+        out.push(r);
+      }
+    }
+    return out;
+  }
+  return [];
 });
-var dedupe = /* @__PURE__ */ dedupeWith(/* @__PURE__ */ equivalence());
+var dedupe = (self) => dedupeWith(self, equivalence());
 var dedupeAdjacentWith = /* @__PURE__ */ dual(2, (self, isEquivalent) => {
   const out = [];
   let lastA = none2();
@@ -1543,12 +1707,14 @@ var dedupeAdjacentWith = /* @__PURE__ */ dual(2, (self, isEquivalent) => {
 var dedupeAdjacent = /* @__PURE__ */ dedupeAdjacentWith(/* @__PURE__ */ equivalence());
 var join = /* @__PURE__ */ dual(2, (self, sep) => fromIterable(self).join(sep));
 var mapAccum = /* @__PURE__ */ dual(3, (self, s, f) => {
+  let i = 0;
   let s1 = s;
   const out = [];
   for (const a of self) {
-    const r = f(s1, a);
+    const r = f(s1, a, i);
     s1 = r[0];
     out.push(r[1]);
+    i++;
   }
   return [s1, out];
 });
@@ -1558,7 +1724,7 @@ var cartesian = /* @__PURE__ */ dual(2, (self, that) => cartesianWith(self, that
 // lib/index.js
 var divide = (a, b) => b === 0 ? Either_exports.left("cannot divide by zero") : Either_exports.right(a / b);
 var input = [2, 3, 5];
-var program = ReadonlyArray_exports.head(input).pipe(Either_exports.fromOption(() => "empty array"), Either_exports.flatMap((b) => divide(10, b)), Either_exports.match({
+var program = Array_exports.head(input).pipe(Either_exports.fromOption(() => "empty array"), Either_exports.flatMap((b) => divide(10, b)), Either_exports.match({
   onLeft: (e) => `Error: ${e}`,
   onRight: (a) => `Result: ${a}`
 }));

@@ -53,7 +53,7 @@
         };
     }
   };
-  function pipe(a, ab, bc, cd, de, ef, fg, gh, hi) {
+  function Function_pipe(a, ab, bc, cd, de, ef, fg, gh, hi) {
     switch (arguments.length) {
       case 1:
         return a;
@@ -80,9 +80,11 @@
       }
     }
   }
-  const globalStoreId = Symbol.for(
-    "effect/GlobalValue/globalStoreId/2.0.0-next.55"
-  );
+  let moduleVersion = "3.1.0";
+  const getCurrentVersion = () => moduleVersion,
+    globalStoreId = Symbol.for(
+      `effect/GlobalValue/globalStoreId/${getCurrentVersion()}`
+    );
   globalStoreId in globalThis || (globalThis[globalStoreId] = new Map());
   const globalStore = globalThis[globalStoreId],
     globalValue = (id, compute) => (
@@ -100,7 +102,27 @@
     isNullable = (input) => null == input,
     GenKindTypeId = Symbol.for("effect/Gen/GenKind");
   Symbol.iterator;
-  Symbol.iterator;
+  class SingleShotGen {
+    self;
+    called = !1;
+    constructor(self) {
+      this.self = self;
+    }
+    next(a) {
+      return this.called
+        ? { value: a, done: !0 }
+        : ((this.called = !0), { value: this.self, done: !1 });
+    }
+    return(a) {
+      return { value: a, done: !0 };
+    }
+    throw(e) {
+      throw e;
+    }
+    [Symbol.iterator]() {
+      return new SingleShotGen(this.self);
+    }
+  }
   class PCGRandom {
     _state;
     constructor(seedHi, seedLo, incHi, incLo) {
@@ -197,6 +219,16 @@
     const lo = (aLo + bLo) >>> 0;
     lo >>> 0 < aLo >>> 0 && (hi = (hi + 1) | 0), (out[0] = hi), (out[1] = lo);
   }
+  const YieldWrapTypeId = Symbol.for("effect/Utils/YieldWrap");
+  class YieldWrap {
+    #value;
+    constructor(value) {
+      this.#value = value;
+    }
+    [YieldWrapTypeId]() {
+      return this.#value;
+    }
+  }
   const randomHashCache = globalValue(
       Symbol.for("effect/Hash/randomHashCache"),
       () => new WeakMap()
@@ -257,9 +289,32 @@
       ((o, keys) => {
         let h = 12289;
         for (let i = 0; i < keys.length; i++)
-          h ^= pipe(string(keys[i]), combine(hash(o[keys[i]])));
+          h ^= Function_pipe(string(keys[i]), combine(hash(o[keys[i]])));
         return optimize(h);
       })(o, Object.keys(o)),
+    cached = function () {
+      if (1 === arguments.length) {
+        const self = arguments[0];
+        return function (hash) {
+          return (
+            Object.defineProperty(self, symbol, {
+              value: () => hash,
+              enumerable: !1,
+            }),
+            hash
+          );
+        };
+      }
+      const self = arguments[0],
+        hash = arguments[1];
+      return (
+        Object.defineProperty(self, symbol, {
+          value: () => hash,
+          enumerable: !1,
+        }),
+        hash
+      );
+    },
     Equal_symbol = Symbol.for("effect/Equal");
   function equals() {
     return 1 === arguments.length
@@ -292,47 +347,28 @@
         : Array.isArray(x)
         ? x.map(toJSON)
         : x,
-    Inspectable_toString = (x) => JSON.stringify(x, null, 2),
-    StructProto =
-      (Array.prototype,
-      symbol,
-      Equal_symbol,
-      {
-        [symbol]() {
-          return structure(this);
-        },
-        [Equal_symbol](that) {
-          const selfKeys = Object.keys(this),
-            thatKeys = Object.keys(that);
-          if (selfKeys.length !== thatKeys.length) return !1;
-          for (const key of selfKeys)
-            if (!(key in that) || !equals(this[key], that[key])) return !1;
-          return !0;
-        },
-      }),
-    Structural = (function () {
-      function Structural(args) {
-        args && Object.assign(this, args);
-      }
-      return (Structural.prototype = StructProto), Structural;
-    })(),
+    format = (x) => JSON.stringify(x, null, 2);
+  const EffectTypeId = Symbol.for("effect/Effect"),
+    StreamTypeId = Symbol.for("effect/Stream"),
+    SinkTypeId = Symbol.for("effect/Sink"),
+    ChannelTypeId = Symbol.for("effect/Channel"),
     effectVariance = {
       _R: (_) => _,
       _E: (_) => _,
       _A: (_) => _,
-      _V: "2.0.0-next.55",
+      _V: getCurrentVersion(),
     },
     EffectPrototype = {
-      [Symbol.for("effect/Effect")]: effectVariance,
-      [Symbol.for("effect/Stream")]: effectVariance,
-      [Symbol.for("effect/Sink")]: {
-        _R: (_) => _,
-        _E: (_) => _,
+      [EffectTypeId]: effectVariance,
+      [StreamTypeId]: effectVariance,
+      [SinkTypeId]: {
+        _A: (_) => _,
         _In: (_) => _,
         _L: (_) => _,
-        _Z: (_) => _,
+        _E: (_) => _,
+        _R: (_) => _,
       },
-      [Symbol.for("effect/Channel")]: {
+      [ChannelTypeId]: {
         _Env: (_) => _,
         _InErr: (_) => _,
         _InElem: (_) => _,
@@ -345,7 +381,10 @@
         return this === that;
       },
       [symbol]() {
-        return random(this);
+        return cached(this, random(this));
+      },
+      [Symbol.iterator]() {
+        return new SingleShotGen(new YieldWrap(this));
       },
       pipe() {
         return ((self, args) => {
@@ -390,8 +429,21 @@
         })(this, arguments);
       },
     },
+    StructuralPrototype = {
+      [symbol]() {
+        return cached(this, structure(this));
+      },
+      [Equal_symbol](that) {
+        const selfKeys = Object.keys(this),
+          thatKeys = Object.keys(that);
+        if (selfKeys.length !== thatKeys.length) return !1;
+        for (const key of selfKeys)
+          if (!(key in that) || !equals(this[key], that[key])) return !1;
+        return !0;
+      },
+    },
     CommitPrototype = { ...EffectPrototype, _op: "Commit" },
-    TypeId = (Structural.prototype, Symbol.for("effect/Option")),
+    TypeId = Symbol.for("effect/Option"),
     CommonProto = {
       ...EffectPrototype,
       [TypeId]: { _A: (_) => _ },
@@ -399,7 +451,7 @@
         return this.toJSON();
       },
       toString() {
-        return Inspectable_toString(this.toJSON());
+        return format(this.toJSON());
       },
     },
     SomeProto = Object.assign(Object.create(CommonProto), {
@@ -409,19 +461,18 @@
         return isOption(that) && isSome(that) && equals(that.value, this.value);
       },
       [symbol]() {
-        return combine(hash(this._tag))(hash(this.value));
+        return cached(this, combine(hash(this._tag))(hash(this.value)));
       },
       toJSON() {
         return { _id: "Option", _tag: this._tag, value: toJSON(this.value) };
       },
     }),
+    NoneHash = hash("None"),
     NoneProto = Object.assign(Object.create(CommonProto), {
       _tag: "None",
       _op: "None",
       [Equal_symbol]: (that) => isOption(that) && isNone(that),
-      [symbol]() {
-        return combine(hash(this._tag));
-      },
+      [symbol]: () => NoneHash,
       toJSON() {
         return { _id: "Option", _tag: this._tag };
       },
@@ -437,12 +488,12 @@
     either_TypeId = Symbol.for("effect/Either"),
     either_CommonProto = {
       ...EffectPrototype,
-      [either_TypeId]: { _A: (_) => _ },
+      [either_TypeId]: { _R: (_) => _ },
       [NodeInspectSymbol]() {
         return this.toJSON();
       },
       toString() {
-        return Inspectable_toString(this.toJSON());
+        return format(this.toJSON());
       },
     },
     RightProto = Object.assign(Object.create(either_CommonProto), {
@@ -499,7 +550,10 @@
     ),
     Option_none = () => none,
     Option_some = option_some;
-  const isOutOfBound = (i, as) => i < 0 || i >= as.length,
+  Symbol.iterator;
+  const constEmptyIterator = { next: () => ({ done: !0, value: void 0 }) },
+    isOutOfBound =
+      (Object.fromEntries, Array.isArray, (i, as) => i < 0 || i >= as.length),
     program = Function_dual(2, (self, index) => {
       const i = Math.floor(index);
       return isOutOfBound(i, self) ? Option_none() : Option_some(self[i]);

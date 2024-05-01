@@ -61,9 +61,10 @@ const dual = function (arity, body) {
       };
   }
 };
-const moduleVersion = "2.0.0-next.55";
+let moduleVersion = "3.1.0";
+const getCurrentVersion = () => moduleVersion;
 const globalStoreId = Symbol.for(
-  `effect/GlobalValue/globalStoreId/${moduleVersion}`
+  `effect/GlobalValue/globalStoreId/${getCurrentVersion()}`
 );
 if (!(globalStoreId in globalThis)) {
   globalThis[globalStoreId] = new Map();
@@ -83,6 +84,27 @@ const hasProperty = dual(
   (self, property) => isObject(self) && property in self
 );
 const isNullable = (input) => input === null || input === undefined;
+class SingleShotGen {
+  self;
+  called = false;
+  constructor(self) {
+    this.self = self;
+  }
+  next(a) {
+    return this.called
+      ? { value: a, done: true }
+      : ((this.called = true), { value: this.self, done: false });
+  }
+  return(a) {
+    return { value: a, done: true };
+  }
+  throw(e) {
+    throw e;
+  }
+  [Symbol.iterator]() {
+    return new SingleShotGen(this.self);
+  }
+}
 const defaultIncHi = 335903614;
 const defaultIncLo = 4150755663;
 const MUL_HI = 1481765933 >>> 0;
@@ -195,6 +217,16 @@ function add64(out, aHi, aLo, bHi, bLo) {
   out[0] = hi;
   out[1] = lo;
 }
+const YieldWrapTypeId = Symbol.for("effect/Utils/YieldWrap");
+class YieldWrap {
+  #value;
+  constructor(value) {
+    this.#value = value;
+  }
+  [YieldWrapTypeId]() {
+    return this.#value;
+  }
+}
 const randomHashCache = globalValue(
   Symbol.for("effect/Hash/randomHashCache"),
   () => new WeakMap()
@@ -262,6 +294,29 @@ const string = (str) => {
   }
   return optimize(h);
 };
+const cached = function () {
+  if (arguments.length === 1) {
+    const self = arguments[0];
+    return function (hash) {
+      Object.defineProperty(self, symbol$1, {
+        value() {
+          return hash;
+        },
+        enumerable: false,
+      });
+      return hash;
+    };
+  }
+  const self = arguments[0];
+  const hash = arguments[1];
+  Object.defineProperty(self, symbol$1, {
+    value() {
+      return hash;
+    },
+    enumerable: false,
+  });
+  return hash;
+};
 const symbol = Symbol.for("effect/Equal");
 function equals() {
   if (arguments.length === 1) {
@@ -302,7 +357,7 @@ const toJSON = (x) => {
   }
   return x;
 };
-const toString = (x) => JSON.stringify(x, null, 2);
+const format = (x) => JSON.stringify(x, null, 2);
 const pipeArguments = (self, args) => {
   switch (args.length) {
     case 1:
@@ -348,14 +403,14 @@ const effectVariance = {
   _R: (_) => _,
   _E: (_) => _,
   _A: (_) => _,
-  _V: moduleVersion,
+  _V: getCurrentVersion(),
 };
 const sinkVariance = {
-  _R: (_) => _,
-  _E: (_) => _,
+  _A: (_) => _,
   _In: (_) => _,
   _L: (_) => _,
-  _Z: (_) => _,
+  _E: (_) => _,
+  _R: (_) => _,
 };
 const channelVariance = {
   _Env: (_) => _,
@@ -375,7 +430,10 @@ const EffectPrototype = {
     return this === that;
   },
   [symbol$1]() {
-    return random(this);
+    return cached(this, random(this));
+  },
+  [Symbol.iterator]() {
+    return new SingleShotGen(new YieldWrap(this));
   },
   pipe() {
     return pipeArguments(this, arguments);
@@ -389,7 +447,7 @@ const CommonProto$1 = {
     return this.toJSON();
   },
   toString() {
-    return toString(this.toJSON());
+    return format(this.toJSON());
   },
 };
 const SomeProto = Object.assign(Object.create(CommonProto$1), {
@@ -399,12 +457,13 @@ const SomeProto = Object.assign(Object.create(CommonProto$1), {
     return isOption(that) && isSome(that) && equals(that.value, this.value);
   },
   [symbol$1]() {
-    return combine(hash(this._tag))(hash(this.value));
+    return cached(this, combine(hash(this._tag))(hash(this.value)));
   },
   toJSON() {
     return { _id: "Option", _tag: this._tag, value: toJSON(this.value) };
   },
 });
+const NoneHash = hash("None");
 const NoneProto = Object.assign(Object.create(CommonProto$1), {
   _tag: "None",
   _op: "None",
@@ -412,7 +471,7 @@ const NoneProto = Object.assign(Object.create(CommonProto$1), {
     return isOption(that) && isNone(that);
   },
   [symbol$1]() {
-    return combine(hash(this._tag));
+    return NoneHash;
   },
   toJSON() {
     return { _id: "Option", _tag: this._tag };
@@ -430,12 +489,12 @@ const some$1 = (value) => {
 const TypeId = Symbol.for("effect/Either");
 const CommonProto = {
   ...EffectPrototype,
-  [TypeId]: { _A: (_) => _ },
+  [TypeId]: { _R: (_) => _ },
   [NodeInspectSymbol]() {
     return this.toJSON();
   },
   toString() {
-    return toString(this.toJSON());
+    return format(this.toJSON());
   },
 };
 const RightProto = Object.assign(Object.create(CommonProto), {
@@ -480,8 +539,6 @@ const right$1 = (right) => {
 const fromOption$1 = dual(2, (self, onNone) =>
   isNone(self) ? left$1(onNone()) : right$1(self.value)
 );
-const none = () => none$1;
-const some = some$1;
 const right = right$1;
 const left = left$1;
 const fromOption = fromOption$1;
@@ -492,13 +549,14 @@ const match = dual(2, (self, { onLeft: onLeft, onRight: onRight }) =>
 const flatMap = dual(2, (self, f) =>
   isLeft(self) ? left(self.left) : f(self.right)
 );
+const none = () => none$1;
+const some = some$1;
 const isOutOfBound = (i, as) => i < 0 || i >= as.length;
 const get = dual(2, (self, index) => {
   const i = Math.floor(index);
   return isOutOfBound(i, self) ? none() : some(self[i]);
 });
 const head = get(0);
-typeof process === "undefined" ? false : !!process?.isBun;
 const divide = (a, b) =>
   b === 0 ? left("cannot divide by zero") : right(a / b);
 const input = [2, 3, 5];
