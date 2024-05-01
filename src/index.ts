@@ -1,4 +1,5 @@
-import { Either, Array as Arr } from 'effect';
+import * as Either from 'effect/Either';
+import * as Arr from 'effect/Array';
 
 const divide = (a: number, b: number) => (b === 0 ? Either.left('cannot divide by zero') : Either.right(a / b));
 const input = [2, 3, 5];
